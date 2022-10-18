@@ -1,0 +1,120 @@
+.icon {
+    color: #FF6262;
+}
+
+#id {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.header-image {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.masthead h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 7rem;
+    color: white;
+}
+
+.masthead p {
+    font-family: 'Segoe UI Light', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+}
+
+.masthead {
+    height: 100vh;
+    min-height: 500px;
+    background-image: url('../assets/headerimage.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.header-text span {
+    position: absolute;
+}
+
+button.btn-join {
+    background: #FF6262;
+    width: 14rem;
+    height: 4rem;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+}
+
+button.btn-join:hover {
+    color: white;
+    transition: 0.4s;
+    background-color: #c64040;
+}
+
+.btn-readmore {
+    box-sizing: border-box;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 5px;
+    font-size: 2rem;
+    font-weight: 500;
+    width: 14rem;
+    height: 4.1rem;
+}
+
+.card-body h1{
+    font-size: 2rem;
+    font-weight: 400;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card-body p{
+    font-family: 'SEGOE UI Light';
+}
+
+.card-body span{
+    color: #EE2E2E;
+}
+
+.card{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 2rem;
+}
+
+.big-card p{
+    font-family: 'Segoe UI light';
+}
+
+#carousel{
+    text-align: center;
+    background-color: #FF6262;
+}
+
+.carousel-item{
+    padding: 7% 15%;
+
+}
+
+#carousel h2{
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+#carousel p{
+    color: white;
+    font-family: 'Segoe UI Light';
+}
+
+.footer {
+    position:absolute;
+    width:100%;
+    white-space:nowrap;
+    line-height:60px;
+    bottom: 0;
+}
+
+
