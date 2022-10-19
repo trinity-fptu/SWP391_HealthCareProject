@@ -118,3 +118,53 @@ button.btn-join:hover {
 }
 
 
+
+#top-volunteer {
+    padding: 2rem;
+    background-color: #E9E9E9;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+
+#top-volunteer hr {
+    margin: auto;
+    height: 4px;
+    color: #F12C2C;
+    opacity: 100%;
+}
+
+#find-campaign{
+    margin-top:10rem;
+    margin-bottom:10rem;
+}
+
+    #find-campaign hr {
+        height: 4px;
+        color: #F12C2C;
+        opacity: 100%;
+    }
+
+
+    #find-campaign input {
+        padding: 0.5rem;
+        margin: 1rem;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        border:none;
+    }
+
+.description {
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border: none;
+    width: 27rem;
+    height: 15rem;
+    margin:1rem;
+}
+
+
+
+
+
+
+
