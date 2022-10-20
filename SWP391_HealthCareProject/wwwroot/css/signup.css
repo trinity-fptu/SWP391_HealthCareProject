@@ -1,34 +1,12 @@
-.icon {
+﻿.icon {
     color: #FF6262;
 }
 
-#login {
+#signup {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     width: 40rem;
-    height: 32rem;
+    height: 40rem;
     border-radius: 15px;
-
-}
-
-.head {
-    border-top-right-radius: 15px;
-    border-top-left-radius: 15px;
-    background-color: #FF6262;
-    padding: 2rem;
-    color: white;
-    text-align: center;
-
-}
-
-.head span {
-    font-family: 'Segoe UI light';
-}
-
-.holder {
-    margin: auto;
-    text-align: center;
-    width: fit-content;
-    block-size: fit-content;
 }
 
 input {
@@ -37,13 +15,35 @@ input {
     width: 20rem;
     height: 3rem;
     padding: 1rem;
-    margin-top: 3rem;
+    margin: 3rem;
     border-radius: 12px;
 }
 
 
+.head {
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    background-color: #FF6262;
+    padding: 2rem;
+    color: white;
+    text-align: center;
+}
 
-.login-btn{
+.head span {
+        font-family: 'Segoe UI light';
+    }
+
+.holder {
+    margin: auto;
+    text-align: center;
+    width: fit-content;
+    block-size: fit-content;
+}
+
+
+
+
+.login-btn {
     border-radius: 8px;
     background-color: #628EFF;
     border: none;
@@ -55,7 +55,5 @@ input {
 
 
 @media only screen and (max-width: 669px) {
-    #login {
-      width: 30rem;
-    }
-  }
+   
+}

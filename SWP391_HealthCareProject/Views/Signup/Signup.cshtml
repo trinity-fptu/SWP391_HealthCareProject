@@ -2,7 +2,7 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewData["Title"] = "Login Page";
+    ViewData["Title"] = "Signup Page";
     Layout = null;
 }
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="~/css/login.css">
+    <link rel="stylesheet" href="~/css/signup.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -41,23 +41,24 @@
         </nav>
     </section>
     <!-- body -->
-    <section id="login" class="mx-auto my-lg-5 my-5">
+    <section id="signup" class="mx-auto my-lg-5 my-5">
         <div class="head">
-            <h1>Login</h1>
-            <span>Welcome Back</span>
+            <h1>Sign Up</h1>
+            <span>Welcome</span>
         </div>
         <div class="holder">
-            <input type="text" placeholder="username" class=""><br>
-            <input type="text" placeholder="password" class="my-4">
-            <div class="d-flex justify-content-end mb-3">
-                <a href="#">Forgot Password?</a>
-            </div>
+            <form action="" method="">
+            <input type="text" placeholder="username" class="my-3 mt-5"><br/>
+            <input type="text" placeholder="email" class="my-3"><br />
+            <input type="text" placeholder="password" class="my-3"><br />
+            <input type="text" placeholder="confirm password" class="my-3">
             <div class="d-flex justify-content-start mt-4">
-                <button type="button" class="login-btn">Log In</button>
+                <button type="button" class="login-btn">Sign Up</button>
             </div>
+            </form>
             <br>
             <div class="register d-flex justify-content-start">
-                <span>Dont have an account? <a href="/Signup/Signup">Register Now</a></span>
+                <span>Already have an account? <a href="/Login/Login">Login Now</a></span>
             </div>
         </div>
     </section>
