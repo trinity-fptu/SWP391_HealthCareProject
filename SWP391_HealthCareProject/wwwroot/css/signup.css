@@ -2,6 +2,15 @@
     color: #FF6262;
 }
 
+body {
+    width: 50%;
+    height: 100%;
+    background-color: #FF6262;
+    position: fixed;
+    bottom: 0;
+    transform: skewX(50 deg);
+}
+
 #signup {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     width: 40rem;
@@ -43,17 +52,24 @@ input {
 
 
 
-.login-btn {
+button {
     border-radius: 8px;
     background-color: #628EFF;
     border: none;
     color: white;
     width: 8rem;
     height: 2.5rem;
+    transition: 0.5s;
+}
+
+button:hover{
+    background-color: #3769e8;
+    transform:scale(1.1);
 }
 
 
-
 @media only screen and (max-width: 669px) {
-   
+    #signup {
+        width: 30rem;
+    }
 }
