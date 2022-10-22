@@ -61,47 +61,46 @@
                 </div>
             </nav>
 
-            <!-- Header Image -->
-            <header class="masthead">
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-12 text-center">
-                            <h1 class="header-text">Blood Donor</h1>
-                            <p class="lead">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde dicta excepturi iure
-                                laboriosam modi repellendus corrupti officia consequatur, veniam labore alias nisi consectetur, id fuga
-                                omnis minima natus rerum enim?
-                            </p>
-                            <button type="button" class="btn  btn-lg btn-join">Join Now</button>
-                            <button type="button" class="btn btn-outline-light mx-lg-3 mx-md-3 mx-sm-3 mx-3 my-3 btn-readmore">
-                                Read
-                                More
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </header>
+            
 
             <!-- with image when hover make it black opacity 0.5 -->
         </section>
     </div>
-   
+
     <!-- Page Content -->
-        <main role="main" class="">
-            @RenderBody()
-        </main>
+    <main role="main" class="">
+        @RenderBody()
+    </main>
 
 
 
-    <footer class="footer text-muted">
-        <div class="container">
-            @RenderSection("Footer", false)
+
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-dark text-light">
+        <div class="d-flex justify-content-around">
+            <div class="mt-5">
+                <h1 style="color:#FF6262">Logo</h1>
+            </div>
+            <div class="mt-5">
+                <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                <p><i class="fas fa-home me-3 text-secondary"></i> New York, NY 10012, US</p>
+                <p>
+                    <i class="fas fa-envelope me-3 text-secondary"></i>
+                    info@example.com
+                </p>
+                <p><i class="fas fa-phone me-3 text-secondary"></i> + 01 234 567 88</p>
+                <p><i class="fas fa-print me-3 text-secondary"></i> + 01 234 567 89</p>
+            </div>
         </div>
+        <div class="text-center">
+            © 2022
+            <a class="text-reset fw-bold" href="#">Blood Donor</a>
+        </div>
+        <!-- Copyright -->
     </footer>
-    
-        
+    <!-- Footer -->
+
+
+
 </body>
 </html>

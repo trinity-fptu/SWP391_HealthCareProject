@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SWP391_HealthCareProject.Models;
 using System.Diagnostics;
 
@@ -19,6 +20,11 @@ namespace SWP391_HealthCareProject.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult CampaignList()
         {
             return View();
         }
