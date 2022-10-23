@@ -1,0 +1,96 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Detail Page";
+    Layout = "_LayoutProfile";
+}
+<div class="body">
+    <div class="nav-container">
+        <ul class="nav">
+            <li class="nav-item">General</li>
+            <li class="nav-item active">Details</li>
+            <li class="nav-item">Achivement</li>
+        </ul>
+    </div>
+    <div class="info-form-detail">
+        <form>
+            <div class="form-item-detail">
+                <div class="form-item-label-detail">
+                    <label for="inputFullName">Full Name</label>
+                </div>
+                <div class="form-item-field-detail">
+                    <input type="text" class="form-control" name="userName" />
+                </div>
+            </div>
+            <div class="form-item-detail">
+                <div class="form-item-label-detail">
+                    <label for="inputDob">Date of Birth</label>
+                </div>
+                <div class="form-item-field-detail">
+                    <select class="day-field form-select" name="dobDay"></select>
+                    <select class="month-field form-select" name="dobMonth"></select>
+                    <select class="year-field form-select" name="dobYear"></select>
+                </div>
+            </div>
+            <div class="form-item-detail">
+                <div class="form-item-label-detail">
+                    <label for="inpuGender">Gender</label>
+                </div>
+                <div class="form-item-field-detail">
+                    <select class="gender-field form-select" name="gender"></select>
+                </div>
+            </div>
+            <div class="form-item-detail">
+                <div class="form-item-label-detail">
+                    <label for="inpuBlood">Blood Group</label>
+                </div>
+                <div class="form-item-field">
+                    <select class="blood-field form-select" name="bloodType"></select>
+                </div>
+            </div>
+            <div class="form-item-detail">
+                <div class="form-item-label-detail">
+                    <label for="inpuGender">Last Donate Date</label>
+                </div>
+                <div class="form-item-field-detail">
+                    <select class="day-field form-select" name="days"></select>
+                    <select class="month-field form-select" name="months"></select>
+                    <select class="year-field form-select" name="years"></select>
+                </div>
+            </div>
+            <div class="form-item-detail">
+                <div class="form-item-label-detail">
+                    <label for="inpuGender">Phone Number</label>
+                </div>
+                <div class="form-item-field-detail">
+                    <input type="text" class="form-control" name="gender" />
+                </div>
+            </div>
+            <div class="form-item-detail">
+                <div class="form-item-label-detail">
+                    <label for="inpuGender">Email</label>
+                </div>
+                <div class="form-item-field-detail">
+                    <input type="text" class="form-control" name="gender" />
+                </div>
+            </div>
+            <div class="form-item-detail">
+                <div class="form-item-label-detail">
+                    <label for="inpuGender">Address</label>
+                </div>
+                <div class="form-item-field-detail">
+                    <input type="text" class="form-control" name="gender" />
+                </div>
+            </div>
+            <div class="form-item-detail">
+                <div class="form-item-button-detail">
+                    <button type="submit" class="btn btn-primary">
+                        Save Changes
+                    </button>
+                </div>
+                <div class="form-item-field-detail"></div>
+            </div>
+        </form>
+    </div>
+</div>
