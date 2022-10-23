@@ -7,15 +7,15 @@
 }
 <div class="container">
     <ul class="nav tab">
-        <li class="nav-item"><button class="tablinks" onclick="openTab(event, 'General')">General</button></li>
+        <li class="nav-item"><button id="defaultOpen" class="tablinks" onclick="openTab(event, 'General')">General</button></li>
         <li class="nav-item"><button class="tablinks" onclick="openTab(event, 'Details')">Details</button></li>
         <li class="nav-item"><button class="tablinks" onclick="openTab(event, 'Achievement')">Achievement</button></li>
     </ul>
 </div>
 
 
-<div class="container mt-5">
-    <div id="General" class="info-form-general tabcontent">
+<div class="container mt-5 tabcontent" id="General">
+    <div class="form-general">
         <div class="row">
             <div class="col-md-3 avatar-container-general d-flex justify-content-center align-self-center">
                 <img src="~/assets/avatardemo.jpg" class="" />
@@ -39,28 +39,26 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="password-form-general">
-    <div class="password-container-general">
-        <div class="form-label">
-            <h3>Change your password</h3>
-            <p>Make your password strong</p>
+    <div class="form-general mt-5 mb-5">
+        <div class="password-container-general">
+            <div class="form-label">
+                <h3>Change your password</h3>
+                <p>Make your password strong</p>
+            </div>
+            <form>
+                <div class="mb-3">
+                    <label for="exampleInputOldPwd">Old Password</label>
+                    <input type="password" class="form-control" name="oldPwd" />
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputNewPwd">New Password</label>
+                    <input type="password" class="form-control" name="newPwd" />
+                </div>
+                <button type="submit" class="btn btn-primary">Save Password</button>
+            </form>
         </div>
-        <form>
-            <div class="mb-3">
-                <label for="exampleInputOldPwd">Old Password</label>
-                <input type="password" class="form-control" name="oldPwd" />
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputNewPwd">New Password</label>
-                <input type="password" class="form-control" name="newPwd" />
-            </div>
-            <button type="submit" class="btn btn-primary">Save Password</button>
-        </form>
     </div>
 </div>
-
 
 
 
@@ -151,4 +149,6 @@
 <div id="Achievement" class="info-form-achievement tabcontent">
     bla
 </div>
+
+<script>document.getElementById("defaultOpen").click();</script>
 

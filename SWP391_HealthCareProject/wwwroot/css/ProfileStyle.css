@@ -18,29 +18,37 @@ body {
 .tab li button{
     padding: 10px;
     transition:0.5s;
-    background-color:none;
     border:none;
     border-top-left-radius:5px;
    border-top-right-radius:5px;
 }
 
-.tab li button:hover {
+
+.tab li .tablinks:hover {
     background-color: #ff9797;
     border-top: 1px solid #8A8A8A;
     border-left: 1px solid #8A8A8A;
     border-right: 1px solid #8A8A8A;
-    color:white;
 }
 
-.tab li button .active:hover{
-    background-color: #FF6262;
-}
 
-.info-form-general {
+.form-general {
     background-color: white;
     border: 1px solid #8A8A8A;
-    border-radius:18px;
-    padding:2rem;
+    border-radius: 18px;
+    padding: 2rem;
+    animation: fadeEffect 1s;
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 
