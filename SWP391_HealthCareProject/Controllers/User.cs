@@ -2,9 +2,9 @@
 
 namespace SWP391_HealthCareProject.Controllers
 {
-    public class GeneralController : Controller
+    public class User : Controller
     {
-        public IActionResult Index()
+        public IActionResult UserProfile()
         {
             return View();
         }

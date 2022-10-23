@@ -1,232 +1,37 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-.header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    height: 10vh;
+.icon {
+    color: #FF6262;
 }
 
-.navbar {
-    width: 100%;
-    padding: 0;
-}
-
-.logo {
-    display: inline-block;
-}
-
-    .logo span {
-        font-weight: bold;
-        font-size: 2rem;
-        color: #ff6262;
-    }
-
-i {
+#id {
     font-size: 3rem;
+    font-weight: bold;
 }
 
-li > a {
-    margin-left: 1rem;
-    margin-right: 1rem;
-    color: #000;
+body {
+    background-color: #F9F9F8;
 }
 
-.nav-item-active > a {
-    color: #ff6262;
+.tab {
+    border-bottom: 1px solid #8A8A8A;
 }
 
-.footer {
-    display: flex;
-    height: 30vh;
-    background-color: #000;
+.tab li button{
+    padding: 10px;
+    transition:0.5s;
+    background-color:none;
+    border:none;
+    border-top-left-radius:5px;
+   border-top-right-radius:5px;
 }
 
-.footer-item {
-    flex-grow: 1;
+.tab li button:hover {
+    background-color: #ff9797;
+    border-top: 1px solid #8A8A8A;
+    border-left: 1px solid #8A8A8A;
+    border-right: 1px solid #8A8A8A;
+    color:white;
 }
 
-    .footer-item.logo {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .footer-item.nav-container {
-        display: flex;
-        align-items: center;
-    }
-
-.footer .nav-item {
-    margin-bottom: 1rem;
-    color: white;
-}
-
-    .footer .nav-item.hightlight {
-        font-weight: bold;
-    }
-
-.footer h3 {
-    color: red;
-}
-
-.footer-item.small-content {
-    display: flex;
-}
-
-div.small-content {
-    color: #fff;
-    align-self: flex-end;
-    margin-bottom: 0.5rem;
-}
-
-span.small-content {
-    color: #ff6262;
-}
-
-.footer-item.contact-info {
-    display: flex;
-    align-items: center;
-}
-
-.phone,
-.email {
-    margin: 0.5rem;
-    color: #fff;
-}
-
-.body {
-  background-color: #f9f8f8;
-  overflow: auto;
-}
-.body .nav-container {
-  width: 80vw;
-  margin: 0 auto;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-  border-bottom: 1px solid #bababa;
-}
-.body .nav-item {
-  margin-right: 1rem;
-  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
-}
-.body .nav-item.active {
-  background-color: #ff6262;
-  color: #fff;
-  border: 1px solid #bababa;
-  border-radius: 5px 5px 0 0;
-}
-.info-form-general {
-  display: flex;
-  width: 80vw;
-  height: 35vh;
-  margin: 0 auto;
-  background-color: #fff;
-  border: 1px solid #b0b0b0;
-}
-.avatar-container-general {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.info-container-general {
-  flex: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.avatar-general {
-  display: inline-block;
-  background-color: #d9d9d9;
-  border-radius: 50%;
-  width: 9rem;
-  height: 9rem;
-  margin: 0 auto;
-}
-.info-container-general > form {
-  display: inline-block;
-  width: 70%;
-}
-.info-container-general button {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-.password-form-general {
-  width: 80vw;
-  height: 35vh;
-  margin: 0 auto;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-  background-color: #fff;
-  border: 1px solid #b0b0b0;
-}
-.password-container-general {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  background-color: #fff;
-  border: 1px solid #b0b0b0;
-}
-.password-container-general > form {
-  margin-left: 3%;
-  width: 90%;
-}
-.form-label {
-  margin-top: 2rem;
-  margin-left: 3%;
-}
-.info-form-detail {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 80vw;
-  height: 70vh;
-  margin: 0 auto;
-  margin-bottom: 3rem;
-  background-color: #fff;
-  border: 1px solid #b0b0b0;
-}
-.info-form-detail > form {
-  margin-top: 1rem;
-  width: 80%;
-}
-.form-item-detail {
-  display: flex;
-  margin: 2rem;
-}
-.form-item-label-detail,
-.form-item-button-detail {
-  flex: 1;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding-left: 2rem;
-}
-.form-item-field-detail {
-  flex: 4;
-}
-.form-item-field-detail > input {
-  display: block;
-  width: 80%;
-}
-.form-select {
-  display: inline-block;
-  margin-right: 1rem;
-}
-.day-field,
-.month-field {
-  width: 3rem;
-}
-.year-field {
-  width: 6rem;
-}
-.blood-field,
-.gender-field {
-  width: 5rem;
-}
-form label {
-  font-weight: bold;
+.tab li button .active:hover{
+    background-color: #FF6262;
 }
