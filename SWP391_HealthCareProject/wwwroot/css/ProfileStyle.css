@@ -23,6 +23,10 @@ body {
    border-top-right-radius:5px;
 }
 
+.tab li button .active{
+    color:white;
+}
+
 
 .tab li .tablinks:hover {
     background-color: #ff9797;
@@ -33,6 +37,14 @@ body {
 
 
 .form-general {
+    background-color: white;
+    border: 1px solid #8A8A8A;
+    border-radius: 18px;
+    padding: 2rem;
+    animation: fadeEffect 1s;
+}
+
+.form-detail {
     background-color: white;
     border: 1px solid #8A8A8A;
     border-radius: 18px;

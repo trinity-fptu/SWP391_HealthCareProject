@@ -54,7 +54,7 @@
                     <label for="exampleInputNewPwd">New Password</label>
                     <input type="password" class="form-control" name="newPwd" />
                 </div>
-                <button type="submit" class="btn btn-primary">Save Password</button>
+                <button type="submit" class="save mt-3">Save Password</button>
             </form>
         </div>
     </div>
@@ -65,11 +65,19 @@
 <!--details-->
 
 
-<div id="Details" class="info-form-detail tabcontent">
+<div id="Details" class="container form-detail tabcontent mt-5 mb-5">
     <form>
         <div class="form-item-detail">
             <div class="form-item-label-detail">
-                <label for="inputFullName">Full Name</label>
+                <label for="inputFirstlName">First Name</label>
+            </div>
+            <div class="form-item-field-detail">
+                <input type="text" class="form-control" name="userName" />
+            </div>
+        </div>
+        <div class="form-item-detail">
+            <div class="form-item-label-detail">
+                <label for="inputLastName">Last Name</label>
             </div>
             <div class="form-item-field-detail">
                 <input type="text" class="form-control" name="userName" />
@@ -80,9 +88,7 @@
                 <label for="inputDob">Date of Birth</label>
             </div>
             <div class="form-item-field-detail">
-                <select class="day-field form-select" name="dobDay"></select>
-                <select class="month-field form-select" name="dobMonth"></select>
-                <select class="year-field form-select" name="dobYear"></select>
+                <input type="date" name="dob">
             </div>
         </div>
         <div class="form-item-detail">
@@ -90,7 +96,14 @@
                 <label for="inpuGender">Gender</label>
             </div>
             <div class="form-item-field-detail">
-                <select class="gender-field form-select" name="gender"></select>
+                <select class="gender-field form-select" name="gender">
+                    <option value="male">
+                        Male
+                    </option>
+                    <option value="female">
+                        Female
+                    </option>
+                </select>
             </div>
         </div>
         <div class="form-item-detail">
@@ -98,7 +111,13 @@
                 <label for="inpuBlood">Blood Group</label>
             </div>
             <div class="form-item-field">
-                <select class="blood-field form-select" name="bloodType"></select>
+                <select class="blood-field form-select" name="bloodType">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="AB">AB</option>
+                    <option value="O">O</option>
+                    <option value="none">Dont know</option>
+                </select>
             </div>
         </div>
         <div class="form-item-detail">
@@ -106,9 +125,15 @@
                 <label for="inpuGender">Last Donate Date</label>
             </div>
             <div class="form-item-field-detail">
-                <select class="day-field form-select" name="days"></select>
-                <select class="month-field form-select" name="months"></select>
-                <select class="year-field form-select" name="years"></select>
+                <input type="date" name="lastDonateDate">
+            </div>
+        </div>
+        <div class="form-item-detail">
+            <div class="form-item-label-detail">
+                <label for="inputCardNumber">ID Card Number</label>
+            </div>
+            <div class="form-item-field-detail">
+                <input type="text" class="form-control" name="IDCardNumber" />
             </div>
         </div>
         <div class="form-item-detail">
@@ -116,7 +141,7 @@
                 <label for="inpuGender">Phone Number</label>
             </div>
             <div class="form-item-field-detail">
-                <input type="text" class="form-control" name="gender" />
+                <input type="text" class="form-control" name="phone" />
             </div>
         </div>
         <div class="form-item-detail">
@@ -124,7 +149,7 @@
                 <label for="inpuGender">Email</label>
             </div>
             <div class="form-item-field-detail">
-                <input type="text" class="form-control" name="gender" />
+                <input type="text" class="form-control" name="email" />
             </div>
         </div>
         <div class="form-item-detail">
@@ -132,11 +157,11 @@
                 <label for="inpuGender">Address</label>
             </div>
             <div class="form-item-field-detail">
-                <input type="text" class="form-control" name="gender" />
+                <input type="text" class="form-control" name="address" />
             </div>
         </div>
         <div class="form-item-detail">
-            <div class="form-item-button-detail">
+            <div class="save mt-3">
                 <button type="submit" class="btn btn-primary">
                     Save Changes
                 </button>

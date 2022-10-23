@@ -332,10 +332,8 @@ td {
 .table-account th {
     text-align: center;
 }
-.head-text {
-    width: 20%;
-    margin-left: 20vw;
-}
+
 main {
     background-color: #f9f8f8;
+    padding-bottom:20px;
 }
