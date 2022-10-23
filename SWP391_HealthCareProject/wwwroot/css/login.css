@@ -51,7 +51,7 @@ input {
     block-size: fit-content;
 }
 
-.login-btn{
+.save-btn{
     border-radius: 8px;
     background-color: #628EFF;
     border: none;
@@ -61,7 +61,7 @@ input {
     transition:0.5s;
 }
 
-.login-btn:hover{
+.save-btn:hover{
     background-color: #3769e8;
     transform:scale(1.1);
 }

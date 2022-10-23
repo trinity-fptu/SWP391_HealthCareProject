@@ -35,3 +35,34 @@ body {
 .tab li button .active:hover{
     background-color: #FF6262;
 }
+
+.info-form-general {
+    background-color: white;
+    border: 1px solid #8A8A8A;
+    border-radius:18px;
+    padding:2rem;
+}
+
+
+
+.avatar-container-general img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    clip-path: circle();
+}
+
+.save{
+    border-radius: 8px;
+    background-color: #628EFF;
+    border: none;
+    color: white;
+    width: 8rem;
+    height: 2.5rem;
+    transition:0.5s;
+}
+
+.save:hover{
+    background-color: #3769e8;
+    transform:scale(1.1);
+}
