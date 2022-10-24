@@ -19,10 +19,6 @@ namespace SWP391_HealthCareProject.Controllers
             return View();
         }
 
-        public IActionResult Post()
-        {
-            return View();
-        }
 
         public IActionResult Privacy()
         {
@@ -39,10 +35,6 @@ namespace SWP391_HealthCareProject.Controllers
             return View();
         }
 
-        public IActionResult PostDetail()
-        {
-            return View();
-        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
