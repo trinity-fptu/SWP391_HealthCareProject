@@ -2,6 +2,10 @@
     color: #FF6262;
 }
 
+main {
+    background-color: #F9F8F8;
+}
+
 #id {
     font-size: 3rem;
     font-weight: bold;
@@ -177,6 +181,12 @@ button.btn-join:hover {
     width: 27rem;
     height: 15rem;
     margin:1rem;
+}
+
+.top {
+    background-color: white;
+    border: 1px solid #8A8A8A;
+    border-radius: 18px;
 }
 
 
