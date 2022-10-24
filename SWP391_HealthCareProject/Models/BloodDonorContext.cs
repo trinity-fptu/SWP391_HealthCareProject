@@ -26,12 +26,16 @@ namespace SWP391_HealthCareProject.Models
         public virtual DbSet<User> Users { get; set; } = null!;
         public virtual DbSet<Volunteer> Volunteers { get; set; } = null!;
 
+        //Read appsettings.json to get connection string using Newtonsoft.Json
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=(local);Database=BloodDonor;user=sa;pwd=12345");
+                var config = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json")
+                    .Build();
+                optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
             }
         }
 
