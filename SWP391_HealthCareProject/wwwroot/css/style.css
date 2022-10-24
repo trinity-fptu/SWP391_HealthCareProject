@@ -187,7 +187,26 @@ button.btn-join:hover {
     background-color: white;
     border: 1px solid #8A8A8A;
     border-radius: 18px;
+    padding:3rem;
+
 }
+
+.continue-btn {
+    border-radius: 8px;
+    background-color:#628EFF ;
+    border: none;
+    color: white;
+    width: 8rem;
+    height: 2.5rem;
+    transition: 0.5s;
+}
+
+.continue-btn:hover{
+    background-color: #3769e8;
+    transform: scale(1.1);
+}
+
+
 
 
 
