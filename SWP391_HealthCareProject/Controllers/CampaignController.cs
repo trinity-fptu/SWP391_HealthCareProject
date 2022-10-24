@@ -8,5 +8,10 @@ namespace SWP391_HealthCareProject.Controllers
         {
             return View();
         }
+
+        public IActionResult HealthDeclare()
+        {
+            return View();
+        }
     }
 }

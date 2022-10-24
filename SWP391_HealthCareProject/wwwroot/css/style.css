@@ -206,6 +206,19 @@ button.btn-join:hover {
     transform: scale(1.1);
 }
 
+.declaration {
+    border: 1px solid #B0B0B0;
+    padding:2rem;
+}
+
+.declare-head {
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    padding: 2rem;
+    color: white;
+    text-align: center;
+    background-color: #628EFF;
+}
 
 
 
