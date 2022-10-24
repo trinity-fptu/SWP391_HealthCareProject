@@ -7,6 +7,8 @@ namespace SWP391_HealthCareProject.Views.Login
     {
         public void OnGet()
         {
+
         }
+
     }
 }
