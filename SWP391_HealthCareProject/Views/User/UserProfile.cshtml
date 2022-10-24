@@ -1,0 +1,179 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "General Page";
+    Layout = "_LayoutProfile";
+}
+<div class="container">
+    <ul class="nav tab">
+        <li class="nav-item"><button id="defaultOpen" class="tablinks" onclick="openTab(event, 'General')">General</button></li>
+        <li class="nav-item"><button class="tablinks" onclick="openTab(event, 'Details')">Details</button></li>
+        <li class="nav-item"><button class="tablinks" onclick="openTab(event, 'Achievement')">Achievement</button></li>
+    </ul>
+</div>
+
+
+<div class="container mt-5 tabcontent" id="General">
+    <div class="form-general">
+        <div class="row">
+            <div class="col-md-3 avatar-container-general d-flex justify-content-center align-self-center">
+                <img src="~/assets/avatardemo.jpg" class="" />
+            </div>
+            <div class="col-md-8 info-container-general">
+                <form>
+                    <div class="mb-3">
+                        <label for="exampleInputName">Full Name</label>
+                        <input type="text" class="form-control" name="fullName" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputUserName">Username</label>
+                        <input type="text" class="form-control" name="userName" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail">Email</label>
+                        <input type="text" class="form-control" name="email" />
+                    </div>
+                    <button type="submit" class="save mt-3">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="form-general mt-5 mb-5">
+        <div class="password-container-general">
+            <div class="form-label">
+                <h3>Change your password</h3>
+                <p>Make your password strong</p>
+            </div>
+            <form>
+                <div class="mb-3">
+                    <label for="exampleInputOldPwd">Old Password</label>
+                    <input type="password" class="form-control" name="oldPwd" />
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputNewPwd">New Password</label>
+                    <input type="password" class="form-control" name="newPwd" />
+                </div>
+                <button type="submit" class="save mt-3">Save Password</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<!--details-->
+
+
+<div id="Details" class="container form-detail tabcontent mt-5 mb-5">
+    <form>
+        <div class="form-item-detail">
+            <div class="form-item-label-detail">
+                <label for="inputFirstlName">First Name</label>
+            </div>
+            <div class="form-item-field-detail">
+                <input type="text" class="form-control" name="userName" />
+            </div>
+        </div>
+        <div class="form-item-detail">
+            <div class="form-item-label-detail">
+                <label for="inputLastName">Last Name</label>
+            </div>
+            <div class="form-item-field-detail">
+                <input type="text" class="form-control" name="userName" />
+            </div>
+        </div>
+        <div class="form-item-detail">
+            <div class="form-item-label-detail">
+                <label for="inputDob">Date of Birth</label>
+            </div>
+            <div class="form-item-field-detail">
+                <input type="date" name="dob">
+            </div>
+        </div>
+        <div class="form-item-detail">
+            <div class="form-item-label-detail">
+                <label for="inpuGender">Gender</label>
+            </div>
+            <div class="form-item-field-detail">
+                <select class="gender-field form-select" name="gender">
+                    <option value="male">
+                        Male
+                    </option>
+                    <option value="female">
+                        Female
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="form-item-detail">
+            <div class="form-item-label-detail">
+                <label for="inpuBlood">Blood Group</label>
+            </div>
+            <div class="form-item-field">
+                <select class="blood-field form-select" name="bloodType">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="AB">AB</option>
+                    <option value="O">O</option>
+                    <option value="none">Dont know</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-item-detail">
+            <div class="form-item-label-detail">
+                <label for="inpuGender">Last Donate Date</label>
+            </div>
+            <div class="form-item-field-detail">
+                <input type="date" name="lastDonateDate">
+            </div>
+        </div>
+        <div class="form-item-detail">
+            <div class="form-item-label-detail">
+                <label for="inputCardNumber">ID Card Number</label>
+            </div>
+            <div class="form-item-field-detail">
+                <input type="text" class="form-control" name="IDCardNumber" />
+            </div>
+        </div>
+        <div class="form-item-detail">
+            <div class="form-item-label-detail">
+                <label for="inpuGender">Phone Number</label>
+            </div>
+            <div class="form-item-field-detail">
+                <input type="text" class="form-control" name="phone" />
+            </div>
+        </div>
+        <div class="form-item-detail">
+            <div class="form-item-label-detail">
+                <label for="inpuGender">Email</label>
+            </div>
+            <div class="form-item-field-detail">
+                <input type="text" class="form-control" name="email" />
+            </div>
+        </div>
+        <div class="form-item-detail">
+            <div class="form-item-label-detail">
+                <label for="inpuGender">Address</label>
+            </div>
+            <div class="form-item-field-detail">
+                <input type="text" class="form-control" name="address" />
+            </div>
+        </div>
+        <div class="form-item-detail">
+            <div class="save mt-3">
+                <button type="submit" class="btn btn-primary">
+                    Save Changes
+                </button>
+            </div>
+            <div class="form-item-field-detail"></div>
+        </div>
+    </form>
+</div>
+
+<div id="Achievement" class="info-form-achievement tabcontent">
+    bla
+</div>
+
+<script>document.getElementById("defaultOpen").click();</script>
+

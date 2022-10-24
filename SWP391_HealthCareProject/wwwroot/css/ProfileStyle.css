@@ -1,0 +1,88 @@
+.icon {
+    color: #FF6262;
+}
+
+#id {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+body {
+    background-color: #F9F9F8;
+}
+
+.tab {
+    border-bottom: 1px solid #8A8A8A;
+}
+
+.tab li button{
+    padding: 10px;
+    transition:0.5s;
+    border:none;
+    border-top-left-radius:5px;
+   border-top-right-radius:5px;
+}
+
+.tab li button .active{
+    color:white;
+}
+
+
+.tab li .tablinks:hover {
+    background-color: #ff9797;
+    border-top: 1px solid #8A8A8A;
+    border-left: 1px solid #8A8A8A;
+    border-right: 1px solid #8A8A8A;
+}
+
+
+.form-general {
+    background-color: white;
+    border: 1px solid #8A8A8A;
+    border-radius: 18px;
+    padding: 2rem;
+    animation: fadeEffect 1s;
+}
+
+.form-detail {
+    background-color: white;
+    border: 1px solid #8A8A8A;
+    border-radius: 18px;
+    padding: 2rem;
+    animation: fadeEffect 1s;
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+.avatar-container-general img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    clip-path: circle();
+}
+
+.save{
+    border-radius: 8px;
+    background-color: #628EFF;
+    border: none;
+    color: white;
+    width: 8rem;
+    height: 2.5rem;
+    transition:0.5s;
+}
+
+.save:hover{
+    background-color: #3769e8;
+    transform:scale(1.1);
+}
