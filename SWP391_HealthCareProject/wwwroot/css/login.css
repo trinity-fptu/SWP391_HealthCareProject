@@ -51,6 +51,22 @@ input {
     block-size: fit-content;
 }
 
+.login-btn {
+    border-radius: 8px;
+    background-color: #628EFF;
+    border: none;
+    color: white;
+    width: 8rem;
+    height: 2.5rem;
+    transition: 0.5s;
+}
+
+.login-btn:hover {
+    background-color: #3769e8;
+    transform: scale(1.1);
+}
+
+
 .save-btn{
     border-radius: 8px;
     background-color: #628EFF;
