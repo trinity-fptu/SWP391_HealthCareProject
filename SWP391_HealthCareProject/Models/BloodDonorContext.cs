@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -7,6 +9,8 @@ namespace SWP391_HealthCareProject.Models
 {
     public partial class BloodDonorContext : DbContext
     {
+
+
         public BloodDonorContext()
         {
         }
@@ -38,6 +42,8 @@ namespace SWP391_HealthCareProject.Models
                 optionsBuilder.UseSqlServer(config.GetConnectionString("DefaultConnection"));
             }
         }
+
+      
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
