@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.SqlServer.Management.XEvent;
 using SWP391_HealthCareProject.DataAccess;
 
 namespace SWP391_HealthCareProject.Controllers
@@ -11,19 +12,29 @@ namespace SWP391_HealthCareProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult Validate(string userName, string userPassword)
+        public IActionResult Validate(Models.User obj)
         {
-            var user = LoginDAO.Login(userName, userPassword);
+            var user = LoginDAO.Login(obj.UserName, obj.Password);
             if (user != null)
             {
                 HttpContext.Session.SetString("userName", user.UserName);
-                HttpContext.Session.SetString("userPassword", user.Password);
-                return RedirectToAction("Index", "Home");
+                if (user.Role == 1)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else if (user.Role == 2)
+                {
+                    return RedirectToAction("Index", "RH");
+                }
+                else return RedirectToAction("Index", "Admin");
+
             }
-            else
-            {
-                return RedirectToAction("Index", "Login");
-            }
+            else return RedirectToAction("Index", "Login");
+        }
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Login");
         }
     }
 }

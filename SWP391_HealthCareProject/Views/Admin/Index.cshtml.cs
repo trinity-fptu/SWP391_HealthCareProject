@@ -8,5 +8,6 @@ namespace SWP391_HealthCareProject.Views.Admin
         public void OnGet()
         {
         }
+        
     }
 }

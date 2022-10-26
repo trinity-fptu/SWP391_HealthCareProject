@@ -6,6 +6,7 @@ namespace SWP391_HealthCareProject.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.name = HttpContext.Session.GetString("userName");
             return View();
         }
     }

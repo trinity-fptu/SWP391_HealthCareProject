@@ -2,11 +2,12 @@
 @model SWP391_HealthCareProject.Views.Admin.IndexModel
 
 @{
-    ViewData["Title"] = "Detail Page";
+    ViewBag.Title = "Detail Page";
     Layout = "_LayoutAdmin";
 }
+
 <div class="container head-text py-5">
-    <h1>Welcome username</h1>
+    <h1>Welcome @ViewBag.name</h1>
 </div>
 
 <div class="container py-5" style="padding:2rem; border:1px solid #B0B0B0;border-radius:20px;background-color:white;">
