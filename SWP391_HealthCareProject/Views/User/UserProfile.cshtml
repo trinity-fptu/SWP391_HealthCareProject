@@ -5,7 +5,7 @@
     ViewData["Title"] = "General Page";
     Layout = "_LayoutProfile";
 }
-<div class="container">
+<div class="container mt-5">
     <ul class="nav tab">
         <li class="nav-item"><button id="defaultOpen" class="tablinks" onclick="openTab(event, 'General')">General</button></li>
         <li class="nav-item"><button class="tablinks" onclick="openTab(event, 'Details')">Details</button></li>
@@ -24,15 +24,37 @@
                 <form>
                     <div class="mb-3">
                         <label for="exampleInputName">Full Name</label>
-                        <input type="text" class="form-control" name="fullName" />
+                       @{
+                           if (ViewBag.FullName !=null){
+                                    <input type="text" class="form-control" name="fullName" value="@ViewBag.FullName" />
+                           }
+                           else {
+                                    <input type="text" class="form-control" name="fullName" />
+                           }
+                       }
+                        
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputUserName">Username</label>
-                        <input type="text" class="form-control" name="userName" />
+                        @{
+                            if (ViewBag.UserName != null) {
+                                    <input type="text" class="form-control" name="userName" value="@ViewBag.UserName" />
+                            } else {
+                                    <input type="text" class="form-control" name="userName" />
+                            }
+                        }
+                        
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail">Email</label>
-                        <input type="text" class="form-control" name="email" />
+                        @{
+                            if(ViewBag.Email != null){
+                                    <input type="text" class="form-control" name="email" value="@ViewBag.Email" />
+                            } else{
+                                    <input type="text" class="form-control" name="email" />
+                            }
+                        }
+                        
                     </div>
                     <button type="submit" class="save mt-3">Save Changes</button>
                 </form>
@@ -88,7 +110,7 @@
                 <label for="inputDob">Date of Birth</label>
             </div>
             <div class="form-item-field-detail">
-                <input type="date" name="dob">
+                <input type="date" class="customer-input" name="dob"/>
             </div>
         </div>
         <div class="form-item-detail">
@@ -96,7 +118,7 @@
                 <label for="inpuGender">Gender</label>
             </div>
             <div class="form-item-field-detail">
-                <select class="gender-field form-select" name="gender">
+                <select class="gender-field form-select customer-input" name="gender">
                     <option value="male">
                         Male
                     </option>
@@ -111,7 +133,7 @@
                 <label for="inpuBlood">Blood Group</label>
             </div>
             <div class="form-item-field">
-                <select class="blood-field form-select" name="bloodType">
+                <select class="blood-field form-select customer-input" name="bloodType">
                     <option value="A">A</option>
                     <option value="B">B</option>
                     <option value="AB">AB</option>
@@ -125,7 +147,7 @@
                 <label for="inpuGender">Last Donate Date</label>
             </div>
             <div class="form-item-field-detail">
-                <input type="date" name="lastDonateDate">
+                <input type="date" name="lastDonateDate" class="customer-input">
             </div>
         </div>
         <div class="form-item-detail">
