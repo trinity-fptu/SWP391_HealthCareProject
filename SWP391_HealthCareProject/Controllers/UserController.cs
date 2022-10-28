@@ -3,8 +3,10 @@ using SWP391_HealthCareProject.Models;
 
 namespace SWP391_HealthCareProject.Controllers
 {
+    
     public class UserController : Controller
     {
+        [RequestAuthentication]
         public IActionResult UserProfile()
         {
             if (HttpContext.Session.GetObjectFromJson<User>("User") != null)
@@ -25,7 +27,6 @@ namespace SWP391_HealthCareProject.Controllers
                 ViewBag.UserName = userInfo.UserName;
                 ViewBag.Email = userInfo.Email;
             }
-            
             return View();
         }
     }
