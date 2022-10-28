@@ -16,11 +16,13 @@ namespace SWP391_HealthCareProject.Controllers
 
         public IActionResult Index()
         {
-            if (HttpContext.Session.GetString("userName") != null)
+            if (HttpContext.Session.GetObjectFromJson<User>("User") != null)
             {
-                ViewBag.name = HttpContext.Session.GetString("userName");
+                var userInfo = HttpContext.Session.GetObjectFromJson<User>("User");
+                string userName = userInfo.UserName;
+                ViewBag.UserName = userName;
             }
-            return View();
+                return View();
         }
 
 
