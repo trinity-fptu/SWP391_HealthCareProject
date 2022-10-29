@@ -6,16 +6,24 @@
     animation: fadeEffect 1s;
 }
 
+
 main {
 }
 
-p{
-    text-align:justify;
+p {
+    text-align: justify;
 }
 
-.nav-link{
-    font-size:18px;
+.nav-link {
+    padding: .25rem 0;
+    font-weight: 500;
+    color: rgba(255, 255, 255, .5);
+    background-color: transparent;
+    transition: 0.5s;
+    font-size:1.2rem;
+    border-bottom: .25rem solid rgba(255, 255, 255, .5);
 }
+
 
 #id {
     font-size: 3rem;
@@ -214,7 +222,7 @@ a.btn-readmore {
 }
 
 
-.continue-btn {
+a.continue-btn {
     border-radius: 8px;
     background-color:#628EFF ;
     border: none;
@@ -222,9 +230,12 @@ a.btn-readmore {
     width: 8rem;
     height: 2.5rem;
     transition: 0.5s;
+    text-decoration:none;
+    padding-top:6px;
 }
 
-.continue-btn:hover{
+a.continue-btn:hover{
+    color:white;
     background-color: #3769e8;
     transform: scale(1.1);
 }
@@ -259,6 +270,16 @@ a.btn-readmore {
 .navbar-user-avatar:hover {
     border-color:#FF6262 ;
 }
+
+.top {
+    margin-top:50px;
+    padding:20px;
+    background-color: white;
+    border-radius: 18px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+
 
 
 

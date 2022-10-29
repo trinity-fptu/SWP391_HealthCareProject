@@ -3,7 +3,13 @@
 }
 
 .nav-link {
-    font-size: 18px;
+    padding: .25rem 0;
+    font-weight: 500;
+    color: rgba(255, 255, 255, .5);
+    background-color: transparent;
+    transition: 0.5s;
+    font-size: 1.2rem;
+    border-bottom: .25rem solid rgba(255, 255, 255, .5);
 }
 
 main {

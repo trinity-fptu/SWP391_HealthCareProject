@@ -1,0 +1,23 @@
+﻿@page
+@model SWP391_HealthCareProject.Controllers.SearchCampaignModel
+@{
+    ViewBag.Title = "Search Campaign";
+    Layout = "_Layout";
+}
+
+
+
+<div class="container top">
+    <h1 style="font-weight:600;font-size:3rem;">Time & Location</h1>
+    <span style="font-family:'Segoe UI light'">Find campaigns!</span>
+    <form class="mt-5">
+        <label for="">Date</label>
+        <input type="date" class="form-control" name="date" />
+        <label for="">Location</label>
+        <input type="text" class="form-control" name="location" />
+    </form>
+
+    <a href="/Campaign/HealthDeclare" type="button" class="btn continue-btn my-5">Continue</a>
+
+
+</div>

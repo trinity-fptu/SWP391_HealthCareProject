@@ -37,7 +37,7 @@
                 </div>
             </nav>
 
-            <nav class="navbar navbar-expand-lg navbar-light">
+            <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
                 <div class="container">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,6 +54,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/Home/PostList">Post</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Home/SearchCampaign">Search</a>
+                            </li>
 
                         </ul>
                     </div>
@@ -61,36 +64,36 @@
                         @{
                             if (ViewBag.UserName == null)
                             {
-                                <li class="nav-item">
-                                    <a class="nav-link" asp-controller="Login" asp-action="Index">Login</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link">Register</a>
-                                </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" asp-controller="Login" asp-action="Index">Login</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link">Register</a>
+                                        </li>
                             }
                             else
                             {
-                                <!--nofitcation-->
-                                <li class="mx-3" style="margin:auto;">
-                                    <div class="dropdown">
-                                        <a id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fa-regular fa-bell nav-link"></i>
-                                        </a>
-                                        <div class="dropdown-menu mt-3" aria-labelledby="dropdownMenu2">
-                                            <div class="dropdown-item" type="button">A campaign has started</div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <!--avatar-->
-                                <li class="dropdown">
-                                    <a href="#" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <img src="~/assets/avatardemo.jpg" class="rounded-circle navbar-user-avatar">
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="/User/UserProfile" style="color:black;">User Profile</a>
-                                        <a class="dropdown-item" asp-controller="Login" asp-action="Logout">Logout</a>
-                                    </div>
-                                </li>
+                                        <!--nofitcation-->
+                                        <li class="mx-3" style="margin:auto;">
+                                            <div class="dropdown">
+                                                <a id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fa-regular fa-bell nav-link"></i>
+                                                </a>
+                                                <div class="dropdown-menu mt-3" aria-labelledby="dropdownMenu2">
+                                                    <div class="dropdown-item" type="button">A campaign has started</div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!--avatar-->
+                                        <li class="dropdown">
+                                            <a href="#" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="~/assets/avatardemo.jpg" class="rounded-circle navbar-user-avatar">
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="/User/UserProfile" style="color:black;">User Profile</a>
+                                                <a class="dropdown-item" asp-controller="Login" asp-action="Logout">Logout</a>
+                                            </div>
+                                        </li>
                             }
                         }
                     </ul>
