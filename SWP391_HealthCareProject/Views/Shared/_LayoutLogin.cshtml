@@ -22,19 +22,50 @@
 </head>
 <body>
     <!-- Header -->
-    <section id="title">
-        <nav class="navbar navbar-expand-lg navbar-expand-sm navbar-light bg-dark py-lg-3 py-sm-3">
-            <div class="container">
-                <i class="fa-sharp fa-solid fa-phone icon mx-lg-2 mx-md- mx-sm-2 mx-2"></i><span class="navbar-text text-light">0933 132 1232</span>
-                <i class="fa-solid fa-envelope icon mx-lg-2 mx-md-2 mx-sm-2 mx-2 ml-lg-5"></i><span class="navbar-text text-light">info@gmail.com</span>
-                <span class="ml-auto ">
-                    <i class="fa-brands fa-facebook icon mx-lg-2 mx-md-2 mx-sm-2 mx-2"></i><span class="navbar-text text-light">Follow Us</span>
-                </span>
-            </div>
-        </nav>
-    </section>
+    <div class="header">
+        <!-- Header -->
+        <section id="title">
+            <nav class="navbar navbar-expand-lg navbar-expand-sm navbar-light bg-dark py-lg-3 py-sm-3 w-100">
+                <div class="container">
+                    <i class="fa-sharp fa-solid fa-phone icon mx-lg-2 mx-md- mx-sm-2 mx-2"></i><span class="navbar-text text-light">0933 132 1232</span>
+                    <i class="fa-solid fa-envelope icon mx-lg-2 mx-md-2 mx-sm-2 mx-2 ml-lg-5"></i><span class="navbar-text text-light">info@gmail.com</span>
+                    <span class="ml-auto ">
+                        <i class="fa-brands fa-facebook icon mx-lg-2 mx-md-2 mx-sm-2 mx-2"></i><span class="navbar-text text-light">Follow Us</span>
+                    </span>
+
+                </div>
+            </nav>
+
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Home">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Home/CampaignList">Campaign</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Home/PostList">Post</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+
+
+            <!-- with image when hover make it black opacity 0.5 -->
+        </section>
+    </div>
     <div>
-        <div class="background"></div>
+        <div class="background" style="background-color: #f9f8f8;"></div>
         @RenderBody()
     </div>
 </body>

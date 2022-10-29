@@ -79,8 +79,9 @@ p{
     position: absolute;
 }
 
-button.btn-join {
+a.btn-join {
     background: #FF6262;
+    padding-top:18px;
     width: 14rem;
     height: 4rem;
     color: white;
@@ -89,17 +90,18 @@ button.btn-join {
     border-radius: 5px;
 }
 
-button.btn-join:hover {
+a.btn-join:hover {
     color: white;
     transition: 0.4s;
     background-color: #c64040;
 }
 
-.btn-readmore {
+a.btn-readmore {
+    padding-top:18px;
     box-sizing: border-box;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     border-radius: 5px;
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: 500;
     width: 14rem;
     height: 4.1rem;

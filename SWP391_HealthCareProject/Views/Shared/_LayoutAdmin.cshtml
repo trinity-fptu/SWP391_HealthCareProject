@@ -58,15 +58,15 @@
                             @{
                                 if (ViewBag.name == null)
                                 {
-                                    <li class="nav-item">
-                                        <a class="nav-link" asp-controller="Login" asp-action="Index">Login</a>
-                                    </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" asp-controller="Login" asp-action="Index">Login</a>
+                                        </li>
                                 }
                                 else
                                 {
-                                    <li class="nav-item">
-                                        <a class="nav-link" asp-controller="Login" asp-action="Logout">Logout</a>
-                                    </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" asp-controller="Login" asp-action="Logout">Logout</a>
+                                        </li>
                                 }
 
                             }
@@ -83,7 +83,7 @@
     </div>
 
     <!-- Page Content -->
-    <main role="main" class="">
+    <main role="main" style="padding-bottom:15rem;">
         @RenderBody()
     </main>
 
