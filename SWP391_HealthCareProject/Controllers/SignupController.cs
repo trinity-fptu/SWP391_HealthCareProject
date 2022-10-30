@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Net.Mail;
+using Microsoft.AspNetCore.Mvc;
 using SWP391_HealthCareProject.DataAccess;
 using SWP391_HealthCareProject.Models;
 
@@ -18,21 +19,29 @@ namespace SWP391_HealthCareProject.Controllers
 
         public IActionResult Register(User user, string confirmedPassword)
         {
-            if (user.Password != confirmedPassword || LoginDAO.IsUserExist(user.UserName))
+            if (LoginDAO.CheckEmailPattern(user.Email) && LoginDAO.CheckPasswordPattern(user.Password) && user.Password == confirmedPassword)
             {
-                if (user.Password != confirmedPassword)
-                {
-                    ModelState.AddModelError("Confirmed password error", "Password and Confirmed Password is not matched");
-                }
-                if (LoginDAO.IsUserExist(user.UserName))
-                {
-                    ModelState.AddModelError("Existed User", "Account already existed");
-                }
-                return View("Signup", user);
+                //if (user.Password != confirmedPassword || LoginDAO.IsUserExist(user.UserName))
+                //{
+                //    if (user.Password != confirmedPassword)
+                //    {
+                //        ModelState.AddModelError("Confirmed password error", "Password and Confirmed Password is not matched");
+                //    }
+                //    if (LoginDAO.IsUserExist(user.UserName))
+                //    {
+                //        ModelState.AddModelError("Existed User", "Account already existed");
+                //    }
+                //    return View("Signup", user);
+                //}
+                //user.Role = 1;
+                //LoginDAO.Register(user);
+                return RedirectToAction("Index", "Login");
             }
-            user.Role = 1;
-            LoginDAO.Register(user);
-            return RedirectToAction("Index", "Login");
+            else
+            {
+                ViewBag.Message = "Invalid email or password";
+                return View("Signup");
+            }
         }
 
         public IActionResult RegisterRH(User user, string confirmedPassword, string hrAddress, string hrPhone)
