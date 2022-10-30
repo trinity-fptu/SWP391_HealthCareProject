@@ -1,12 +1,9 @@
-﻿using Microsoft.CodeAnalysis.VisualBasic.Syntax;
-using SWP391_HealthCareProject.Models;
-using System.Linq;
+﻿using SWP391_HealthCareProject.Models;
 
 namespace SWP391_HealthCareProject.DataAccess
 {
-    public class LoginDAO 
+    public class LoginDAO
     {
-
         public static User? Login(string username, string password)
         {
             using var db = new BloodDonorContext();
@@ -21,11 +18,12 @@ namespace SWP391_HealthCareProject.DataAccess
             db.SaveChanges();
             return true;
         }
+
         public static bool IsUserExist(string username)
         {
             using var db = new BloodDonorContext();
             var user = db.Users.FirstOrDefault(u => u.UserName == username);
-            if(user == null)
+            if (user == null)
             {
                 return false;
             }

@@ -3,7 +3,6 @@ using SWP391_HealthCareProject.Models;
 
 namespace SWP391_HealthCareProject.Controllers
 {
-    
     public class UserController : Controller
     {
         [RequestAuthentication]

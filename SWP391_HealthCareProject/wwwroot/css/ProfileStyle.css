@@ -16,6 +16,7 @@ body {
 }
 
 .tab li button{
+    margin-right:20px;
     padding: 10px;
     transition:0.5s;
     border:none;
@@ -80,6 +81,12 @@ body {
     border: 6px solid #FF6262;
     box-shadow: inset 0px 0px 3px 3px rgb(0 0 0 / 10%);
     object-fit: cover;
+    transition:0.3s;
+}
+
+.user-avatar-shadow:hover{
+    background-color:white;
+    opacity:0.6;
 }
 
 .vertical-align-custom {

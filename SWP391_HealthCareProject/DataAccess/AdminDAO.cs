@@ -4,7 +4,7 @@ namespace SWP391_HealthCareProject.DataAccess
 {
     public class AdminDAO
     {
-        List<User> users = new List<User>();
+        private List<User> users = new List<User>();
 
         //CRUD function
         public List<User> getAllUser()

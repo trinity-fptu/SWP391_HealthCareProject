@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SWP391_HealthCareProject.Models;
 using System.Diagnostics;
 
@@ -22,9 +21,8 @@ namespace SWP391_HealthCareProject.Controllers
                 string userName = userInfo.UserName;
                 ViewBag.UserName = userName;
             }
-                return View();
+            return View();
         }
-
 
         public IActionResult Privacy()
         {
@@ -45,8 +43,6 @@ namespace SWP391_HealthCareProject.Controllers
         {
             return View();
         }
-
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

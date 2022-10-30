@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace SWP391_HealthCareProject.Models
+﻿namespace SWP391_HealthCareProject.Models
 {
     public partial class HospitalRedCrossAdmin
     {

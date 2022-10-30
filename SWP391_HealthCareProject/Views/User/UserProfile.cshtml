@@ -7,9 +7,9 @@
 }
 <div class="container mt-5">
     <ul class="nav tab">
-        <li class="nav-item"><button id="defaultOpen" class="tablinks" onclick="openTab(event, 'General')">General</button></li>
-        <li class="nav-item"><button class="tablinks" onclick="openTab(event, 'Details')">Details</button></li>
-        <li class="nav-item"><button class="tablinks" onclick="openTab(event, 'Achievement')">Achievement</button></li>
+        <li class="nav-item"><button id="defaultOpen" class="tablinks" onclick="openTab(event, 'General')"><i class="fa-solid fa-gear"></i> General</button></li>
+        <li class="nav-item"><button class="tablinks" onclick="openTab(event, 'Details')"><i class="fa-solid fa-circle-info"></i> Details</button></li>
+        <li class="nav-item"><button class="tablinks" onclick="openTab(event, 'Achievement')"><i class="fa-solid fa-trophy"></i> Achievement</button></li>
     </ul>
 </div>
 
@@ -17,12 +17,14 @@
 <div class="container mt-5 tabcontent" id="General">
     <div class="form-general">
         <div class="row">
-            <div class="col-md-3 avatar-container-general vertical-align-custom">
-                <div id="userAvatar" class="user-avatar-shadow">
-                    <form id="uploadAvatar" method="post" action="/update/change-avatar" enctype="multipart/form-data">
-                        <input type="file" id="selectedAvatar" name="content" style="display: none;">
-                    </form>
+            <div class="col-md-3 avatar-container-general vertical-align-custom d-flex flex-row">
+                <div id="userAvatar" class="user-avatar-shadow ">
+                    <label for="inputTag" style="cursor: pointer;width:131px;height:103px;opacity:0; ">
+                        Select File
+                        <input id="inputTag" type="file" style="display:none;" />
+                    </label>
                 </div>
+               
 
             </div>
             <div class="col-md-8 info-container-general">
@@ -32,11 +34,11 @@
                         @{
                             if (ViewBag.FullName != null)
                             {
-                                <input type="text" class="form-control" name="fullName" value="@ViewBag.FullName" />
+                                                <input type="text" class="form-control" name="fullName" value="@ViewBag.FullName" />
                             }
                             else
                             {
-                                <input type="text" class="form-control" name="fullName" />
+                                                <input type="text" class="form-control" name="fullName" />
                             }
                         }
 
@@ -46,11 +48,11 @@
                         @{
                             if (ViewBag.UserName != null)
                             {
-                                <input type="text" class="form-control" name="userName" value="@ViewBag.UserName" />
+                                                <input type="text" class="form-control" name="userName" value="@ViewBag.UserName" />
                             }
                             else
                             {
-                                <input type="text" class="form-control" name="userName" />
+                                                <input type="text" class="form-control" name="userName" />
                             }
                         }
 
@@ -60,11 +62,11 @@
                         @{
                             if (ViewBag.Email != null)
                             {
-                                <input type="text" class="form-control" name="email" value="@ViewBag.Email" />
+                                                <input type="text" class="form-control" name="email" value="@ViewBag.Email" />
                             }
                             else
                             {
-                                <input type="text" class="form-control" name="email" />
+                                                <input type="text" class="form-control" name="email" />
                             }
                         }
 
