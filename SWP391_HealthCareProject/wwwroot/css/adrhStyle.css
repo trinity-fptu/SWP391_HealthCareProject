@@ -180,3 +180,20 @@ main {
     font-weight: 700;
     margin-top: 11px;
 }
+
+
+/*animation*/
+
+@keyframes fadeEffect {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.container {
+    animation: fadeEffect 1s;
+}

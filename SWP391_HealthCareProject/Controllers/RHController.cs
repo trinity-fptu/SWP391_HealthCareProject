@@ -14,5 +14,32 @@ namespace SWP391_HealthCareProject.Controllers
         {
             return View();
         }
+
+        public IActionResult CreatePost()
+        {
+            return View();
+        }
+
+        public IActionResult ManageCampaign()
+        {
+            return View();
+        }
+
+        public IActionResult CreateCampaign()
+        {
+            return View();
+        }
+
+        public IActionResult ManagePlan()
+        {
+            return View();
+        }
+
+        public IActionResult CreatePlan()
+        {
+            return View();
+        }
+
+
     }
 }
