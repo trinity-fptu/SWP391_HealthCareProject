@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.SqlServer.Management.XEvent;
 using SWP391_HealthCareProject.DataAccess;
 
 namespace SWP391_HealthCareProject.Controllers
@@ -32,10 +31,10 @@ namespace SWP391_HealthCareProject.Controllers
                     return RedirectToAction("Index", "RH");
                 }
                 else return RedirectToAction("Index", "Admin");
-
             }
             else return RedirectToAction("Index", "Login");
         }
+
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();

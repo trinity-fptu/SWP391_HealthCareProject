@@ -12,9 +12,9 @@
     </div>
     <div class="holder">
         <form method="post" asp-controller="Signup" asp-action="Register">
-            <input type="text" asp-for="UserName" placeholder="username" class="my-3 mt-5"><br />
-            <input type="text" asp-for="Email" placeholder="email" class="my-3"><br />
-            <input type="password" asp-for="Password" placeholder="password" class="my-3"><br />
+            <input type="text" asp-for="UserName" placeholder="username" class="my-3 mt-5" required><br />
+            <input type="text" asp-for="Email" placeholder="email" class="my-3" required><br />
+            <input type="password" asp-for="Password" placeholder="password" class="my-3" required><br />
             <input type="password" name="confirmedPassword" placeholder="confirm password" class="my-3">
             <div class="d-flex justify-content-start mt-4">
                 <button type="submit" class="login-btn">Sign Up</button>
