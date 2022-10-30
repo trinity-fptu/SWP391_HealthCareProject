@@ -19,34 +19,39 @@ namespace SWP391_HealthCareProject.Controllers
 
         public IActionResult Register(User user, string confirmedPassword)
         {
-            if (LoginDAO.CheckEmailPattern(user.Email) && LoginDAO.CheckPasswordPattern(user.Password) && user.Password == confirmedPassword)
+            if (!SignupDAO.IsUserExist(user.UserName) && SignupDAO.CheckEmailPattern(user.Email) && 
+                SignupDAO.CheckPasswordPattern(user.Password) && user.Password == confirmedPassword)
             {
-                //if (user.Password != confirmedPassword || LoginDAO.IsUserExist(user.UserName))
-                //{
-                //    if (user.Password != confirmedPassword)
-                //    {
-                //        ModelState.AddModelError("Confirmed password error", "Password and Confirmed Password is not matched");
-                //    }
-                //    if (LoginDAO.IsUserExist(user.UserName))
-                //    {
-                //        ModelState.AddModelError("Existed User", "Account already existed");
-                //    }
-                //    return View("Signup", user);
-                //}
-                //user.Role = 1;
-                //LoginDAO.Register(user);
+                user.Role = 1;
+                SignupDAO.Register(user);
                 return RedirectToAction("Index", "Login");
             }
             else
             {
-                ViewBag.Message = "Invalid email or password";
-                return View("Signup");
+                if (SignupDAO.IsUserExist(user.UserName))
+                {
+                    ModelState.AddModelError("Existed User", "Account already existed");
+                }
+                if (!SignupDAO.CheckEmailPattern(user.Email))
+                {
+                    ModelState.AddModelError("Email Error", "Invalid email");
+                }
+                if (!SignupDAO.CheckPasswordPattern(user.Password))
+                {
+                    ModelState.AddModelError("Password Error", "Invalid password");
+                }
+                if(user.Password != confirmedPassword)
+                {
+                    ModelState.AddModelError("Confirmed Error", "Confirmed password is not matched");
+                }
+                
+                return View("Signup", user);
             }
         }
 
         public IActionResult RegisterRH(User user, string confirmedPassword, string hrAddress, string hrPhone)
         {
-            if (user.Password != confirmedPassword || LoginDAO.IsUserExist(user.UserName)
+            if (user.Password != confirmedPassword || SignupDAO.IsUserExist(user.UserName)
                 || HospitalRedCrossDAO.GetHRByAddress(hrAddress) == null)
             {
                 if (HospitalRedCrossDAO.GetHRByAddress(hrAddress) == null)
@@ -58,14 +63,14 @@ namespace SWP391_HealthCareProject.Controllers
                 {
                     ModelState.AddModelError("Confirmed password error", "Password and Confirmed Password is not matched");
                 }
-                if (LoginDAO.IsUserExist(user.UserName))
+                if (SignupDAO.IsUserExist(user.UserName))
                 {
                     ModelState.AddModelError("Existed User", "Account already existed");
                 }
                 return View("SignupRH", user);
             }
             user.Role = 2;
-            LoginDAO.Register(user);
+            SignupDAO.Register(user);
             User newUser = LoginDAO.Login(user.UserName, user.Password);
             HospitalRedCrossAdminDAO.CreateHRAdmin(newUser, hrAddress, hrPhone);
             return RedirectToAction("Index", "Login");

@@ -13,8 +13,6 @@ namespace SWP391_HealthCareProject.Models
         public int UserId { get; set; }
         public string UserName { get; set; } = null!;
         public string Password { get; set; } = null!;
-        [Required(ErrorMessage = "The email address is required")]
-        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; } = null!;
         public int Role { get; set; }
         public string? Avatar { get; set; }
