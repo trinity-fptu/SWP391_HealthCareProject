@@ -68,5 +68,6 @@
         <div class="background" style="background-color: #f9f8f8;"></div>
         @RenderBody()
     </div>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
