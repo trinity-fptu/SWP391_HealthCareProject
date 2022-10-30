@@ -17,45 +17,59 @@
 <div class="container mt-5 tabcontent" id="General">
     <div class="form-general">
         <div class="row">
-            <div class="col-md-3 avatar-container-general d-flex justify-content-center align-self-center">
-                <img src="~/assets/avatardemo.jpg" class="" />
+            <div class="col-md-3 avatar-container-general vertical-align-custom">
+                <div id="userAvatar" class="user-avatar-shadow">
+                    <form id="uploadAvatar" method="post" action="/update/change-avatar" enctype="multipart/form-data">
+                        <input type="file" id="selectedAvatar" name="content" style="display: none;">
+                    </form>
+                </div>
+
             </div>
             <div class="col-md-8 info-container-general">
                 <form>
                     <div class="mb-3">
                         <label for="exampleInputName">Full Name</label>
-                       @{
-                           if (ViewBag.FullName !=null){
-                                    <input type="text" class="form-control" name="fullName" value="@ViewBag.FullName" />
-                           }
-                           else {
-                                    <input type="text" class="form-control" name="fullName" />
-                           }
-                       }
-                        
+                        @{
+                            if (ViewBag.FullName != null)
+                            {
+                                <input type="text" class="form-control" name="fullName" value="@ViewBag.FullName" />
+                            }
+                            else
+                            {
+                                <input type="text" class="form-control" name="fullName" />
+                            }
+                        }
+
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputUserName">Username</label>
                         @{
-                            if (ViewBag.UserName != null) {
-                                    <input type="text" class="form-control" name="userName" value="@ViewBag.UserName" />
-                            } else {
-                                    <input type="text" class="form-control" name="userName" />
+                            if (ViewBag.UserName != null)
+                            {
+                                <input type="text" class="form-control" name="userName" value="@ViewBag.UserName" />
+                            }
+                            else
+                            {
+                                <input type="text" class="form-control" name="userName" />
                             }
                         }
-                        
+
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail">Email</label>
                         @{
-                            if(ViewBag.Email != null){
-                                    <input type="text" class="form-control" name="email" value="@ViewBag.Email" />
-                            } else{
-                                    <input type="text" class="form-control" name="email" />
+                            if (ViewBag.Email != null)
+                            {
+                                <input type="text" class="form-control" name="email" value="@ViewBag.Email" />
+                            }
+                            else
+                            {
+                                <input type="text" class="form-control" name="email" />
                             }
                         }
-                        
+
                     </div>
+
                     <button type="submit" class="save mt-3">Save Changes</button>
                 </form>
             </div>
@@ -110,7 +124,7 @@
                 <label for="inputDob">Date of Birth</label>
             </div>
             <div class="form-item-field-detail">
-                <input type="date" class="customer-input" name="dob"/>
+                <input type="date" class="customer-input" name="dob" />
             </div>
         </div>
         <div class="form-item-detail">
