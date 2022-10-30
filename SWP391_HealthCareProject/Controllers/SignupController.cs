@@ -10,11 +10,19 @@ namespace SWP391_HealthCareProject.Controllers
         {
             return View();
         }
-        public IActionResult Register(User user)
+        public IActionResult Register(User user, string confirmedPassword)
         {
-            if (LoginDAO.IsUserExist(user.UserName))
+            if(user.Password != confirmedPassword || LoginDAO.IsUserExist(user.UserName))
             {
-                ModelState.AddModelError("Existed User", "Account already existed");
+                if(user.Password != confirmedPassword)
+                {
+                    ModelState.AddModelError("Confirmed password error", "Password and Confirmed Password is not matched");
+                }
+                if (LoginDAO.IsUserExist(user.UserName))
+                {
+                    ModelState.AddModelError("Existed User", "Account already existed");
+                    
+                }
                 return View("Signup", user);
             }
             LoginDAO.Register(user);
