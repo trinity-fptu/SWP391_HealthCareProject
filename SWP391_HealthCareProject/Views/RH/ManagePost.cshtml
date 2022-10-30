@@ -1,0 +1,54 @@
+﻿@page
+@{
+    ViewBag.Title = "Manage Post";
+    Layout = "_LayoutAdminRH";
+}
+
+<div class="container pt-3">
+
+    <!-- Page Heading -->
+    <div class=" mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Manage Post</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background-color: #f9f8f8;padding:10px 0;">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Manage Post</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="card">
+        <h5 class="card-header">Create New Post</h5>
+        <div class="card-body custom-card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card-text">Post Title</div>
+                </div>
+                <div class="col-md-9">
+                    <input class="custom-input" type="text" name="post_title">
+                </div>
+            </div>
+        </div>
+        <div class="card-body custom-card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card-text">Description</div>
+                </div>
+                <div class="col-md-9">
+                    <textarea class="custom-input"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="card-body custom-card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card-text">Image</div>
+                </div>
+                <div class="col-md-9">
+                    <div class="mb-3">
+                        <input class="form-control" type="file" id="formFile">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

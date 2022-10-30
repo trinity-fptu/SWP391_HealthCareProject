@@ -7,11 +7,23 @@
     font-weight: bold;
 }
 
+.nav-link {
+    padding: .25rem 0;
+    font-weight: 500;
+    color: rgba(255, 255, 255, .5);
+    background-color: transparent;
+    transition: 0.5s;
+    font-size: 1.2rem;
+    border-bottom: .25rem solid rgba(255, 255, 255, .5);
+}
+
+
+
 .table-wrapper {
     width: 1000px;
-    margin: 30px auto;
+    margin: 0 auto;
     background: #fff;
-    padding: 20px;
+    padding: 0;
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
 
@@ -123,3 +135,48 @@ main {
     padding-bottom: 20px;
 }
 
+
+
+.text-uppercase{
+    transition:0.3s;
+}
+
+.text-uppercase:hover{
+    color:#3c9ff0;
+}
+
+
+
+.custom-card-body {
+    font-family: 'Segoe UI';
+    box-sizing: border-box;
+    font-size: 16px;
+    align-items: flex-start;
+    padding: 24px 55px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.custom-input {
+    background: transparent;
+    width:inherit;
+    line-height: 38px;
+    border: 1px solid #cccccc;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color: #666;
+    font-size: 15px;
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    padding: 0 20px;
+}
+
+.card-text {
+    width: 188px;
+    color: #333;
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 11px;
+}
