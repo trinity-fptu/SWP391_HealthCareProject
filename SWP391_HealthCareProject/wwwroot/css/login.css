@@ -2,6 +2,10 @@
     color: #FF6262;
 }
 
+body {
+    
+}
+
 .nav-link {
     padding: .25rem 0;
     font-weight: 500;
@@ -13,7 +17,10 @@
 }
 
 .background {
-    background-color:white;
+    background-image: url("../assets/c.jfif");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .navbar-light {
@@ -103,7 +110,7 @@ input {
     background-color:white;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     width: 40rem;
-    height: 40rem;
+    height: 45rem;
     border-radius: 15px;
 }
 
