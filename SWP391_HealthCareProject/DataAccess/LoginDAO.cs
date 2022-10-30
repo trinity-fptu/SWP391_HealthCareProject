@@ -21,5 +21,15 @@ namespace SWP391_HealthCareProject.DataAccess
             db.SaveChanges();
             return true;
         }
+        public static bool IsUserExist(string username)
+        {
+            using var db = new BloodDonorContext();
+            var user = db.Users.FirstOrDefault(u => u.UserName == username);
+            if(user == null)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

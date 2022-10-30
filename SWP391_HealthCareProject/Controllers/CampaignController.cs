@@ -13,5 +13,10 @@ namespace SWP391_HealthCareProject.Controllers
         {
             return View();
         }
+
+        public IActionResult Appointment()
+        {
+            return View();
+        }
     }
 }

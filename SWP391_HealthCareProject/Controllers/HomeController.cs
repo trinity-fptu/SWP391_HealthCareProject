@@ -41,6 +41,11 @@ namespace SWP391_HealthCareProject.Controllers
             return View();
         }
 
+        public IActionResult SearchCampaign()
+        {
+            return View();
+        }
+
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

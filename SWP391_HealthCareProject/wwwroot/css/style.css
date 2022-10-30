@@ -6,16 +6,27 @@
     animation: fadeEffect 1s;
 }
 
+.lead{
+    text-align:center;
+}
+
 main {
 }
 
-p{
-    text-align:justify;
+p {
+    text-align: justify;
 }
 
-.nav-link{
-    font-size:18px;
+.nav-link {
+    padding: .25rem 0;
+    font-weight: 500;
+    color: rgba(255, 255, 255, .5);
+    background-color: transparent;
+    transition: 0.5s;
+    font-size:1.2rem;
+    border-bottom: .25rem solid rgba(255, 255, 255, .5);
 }
+
 
 #id {
     font-size: 3rem;
@@ -79,8 +90,9 @@ p{
     position: absolute;
 }
 
-button.btn-join {
+a.btn-join {
     background: #FF6262;
+    padding-top:18px;
     width: 14rem;
     height: 4rem;
     color: white;
@@ -89,17 +101,18 @@ button.btn-join {
     border-radius: 5px;
 }
 
-button.btn-join:hover {
+a.btn-join:hover {
     color: white;
     transition: 0.4s;
     background-color: #c64040;
 }
 
-.btn-readmore {
+a.btn-readmore {
+    padding-top:18px;
     box-sizing: border-box;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     border-radius: 5px;
-    font-size: 2rem;
+    font-size: 1rem;
     font-weight: 500;
     width: 14rem;
     height: 4.1rem;
@@ -212,7 +225,7 @@ button.btn-join:hover {
 }
 
 
-.continue-btn {
+a.continue-btn {
     border-radius: 8px;
     background-color:#628EFF ;
     border: none;
@@ -220,9 +233,12 @@ button.btn-join:hover {
     width: 8rem;
     height: 2.5rem;
     transition: 0.5s;
+    text-decoration:none;
+    padding-top:6px;
 }
 
-.continue-btn:hover{
+a.continue-btn:hover{
+    color:white;
     background-color: #3769e8;
     transform: scale(1.1);
 }
@@ -258,12 +274,64 @@ button.btn-join:hover {
     border-color:#FF6262 ;
 }
 
+.top {
+    margin-top:50px;
+    padding:20px;
+    background-color: white;
+    border-radius: 18px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.appointment-top span{
+    font-size:20px;
+}
+
+
+.appointment-body {
+    margin-top: 50px;
+    background-color: white;
+    font-size: 20px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.customer-label > p:nth-child(2) {
+    margin-top:18px;
+    width: 60%;
+    text-align: right;
+    word-break: break-word;
+}
+.customer-label > p:nth-child(1) {
+    margin-top: 18px;
+    width: 40%;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.customer-label {
+    font-family:'Segoe UI';
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 18px 20px;
+    font-size: 16px;
+}
+
+.customer-label .left{
+    color: rgb(51, 51, 51);
+    font-weight:600;
+}
+
+
+.customer-label:nth-child(2n+1) {
+    background-color: rgb(244, 244, 244);
+}
+
 
 
 /*
     animation part
 */
-
 /* Go from zero to full opacity */
 @keyframes fadeEffect {
     from {
@@ -286,6 +354,65 @@ button.btn-join:hover {
 .reveal.active{
   transform: translateY(0);
   opacity: 1;
+}
+
+
+* {
+    padding: 0;
+    margin: 0
+}
+
+
+.checkmark__circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #7ac142;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards
+}
+
+.checkmark {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 2;
+    stroke: #fff;
+    stroke-miterlimit: 10;
+    margin: 30px auto;
+    box-shadow: inset 0px 0px 0px #7ac142;
+    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both
+}
+
+.checkmark__check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0
+    }
+}
+
+@keyframes scale {
+    0%, 100% {
+        transform: none
+    }
+
+    50% {
+        transform: scale3d(1.1, 1.1, 1)
+    }
+}
+
+@keyframes fill {
+    100% {
+        box-shadow: inset 0px 0px 0px 30px #7ac142
+    }
 }
 
 

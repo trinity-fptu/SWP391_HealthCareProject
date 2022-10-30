@@ -1,8 +1,6 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model User
 @{
-    ViewData["Title"] = "Signup Page";
+    ViewBag.Title = "Signup Page";
     Layout = "_LayoutLogin";
 }
 
@@ -13,14 +11,15 @@
         <span>Welcome</span>
     </div>
     <div class="holder">
-        <form action="" method="">
-            <input type="text" placeholder="username" class="my-3 mt-5"><br />
-            <input type="text" placeholder="email" class="my-3"><br />
-            <input type="password" placeholder="password" class="my-3"><br />
-            <input type="password" placeholder="confirm password" class="my-3">
+        <form method="post" asp-controller="Signup" asp-action="Register">
+            <input type="text" asp-for="UserName" placeholder="username" class="my-3 mt-5"><br />
+            <input type="text" asp-for="Email" placeholder="email" class="my-3"><br />
+            <input type="password" asp-for="Password" placeholder="password" class="my-3"><br />
+            <input type="password" name="confirmedPassword" placeholder="confirm password" class="my-3">
             <div class="d-flex justify-content-start mt-4">
-                <button type="button" class="login-btn">Sign Up</button>
+                <button type="sunmit" class="login-btn">Sign Up</button>
             </div>
+            <div asp-validation-summary="All"></div>
         </form>
         <br>
         <div class="register d-flex justify-content-start">
