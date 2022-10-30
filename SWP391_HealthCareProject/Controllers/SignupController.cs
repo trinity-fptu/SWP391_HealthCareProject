@@ -10,6 +10,12 @@ namespace SWP391_HealthCareProject.Controllers
         {
             return View();
         }
+
+        public IActionResult SignupRH()
+        {
+            return View();
+        }
+
         public IActionResult Register(User user, string confirmedPassword)
         {
             if(user.Password != confirmedPassword || LoginDAO.IsUserExist(user.UserName))

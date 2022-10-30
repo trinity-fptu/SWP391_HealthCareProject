@@ -65,11 +65,27 @@ body {
 
 
 
-.avatar-container-general img {
-    width: 150px;
-    height: 150px;
+.user-avatar-shadow {
+    background-image: url('../assets/avatardemo.jpg');
+    display: block;
+    width: 9em;
+    height: 9em;
+    margin: 1em auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    -webkit-border-radius: 99em;
+    -moz-border-radius: 99em;
+    border-radius: 99em;
+    border: 6px solid #FF6262;
+    box-shadow: inset 0px 0px 3px 3px rgb(0 0 0 / 10%);
     object-fit: cover;
-    clip-path: circle();
+}
+
+.vertical-align-custom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .save{
