@@ -9,5 +9,10 @@ namespace SWP391_HealthCareProject.Controllers
             ViewBag.name = HttpContext.Session.GetString("userName");
             return View();
         }
+
+        public IActionResult ManagePost()
+        {
+            return View();
+        }
     }
 }
