@@ -1,5 +1,5 @@
 ﻿@page
-@model SWP391_HealthCareProject.Views.Admin.IndexModel
+@model List<SWP391_HealthCareProject.Models.User>
 
 @{
     ViewBag.Title = "Detail Page";
@@ -26,25 +26,34 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Number of Volunteers</th>
+                        <th>UserID</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Avatar</th>
+                        <th>Created Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach (var item in Model)
+                    {
                     <tr>
-                        <td>Hoa La</td>
-                        <td>22/1/2022</td>
-                        <td>22/3/2022</td>
-                        <td>150</td>
+                        <td>@item.UserId<td>
+                        <td>@item.UserName</td>
+                        <td>@item.Password</td>
+                        <td>@item.Email</td>
+                        <td>@item.Role</td>
+                        <td>@item.Avatar</td>
+                        <td>@item.CreatedDate.HasValue? @item.CreatedDate.Value.ToString("dd/MM/yyyy") : ""</td>
                         <td>
                             <a class="add" title="Add" data-toggle="tooltip"><i class="fa-solid fa-plus"></i></a>
                             <a class="edit" title="Edit" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
                             <a class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
                         </td>
                     </tr>
+                    }
                 </tbody>
             </table>
         </div>
