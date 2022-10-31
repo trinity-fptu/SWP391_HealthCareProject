@@ -259,6 +259,39 @@ main {
 }
 
 
+.file-upload .square {
+    height: 250px;
+    width: 250px;
+    margin: auto;
+    vertical-align: middle;
+    border: 1px solid #e5dfe4;
+    background-color: #fff;
+    border-radius: 5px;
+}
+.user-avatar-shadow {
+    display: block;
+    width: 9em;
+    height: 9em;
+    margin: 1em auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    -webkit-border-radius: 99em;
+    -moz-border-radius: 99em;
+    border-radius: 99em;
+    border: 6px solid #FF6262;
+    box-shadow: inset 0px 0px 3px 3px rgb(0 0 0 / 10%);
+    object-fit: cover;
+    transition:0.3s;
+}
+
+.user-avatar-shadow:hover{
+    background-color:white;
+    opacity:0.6;
+}
+
+
+
 
 /*animation*/
 
