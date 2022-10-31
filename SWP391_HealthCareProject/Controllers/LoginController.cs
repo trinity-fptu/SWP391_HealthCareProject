@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SWP391_HealthCareProject.DataAccess;
+using SWP391_HealthCareProject.Models;
 
 namespace SWP391_HealthCareProject.Controllers
 {
@@ -11,7 +12,7 @@ namespace SWP391_HealthCareProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult Validate(Models.User obj)
+        public IActionResult Validate(User obj)
         {
             HttpContext.Session.Clear();
             var user = LoginDAO.Login(obj.UserName, obj.Password);

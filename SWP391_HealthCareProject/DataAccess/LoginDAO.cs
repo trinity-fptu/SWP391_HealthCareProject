@@ -1,4 +1,7 @@
-﻿using SWP391_HealthCareProject.Models;
+﻿using System.Net.Mail;
+using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Razor.Language.Intermediate;
+using SWP391_HealthCareProject.Models;
 
 namespace SWP391_HealthCareProject.DataAccess
 {
@@ -11,23 +14,6 @@ namespace SWP391_HealthCareProject.DataAccess
             return user;
         }
 
-        public static bool Register(User user)
-        {
-            using var db = new BloodDonorContext();
-            db.Users.Add(user);
-            db.SaveChanges();
-            return true;
-        }
-
-        public static bool IsUserExist(string username)
-        {
-            using var db = new BloodDonorContext();
-            var user = db.Users.FirstOrDefault(u => u.UserName == username);
-            if (user == null)
-            {
-                return false;
-            }
-            return true;
-        }
+        
     }
 }

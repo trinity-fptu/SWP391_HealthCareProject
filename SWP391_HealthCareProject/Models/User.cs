@@ -1,4 +1,6 @@
-﻿namespace SWP391_HealthCareProject.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SWP391_HealthCareProject.Models
 {
     public partial class User
     {

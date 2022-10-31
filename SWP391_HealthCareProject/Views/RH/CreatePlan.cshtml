@@ -1,0 +1,81 @@
+﻿@page
+@{
+    ViewBag.Title = "Create Plan";
+    Layout = "_LayoutAdminRH";
+}
+
+<div class="container pt-3">
+
+
+
+    <!-- Page Heading -->
+    <div class=" mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Create Plan</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background-color: #f9f8f8;padding:10px 0;">
+                <li class="breadcrumb-item"><a href="/RH">Home</a></li>
+                <li class="breadcrumb-item"><a href="/RH/ManagePlan">Manage Plan</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Create Plan</li>
+            </ol>
+        </nav>
+    </div>
+
+
+    <div class="card">
+        <h5 class="card-header">Create New Plan</h5>
+        <form>
+            <div class="card-body custom-card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card-text">Plan Name</div>
+                    </div>
+                    <div class="col-md-9">
+                        <input class="custom-input" type="text" name="post_title">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body custom-card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card-text">Expected Money To Cost</div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="mb-3">
+                            <input class="form-control" type="number" min="1" step="any">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body custom-card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card-text">Expected Blood Amount</div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="mb-3">
+                            <input class="form-control" type="number" min="1" step="any">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body custom-card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card-text">Description</div>
+                    </div>
+                    <div class="col-md-9">
+                        <textarea class="custom-input"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body custom-card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <button class="btn btn-primary" type="submit">Create Plan</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

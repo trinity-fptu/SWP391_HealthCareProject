@@ -1,0 +1,85 @@
+﻿@page
+@{
+    ViewBag.Title = "Manage Campaign";
+    Layout = "_LayoutAdminRH";
+}
+
+<div class="container pt-3">
+
+    <!-- Page Heading -->
+    <div class=" mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Manage Post</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background-color: #f9f8f8;padding:10px 0;">
+                <li class="breadcrumb-item"><a href="/RH">Home</a></li>
+                <li class="breadcrumb-item"><a href="/RH/ManageCampaign">Manage Campaign</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Create Campaign</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="card">
+        <h5 class="card-header">Create New Campaign</h5>
+        <div class="card-body custom-card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card-text">Campaign Name</div>
+                </div>
+                <div class="col-md-9">
+                    <input class="custom-input" type="text" name="campaign_name">
+                </div>
+            </div>
+        </div>
+        <div class="card-body custom-card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card-text">Start Date</div>
+                </div>
+                <div class="col-md-9">
+                    <input class="custom-input" type="text" name="start_date">
+                </div>
+            </div>
+        </div>
+        <div class="card-body custom-card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card-text">End Date</div>
+                </div>
+                <div class="col-md-9">
+                    <input class="custom-input" type="text" name="end_date">
+                </div>
+            </div>
+        </div>
+        <div class="card-body custom-card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card-text">Province</div>
+                </div>
+                <div class="col-md-9">
+                    <input class="custom-input" type="text" name="province">
+                </div>
+            </div>
+        </div>
+        <div class="card-body custom-card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card-text">Select Plan</div>
+                </div>
+                <div class="col-md-9">
+                    <select class="custom-input">
+                        <option>
+                            Plan Name
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="card-body custom-card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <button class="btn btn-primary" type="submit">Create Campaign</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
