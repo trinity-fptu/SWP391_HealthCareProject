@@ -46,9 +46,10 @@
                                 <label class="label" for="password">Confirm Passowrd</label>
                                 <input type="password" name="confirmedPassword" class="form-control" placeholder="Confirm Password" required>
                             </div>
+                            <p class="font-weight-light">Password must be more than 8 characters and contain numbers, normal letters, capital letters and special characters</p>
                             <div class="form-group mb-3">
                                 <label class="label" for="role">You are</label>
-                                <select class="form-control">
+                                <select class="form-control" name="selectRH">
                                     <option>Hospital Admin</option>
                                     <option>Red Cross Admin</option>
                                 </select>
@@ -76,6 +77,9 @@
                                 <div class="w-50 text-md-right">
                                     <a href="#">Forgot Password</a>
                                 </div>
+                            </div>
+                            <div class="register d-flex justify-content-start form-group">
+                                <span>Already have an account? <a href="/Login">Login Now</a></span>
                             </div>
                         </form>
                     </div>

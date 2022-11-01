@@ -6,28 +6,43 @@
 
 <!-- body -->
 <section id="signup" class="mx-auto my-lg-5 my-5">
+
     <div class="head">
         <h1>Sign Up</h1>
         <span>Welcome</span>
     </div>
-    <div class="holder">
-        <form method="post" asp-controller="Signup" asp-action="Register">
-            <input type="text" asp-for="UserName" placeholder="username" class="my-3 mt-5" required><br />
-            <input type="text" asp-for="Email" placeholder="email" class="my-3" required> <br />
-            <input type="password" asp-for="Password" placeholder="password" class="my-3" required><br />
-            <!--thêm 1 thẻ show ra regex của password-->
-            <input type="password" name="confirmedPassword" placeholder="confirm password" class="my-3" required>
-            <div class="d-flex justify-content-start mt-4">
-                <button type="submit" class="login-btn">Sign Up</button>
+    <div class="row justify-content-center">
+        <div class="login-wrap col-md-10 col-lg-10 col-10">
+            <form method="post" asp-controller="Signup" asp-action="Register">
+                <div class="form-group my-3">
+                    <label class="label" for="name">Username</label>
+                    <input type="text" asp-for="UserName" placeholder="username" class="form-control" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="label" for="email">Email</label>
+                    <input type="text" asp-for="Email" placeholder="email" class="form-control" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="label" for="password">Password</label>
+                    <input type="password" asp-for="Password" placeholder="password" class="form-control" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="label" for="confirm-password">Confirm Password</label>
+                    <input type="password" name="confirmedPassword" placeholder="confirm password" class="form-control" required>
+                </div>
+                <!--thêm 1 thẻ show ra regex của password-->
+                <p class="font-weight-light">Password must be more than 8 characters and contain numbers, normal letters, capital letters and special characters</p>
+                <div class="d-flex justify-content-start mt-4">
+                    <button type="submit" class="form-control btn btn-primary submit px-3">Register</button>
+                </div>
+                <div asp-validation-summary="All"></div>
+            </form>
+            <div class="register d-flex justify-content-start form-group">
+                <span>Already have an account? <a href="/Login">Login Now</a></span>
             </div>
-            <div asp-validation-summary="All"></div>
-        </form>
-        <br>
-        <div class="register d-flex justify-content-start">
-            <span>Already have an account? <a href="/Login">Login Now</a></span>
-        </div>
-        <div class="register d-flex justify-content-start mt-3">
-            <span>Register site for Hospital and Red Cross <a href="/Signup/SignupRH">Click here</a></span>
+            <div class="register d-flex justify-content-start mt-3 form-group">
+                <span>Register site for Hospital and Red Cross <a href="/Signup/SignupRH">Click here</a></span>
+            </div>
         </div>
     </div>
 </section>

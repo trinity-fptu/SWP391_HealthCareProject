@@ -70,10 +70,12 @@ input {
 
 .holder {
     margin: auto;
-    text-align: center;
+    text-align: left;
     width: fit-content;
     block-size: fit-content;
 }
+
+
 
 .login-btn {
     border-radius: 8px;
@@ -112,6 +114,12 @@ input {
     width: 40rem;
     height: 45rem;
     border-radius: 15px;
+}
+
+@media only screen and (max-width: 669px) {
+    #signup {
+        width: 30rem;
+    }
 }
 
 a {
@@ -165,14 +173,8 @@ a {
     box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
 }
 
-.text-wrap, .login-wrap {
-    width: 50%;
-}
 
 @media (max-width: 991.98px) {
-    .text-wrap, .login-wrap {
-        width: 100%;
-    }
 }
 
 .text-wrap {
@@ -193,6 +195,9 @@ a {
         font-weight: 900;
         color: #fff;
     }
+.text-wrap, .login-wrap{
+    width:50%;
+}
 
 .login-wrap {
     position: relative;
@@ -271,33 +276,6 @@ a {
     border-color: transparent;
 }
 
-.social-media {
-    position: relative;
-    width: 100%;
-}
-
-    .social-media .social-icon {
-        display: block;
-        width: 40px;
-        height: 40px;
-        background: transparent;
-        border: 1px solid rgba(0, 0, 0, 0.05);
-        font-size: 16px;
-        margin-right: 5px;
-        border-radius: 50%;
-    }
-
-        .social-media .social-icon span {
-            color: #999999;
-        }
-
-        .social-media .social-icon:hover, .social-media .social-icon:focus {
-            background: #f35588;
-        }
-
-            .social-media .social-icon:hover span, .social-media .social-icon:focus span {
-                color: #fff;
-            }
 
 .checkbox-wrap {
     display: block;

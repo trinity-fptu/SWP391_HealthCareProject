@@ -11,26 +11,30 @@
         <h1>Login</h1>
         <span>Welcome Back</span>
     </div>
-    <div class="holder">
-        <form method="post" asp-controller="Login" asp-action="Validate">
-            <input type="text" asp-for="UserName" placeholder="username" class="username" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                border: none;width: 20rem;height: 3rem;padding: 1.5rem;margin-top: 3rem;border-radius: 12px;" required />
+    <div class="row justify-content-center">
+        <div class="login-wrap col-md-10 col-lg-10 col-10">
+            <form method="post" asp-controller="Login" asp-action="Validate">
+                <div class="form-group my-3">
+                    <label class="label" for="name">Username</label>
+                    <input type="text" asp-for="UserName" placeholder="Username" class="form-control" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="label" for="password">Password</label>
+                    <input type="password" asp-for="Password" placeholder="Password" class="form-control" required>
+                </div>
 
-            <br />
-            <input type="password" asp-for="Password" placeholder="password" class="a my-4" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                                                                                                   border: none;width: 20rem;height: 3rem;padding: 1.5rem;margin-top: 3rem;border-radius: 12px;" required />
-            <!--thêm 1 thẻ show ra regex của password-->
-            <div class="d-flex justify-content-end mb-3">
-                <a href="#">Forgot Password?</a>
+                <!--thêm 1 thẻ show ra regex của password-->
+                <div class="d-flex justify-content-end mb-3 form-group">
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <div class="d-flex justify-content-start mt-4 ">
+                    <button type="submit" class="form-control btn btn-primary submit px-3">Login</button>
+                </div>
+            </form>
+            <br>
+            <div class="register d-flex justify-content-start form-group">
+                <span>Dont have an account? <a href="/Signup/Signup">Register Now</a></span>
             </div>
-            <div class="d-flex justify-content-start mt-4">
-                <button type="submit" class="login-btn">Log In</button>
-            </div>
-        </form>  
-        
-        <br>
-        <div class="register d-flex justify-content-start">
-            <span>Dont have an account? <a href="/Signup/Signup">Register Now</a></span>
         </div>
     </div>
 </section>
