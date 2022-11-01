@@ -10,8 +10,9 @@ namespace SWP391_HealthCareProject.DataAccess
         public List<User> getAllUser()
         {
             using var db = new BloodDonorContext();
-            users = db.Users.ToList();
-            return users;
+            var us = (from item in db.Users
+                     select item).ToList();
+            return us;
         }
 
         public User getUserById(int id)

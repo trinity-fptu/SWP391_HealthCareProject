@@ -46,7 +46,7 @@
                         <td>@item.Email</td>
                         <td>@item.Role</td>
                         <td>@item.Avatar</td>
-                        <td>@item.CreatedDate.HasValue? @item.CreatedDate.Value.ToString("dd/MM/yyyy") : ""</td>
+                        <td>@(item.CreatedDate.HasValue? item.CreatedDate.Value.ToString("dd/MM/yyyy") : "")</td>
                         <td>
                             <a class="add" title="Add" data-toggle="tooltip"><i class="fa-solid fa-plus"></i></a>
                             <a class="edit" title="Edit" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
