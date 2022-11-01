@@ -119,6 +119,7 @@ input {
 @media only screen and (max-width: 669px) {
     #signup {
         width: 30rem;
+        height: 47rem;
     }
 }
 
@@ -174,8 +175,6 @@ a {
 }
 
 
-@media (max-width: 991.98px) {
-}
 
 .text-wrap {
     background: #f75959;
@@ -197,6 +196,11 @@ a {
     }
 .text-wrap, .login-wrap{
     width:50%;
+}
+@media only screen and (max-width: 998px) {
+    .text-wrap, .login-wrap {
+        width: 100%;
+    }
 }
 
 .login-wrap {
