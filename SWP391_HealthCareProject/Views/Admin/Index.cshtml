@@ -38,25 +38,25 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <td>@item.UserId</td>
-                        <td>@item.UserName</td>
-                        <td>@item.Password</td>
-                        <td>@item.Email</td>
-                        <td>@item.Role</td>
-                        <td>@item.Avatar</td>
-                        <td>@(item.CreatedDate.HasValue? item.CreatedDate.Value.ToString("dd/MM/yyyy") : "")</td>
-                        <td>
-                            <a class="add" title="Add" data-toggle="tooltip"><i class="fa-solid fa-plus"></i></a>
-                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square">@Html.ActionLink("Edit","Edit",new {id=item.UserId})</i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash">@Html.ActionLink("Delete","Delete",new {id=item.UserId})</i></a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>@item.UserId</td>
+                            <td>@item.UserName</td>
+                            <td>@item.Password</td>
+                            <td>@item.Email</td>
+                            <td>@item.Role</td>
+                            <td>@item.Avatar</td>
+                            <td>@(item.CreatedDate.HasValue ? item.CreatedDate.Value.ToString("dd/MM/yyyy") : "")</td>
+                            <td>
+                                <div class="">
+                                    <a class="edit" title="Edit" data-toggle="tooltip">@Html.ActionLink("Edit","Edit",new {id=item.UserId})</a>
+                                    <a class="delete" title="Delete" data-toggle="tooltip">@Html.ActionLink("Delete","Delete",new {id=item.UserId})</a>
+                                </div>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
         </div>
     </div>
-    
 
 </div>

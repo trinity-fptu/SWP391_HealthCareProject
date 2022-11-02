@@ -82,10 +82,7 @@ table.table {
         overflow-wrap: break-word;
     }
 
-    table.table th i {
-        font-size: 13px;
-        margin: 0 5px;
-        cursor: pointer;
+    table.table tr td:last-child {
     }
 
     table.table th:last-child {
@@ -94,9 +91,7 @@ table.table {
 
     table.table td a {
         cursor: pointer;
-        display: inline-block;
         margin: 0 5px;
-        min-width: 24px;
     }
 
         table.table td a.add {
