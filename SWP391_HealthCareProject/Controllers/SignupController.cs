@@ -1,5 +1,4 @@
-﻿using System.Net.Mail;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SWP391_HealthCareProject.DataAccess;
 using SWP391_HealthCareProject.Models;
 
@@ -19,7 +18,7 @@ namespace SWP391_HealthCareProject.Controllers
 
         public IActionResult Register(User user, string confirmedPassword)
         {
-            if (!SignupDAO.IsUserExist(user.UserName) && SignupDAO.CheckEmailPattern(user.Email) && 
+            if (!SignupDAO.IsUserExist(user.UserName) && SignupDAO.CheckEmailPattern(user.Email) &&
                 SignupDAO.CheckPasswordPattern(user.Password) && user.Password == confirmedPassword)
             {
                 user.Role = 1;
@@ -40,11 +39,11 @@ namespace SWP391_HealthCareProject.Controllers
                 {
                     ModelState.AddModelError("Password Error", "Invalid password");
                 }
-                if(user.Password != confirmedPassword)
+                if (user.Password != confirmedPassword)
                 {
                     ModelState.AddModelError("Confirmed Error", "Confirmed password is not matched");
                 }
-                
+
                 return View("Signup", user);
             }
         }

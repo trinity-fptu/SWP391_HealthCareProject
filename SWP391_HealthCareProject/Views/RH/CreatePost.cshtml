@@ -1,4 +1,4 @@
-﻿@page
+﻿@model Post
 @{
     ViewBag.Title = "Create Post";
     Layout = "_LayoutAdminRH";
@@ -23,14 +23,14 @@
 
     <div class="card">
         <h5 class="card-header">Create New Post</h5>
-        <form>
+        <form method="post" asp-controller="RH" asp-action="UploadPost" enctype="multipart/form-data">
             <div class="card-body custom-card-body">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="card-text">Post Title</div>
                     </div>
                     <div class="col-md-9">
-                        <input class="custom-input" type="text" name="post_title">
+                        <input class="custom-input" type="text" asp-for="Title">
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                         <div class="card-text">Description</div>
                     </div>
                     <div class="col-md-9">
-                        <textarea class="custom-input"></textarea>
+                         <textarea class="custom-input" asp-for="Description" ></textarea>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="col-md-9">
                         <div class="mb-3">
-                            <input class="form-control" type="file" id="formFile">
+                            <input class="form-control" name="postImage" type="file" id="formFile">
                         </div>
                     </div>
                 </div>

@@ -42,6 +42,7 @@
 
   <ItemGroup>
     <Folder Include="Views\ManagePost\" />
+    <Folder Include="wwwroot\assets\postImg\" />
   </ItemGroup>
 
 </Project>
