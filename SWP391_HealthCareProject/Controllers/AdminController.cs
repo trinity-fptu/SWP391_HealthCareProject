@@ -13,7 +13,12 @@ namespace SWP391_HealthCareProject.Controllers
         {
             var ad = new AdminDAO();
             var userList = ad.getAllUser();
-            ViewBag.name = HttpContext.Session.GetString("userName");
+            if (HttpContext.Session.GetObjectFromJson<User>("User") != null)
+            {
+                var userInfo = HttpContext.Session.GetObjectFromJson<User>("User");
+                string userName = userInfo.UserName;
+                ViewBag.UserName = userName;
+            }
             return View(userList);
         }
 
