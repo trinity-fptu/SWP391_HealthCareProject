@@ -30,28 +30,18 @@ namespace SWP391_HealthCareProject.Controllers
         [HttpPost]
         public IActionResult UploadPost(Post post, IFormFile postImage)
         {
-            try
-            {
-                var userInfo = HttpContext.Session.GetObjectFromJson<User>("User");
-                HospitalRedCrossAdmin hrAd = HospitalRedCrossAdminDAO.GetHRAdrByUserId(userInfo.UserId);
-                post.Rhaid = hrAd.Rhaid;
-                string imgExtension = postImage.FileName.Substring(postImage.FileName.IndexOf('.') + 1);
-                int lastPostId = PostDAO.GetLastRecord().PostId;
-                string savedName = $"PostPic{lastPostId + 1}.{imgExtension}";
-                savedName = Path.GetFileName(savedName);
-                string uploadFilepath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\assets\\postImg", savedName);
-                using (var stream = new FileStream(uploadFilepath, FileMode.Create))
-                {
-                    postImage.CopyTo(stream);
-                }
-                post.Img = uploadFilepath;
-                PostDAO.AddPost(post);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
+            var userInfo = HttpContext.Session.GetObjectFromJson<User>("User");
+            HospitalRedCrossAdmin hrAd = HospitalRedCrossAdminDAO.GetHRAdrByUserId(userInfo.UserId);
+            post.Rhaid = hrAd.Rhaid;
+            // Save uploaded image.
+            string path = @"wwwroot\assets\postImg";
+            int lastPostId = PostDAO.GetLastRecord().PostId;
+            string savedName = $"PostPic{lastPostId + 1}";
+            string uploadFilepath = postImage.SaveUploadedFile(path, savedName);
+            // Set filepath for Img attribute.
+            post.Img = uploadFilepath;
+            // Add post.
+            PostDAO.AddPost(post);
             return RedirectToAction("ManagePost");
         }
 
