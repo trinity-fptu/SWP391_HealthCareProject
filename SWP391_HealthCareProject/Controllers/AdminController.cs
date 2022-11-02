@@ -1,17 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using SWP391_HealthCareProject.DataAccess;
+using SWP391_HealthCareProject.Filters;
 using SWP391_HealthCareProject.Models;
 
 namespace SWP391_HealthCareProject.Controllers
 {
+    [RequestAuthentication]
     public class AdminController : Controller
     {
         public IActionResult Index()
         {
             var ad = new AdminDAO();
             var userList = ad.getAllUser();
-            ViewBag.name = HttpContext.Session.GetString("userName");
+            if (HttpContext.Session.GetObjectFromJson<User>("User") != null)
+            {
+                var userInfo = HttpContext.Session.GetObjectFromJson<User>("User");
+                string userName = userInfo.UserName;
+                ViewBag.UserName = userName;
+            }
             return View(userList);
         }
         public ActionResult Create() => View();

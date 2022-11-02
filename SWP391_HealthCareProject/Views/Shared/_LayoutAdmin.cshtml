@@ -56,12 +56,21 @@
                         </ul>
                     </div>
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Login" asp-action="Index">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Signup" asp-action="Signup">Register</a>
-                        </li>
+                        @{
+                            if (ViewBag.UserName == null)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Login" asp-action="Index">Login</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <!--avatar-->
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Login" asp-action="Logout">Logout</a>
+                                </li>
+                            }
+                        }
                     </ul>
                 </div>
             </nav>
