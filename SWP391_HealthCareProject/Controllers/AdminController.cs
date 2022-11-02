@@ -14,7 +14,7 @@ namespace SWP391_HealthCareProject.Controllers
             ViewBag.name = HttpContext.Session.GetString("userName");
             return View(userList);
         }
-
+        public ActionResult Create() => View();
         //Post
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -22,22 +22,18 @@ namespace SWP391_HealthCareProject.Controllers
         {
             try
             {
-                if (AdminDAO.IsUserExist(user.UserName))
-                {
-                    ModelState.AddModelError("Existed User", "Account already existed");
-
-                }
-                else if (ModelState.IsValid)
+                
+                if (ModelState.IsValid)
                 {
                     AdminDAO adminDAO = new AdminDAO();
                     adminDAO.addUser(user);
                 }
-                return RedirectToAction("Index", "Admin");
+                return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
                 ViewBag.message = ex.Message;
-                return View();
+                return View(user);
             }
         }
         public ActionResult Delete(int? id)

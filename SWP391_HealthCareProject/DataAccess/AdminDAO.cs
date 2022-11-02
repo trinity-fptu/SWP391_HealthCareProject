@@ -22,16 +22,27 @@ namespace SWP391_HealthCareProject.DataAccess
             return user;
         }
 
-        public bool addUser(User user)
+        public void addUser(User user)
         {
             using var db = new BloodDonorContext();
-            if (db.Users.Find(user.UserName) != null)
+            try
             {
-                return false;
+                User _user = getUserById(user.UserId);
+                if(_user == null)
+                {
+                    db.Users.Add(user);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("User is already exist");
+                }
             }
-            db.Users.Add(user);
-            db.SaveChanges();
-            return true;
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
         }
 
         public void updateUser(User user)
