@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SWP391_HealthCareProject.Filters;
 using SWP391_HealthCareProject.Models;
 
 namespace SWP391_HealthCareProject.Controllers
 {
+    [RequestAuthentication]
     public class UserController : Controller
     {
-        [RequestAuthentication]
         public IActionResult UserProfile()
         {
             if (HttpContext.Session.GetObjectFromJson<User>("User") != null)
