@@ -40,19 +40,23 @@ namespace SWP391_HealthCareProject.Controllers
                 return View();
             }
         }
+        public ActionResult Delete(int? id)
+        {
+            if (id == null) { return NotFound(); }
+            AdminDAO ad = new AdminDAO();
+            var user = ad.getUserById(id.Value);
+            if(user == null) { return NotFound(); }
+            return View(user);
+        }
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Delete(User user)
+        public ActionResult Delete(int id)
         {
             try
             {
-                if (AdminDAO.IsUserExist(user.UserName))
-                {
-                    AdminDAO adminDAO = new AdminDAO();
-                    adminDAO.deleteUser(user);
-                    return RedirectToAction("Index", "Admin");
-                }
-                ModelState.AddModelError("Delete Error","User does not exist!");
-                return View("Admin", user);
+                
+                AdminDAO adminDAO = new AdminDAO();
+                adminDAO.deleteUser(id);
+                return RedirectToAction(nameof(Index));    
             }
             catch (Exception ex) 
             { 
@@ -61,13 +65,32 @@ namespace SWP391_HealthCareProject.Controllers
             }
 
         }
+        //Get: Edit
+        public ActionResult Edit(int? id)
+        {
+            if(id == null) { return NotFound(); }
+            AdminDAO adminDAO=new AdminDAO();
+            var user = adminDAO.getUserById(id.Value);
+            if(user == null)
+            {
+                return NotFound();
+            }
+            return View(user);
+        }
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Edit(User user)
+        public ActionResult Edit(int id,User user)
         {
             try
             {
-                AdminDAO adminDAO = new AdminDAO();
-                adminDAO.updateUser(user);
+                if(id != user.UserId)
+                {
+                    return NotFound();
+                }
+                if (ModelState.IsValid)
+                {
+                    AdminDAO adminDAO = new AdminDAO();
+                    adminDAO.updateUser(user);
+                }
                 return RedirectToAction("Index", "Admin");
             }
             catch(Exception ex)

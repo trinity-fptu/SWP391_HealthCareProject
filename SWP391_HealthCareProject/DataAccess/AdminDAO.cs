@@ -34,28 +34,49 @@ namespace SWP391_HealthCareProject.DataAccess
             return true;
         }
 
-        public bool updateUser(User user)
+        public void updateUser(User user)
         {
             using var db = new BloodDonorContext();
-            if (db.Users.Find(user.UserName) == null)
+            try
             {
-                return false;
+                User _user = getUserById(user.UserId);
+                if(_user != null)
+                {
+                    db.Users.Update(user);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("User does not exít");
+                }
             }
-            db.Users.Update(user);
-            db.SaveChanges();
-            return true;
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
         }
 
-        public bool deleteUser(User user)
+        public void deleteUser(int id)
         {
             using var db = new BloodDonorContext();
-            if (db.Users.Find(user.UserName) == null)
+            try
             {
-                return false;
+                User user = getUserById(id);
+                if(user != null)
+                {
+                    db.Users.Remove(user);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("User does not exít");
+                }
             }
-            db.Users.Remove(user);
-            db.SaveChanges();
-            return true;
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }         
         }
         public static bool IsUserExist(string username)
         {
