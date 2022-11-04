@@ -23,10 +23,18 @@ p {
     color: rgba(255, 255, 255, .5);
     background-color: transparent;
     transition: 0.5s;
-    font-size:1.2rem;
-    border-bottom: .25rem solid rgba(255, 255, 255, .5);
+    font-size: 1.2rem;
+    transition: 0.3s;
+    border-bottom: 3px solid #ff626200 ;
+}
+.nav-link:hover{
+    border-bottom:3px solid #FF6262;
 }
 
+.navbar-custom {
+    position: sticky;
+    top:0;
+}
 
 #id {
     font-size: 3rem;
