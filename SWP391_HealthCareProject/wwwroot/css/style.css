@@ -196,7 +196,6 @@ a.btn-readmore {
 
 #top-volunteer {
     padding: 2rem;
-    background-color: #E9E9E9;
     text-align: center;
     padding: 2rem;
     margin-top: 2rem;
@@ -210,9 +209,9 @@ a.btn-readmore {
     opacity: 100%;
 }
 
-#find-campaign{
-    margin-top:10rem;
-    margin-bottom:10rem;
+#find-campaign {
+    padding:60px 0;
+    margin-bottom: 5rem;
 }
 
     #find-campaign hr {
