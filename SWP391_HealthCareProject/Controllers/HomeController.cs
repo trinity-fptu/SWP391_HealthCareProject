@@ -2,6 +2,7 @@
 using SWP391_HealthCareProject.DataAccess;
 using SWP391_HealthCareProject.Models;
 using System.Diagnostics;
+using static SWP391_HealthCareProject.DataAccess.HomeDAO;
 
 namespace SWP391_HealthCareProject.Controllers
 {
@@ -14,7 +15,7 @@ namespace SWP391_HealthCareProject.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int id)
         {
             if (HttpContext.Session.GetObjectFromJson<User>("User") != null)
             {
@@ -22,6 +23,12 @@ namespace SWP391_HealthCareProject.Controllers
                 string userName = userInfo.UserName;
                 ViewBag.UserName = userName;
             }
+            View3 view = new View3();
+            PostDAO postDao = new PostDAO();
+            CampaignDAO campaignDAO = new CampaignDAO();
+
+            view.post = postDao.getPostById(id);
+            view.campaigns = campaignDAO.getCampaignById(id);
             return View();
         }
 
