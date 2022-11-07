@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SWP391_HealthCareProject.DataAccess;
 using SWP391_HealthCareProject.Models;
 using System.Diagnostics;
 
@@ -36,7 +37,9 @@ namespace SWP391_HealthCareProject.Controllers
 
         public IActionResult PostList()
         {
-            return View();
+            var postDao = new PostDAO();
+            var pD = postDao.getAllPost();
+            return View(pD);
         }
 
         public IActionResult SearchCampaign()
