@@ -24,7 +24,7 @@
                         <input id="inputTag" type="file" style="display:none;" />
                     </label>
                 </div>
-               
+
 
             </div>
             <div class="col-md-8 info-container-general">
@@ -34,11 +34,11 @@
                         @{
                             if (ViewBag.FullName != null)
                             {
-                                                <input type="text" class="form-control" name="fullName" value="@ViewBag.FullName" />
+                                <input type="text" class="form-control" name="fullName" value="@ViewBag.FullName" />
                             }
                             else
                             {
-                                                <input type="text" class="form-control" name="fullName" />
+                                <input type="text" class="form-control" name="fullName" />
                             }
                         }
 
@@ -48,11 +48,11 @@
                         @{
                             if (ViewBag.UserName != null)
                             {
-                                                <input type="text" class="form-control" name="userName" value="@ViewBag.UserName" />
+                                <input type="text" class="form-control" name="userName" value="@ViewBag.UserName" />
                             }
                             else
                             {
-                                                <input type="text" class="form-control" name="userName" />
+                                <input type="text" class="form-control" name="userName" />
                             }
                         }
 
@@ -62,16 +62,15 @@
                         @{
                             if (ViewBag.Email != null)
                             {
-                                                <input type="text" class="form-control" name="email" value="@ViewBag.Email" />
+                                <input type="text" class="form-control" name="email" value="@ViewBag.Email" />
                             }
                             else
                             {
-                                                <input type="text" class="form-control" name="email" />
+                                <input type="text" class="form-control" name="email" />
                             }
                         }
 
                     </div>
-
                     <button type="submit" class="save mt-3">Save Changes</button>
                 </form>
             </div>

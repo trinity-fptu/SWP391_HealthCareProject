@@ -11,19 +11,10 @@ namespace SWP391_HealthCareProject.Controllers
         {
             if (HttpContext.Session.GetObjectFromJson<User>("User") != null)
             {
+                string fullName = null;
                 var userInfo = HttpContext.Session.GetObjectFromJson<User>("User");
-                if (HttpContext.Session.GetObjectFromJson<Volunteer>("Volunteer") != null)
-                {
-                    var volunteerInfo = HttpContext.Session.GetObjectFromJson<Volunteer>("Volunteer");
-                    string fullName = volunteerInfo.LastName + " " + volunteerInfo.FirstName;
-                    ViewBag.FullName = fullName;
-                }
-                else if (HttpContext.Session.GetObjectFromJson<HospitalRedCrossAdmin>("HRAdmin") != null)
-                {
-                    var hrAdminInfo = HttpContext.Session.GetObjectFromJson<Volunteer>("HRAdmin");
-                    string fullName = hrAdminInfo.LastName + " " + hrAdminInfo.FirstName;
-                    ViewBag.FullName = fullName;
-                }
+                var volunteerInfo = userInfo.Volunteers.Where(x=>x.UserId==userInfo.UserId).FirstOrDefault();
+                ViewBag.FullName = $"{volunteerInfo.LastName} {volunteerInfo.FirstName}";
                 ViewBag.UserName = userInfo.UserName;
                 ViewBag.Email = userInfo.Email;
             }
