@@ -1,4 +1,4 @@
-﻿@page
+﻿@model List<Post>
 @{
     ViewBag.Title = "Manage Post";
     Layout = "_LayoutAdminRH";
@@ -35,22 +35,23 @@
                             <thead>
                                 <tr>
                                     <th>Post Title</th>
-                                    <th>Description</th>
-                                    <th>Image</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Hoa La</td>
-                                    <td>Hom nay mau nang dep de</td>
-                                    <td>/aaaa/aaa/aa</td>
+                                @{
+                                foreach(var post in Model){
+                                    <tr>
+                                    <td>@post.Title</td>
                                     <td>
                                         <a class="add" title="Add" data-toggle="tooltip"><i class="fa-solid fa-plus"></i></a>
                                         <a class="edit" title="Edit" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
-                                        <a class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
+                                        <a asp-controller="RH" asp-action="DeletePost" asp-route-postId="@post.PostId" class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
                                     </td>
                                 </tr>
+                                }
+                                }
+                                
                             </tbody>
                         </table>
                     </div>

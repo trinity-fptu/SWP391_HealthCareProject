@@ -23,10 +23,18 @@ p {
     color: rgba(255, 255, 255, .5);
     background-color: transparent;
     transition: 0.5s;
-    font-size:1.2rem;
-    border-bottom: .25rem solid rgba(255, 255, 255, .5);
+    font-size: 1.2rem;
+    transition: 0.3s;
+    border-bottom: 3px solid #ff626200 ;
+}
+.nav-link:hover{
+    border-bottom:3px solid #FF6262;
 }
 
+.navbar-custom {
+    position: sticky;
+    top:0;
+}
 
 #id {
     font-size: 3rem;
@@ -143,6 +151,11 @@ a.btn-readmore {
 .card{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin: 2rem;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:scale(1.1);
 }
 
 .big-card p{
@@ -183,7 +196,6 @@ a.btn-readmore {
 
 #top-volunteer {
     padding: 2rem;
-    background-color: #E9E9E9;
     text-align: center;
     padding: 2rem;
     margin-top: 2rem;
@@ -197,9 +209,9 @@ a.btn-readmore {
     opacity: 100%;
 }
 
-#find-campaign{
-    margin-top:10rem;
-    margin-bottom:10rem;
+#find-campaign {
+    padding:60px 0;
+    margin-bottom: 5rem;
 }
 
     #find-campaign hr {

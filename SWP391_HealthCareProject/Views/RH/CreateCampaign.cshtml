@@ -1,4 +1,4 @@
-﻿@page
+﻿@model Campaign
 @{
     ViewBag.Title = "Manage Campaign";
     Layout = "_LayoutAdminRH";
@@ -19,13 +19,14 @@
     </div>
     <div class="card">
         <h5 class="card-header">Create New Campaign</h5>
+        <form method="post" asp-controller="RH" asp-action="StartCampaign">
         <div class="card-body custom-card-body">
             <div class="row">
                 <div class="col-md-3">
                     <div class="card-text">Campaign Name</div>
                 </div>
                 <div class="col-md-9">
-                    <input class="custom-input" type="text" name="campaign_name">
+                    <input asp-for="Name" class="custom-input" type="text">
                 </div>
             </div>
         </div>
@@ -35,7 +36,7 @@
                     <div class="card-text">Start Date</div>
                 </div>
                 <div class="col-md-9">
-                    <input class="custom-input" type="text" name="start_date">
+                        <input asp-for="StartDate" asp-format="{0:yyyy-MM-dd}" class="custom-input" type="date">
                 </div>
             </div>
         </div>
@@ -45,7 +46,7 @@
                     <div class="card-text">End Date</div>
                 </div>
                 <div class="col-md-9">
-                    <input class="custom-input" type="text" name="end_date">
+                        <input asp-for="EndDate" asp-format="{0:yyyy-MM-dd}" class="custom-input" type="date">
                 </div>
             </div>
         </div>
@@ -55,7 +56,7 @@
                     <div class="card-text">Province</div>
                 </div>
                 <div class="col-md-9">
-                    <input class="custom-input" type="text" name="province">
+                    <input asp-for="Province" class="custom-input" type="text">
                 </div>
             </div>
         </div>
@@ -65,10 +66,14 @@
                     <div class="card-text">Select Plan</div>
                 </div>
                 <div class="col-md-9">
-                    <select class="custom-input">
-                        <option>
-                            Plan Name
-                        </option>
+                    <select name="selectedPlan" class="custom-input">
+                        @foreach(Plan plan in ViewBag.Plans){
+                                string planSelect = $"{plan.Name}_{plan.PlanId}";
+                                <option>
+                                    @planSelect
+                                </option>
+                        }
+                        
                     </select>
                 </div>
             </div>
@@ -80,6 +85,7 @@
                 </div>
             </div>
         </div>
+        </form>
 
     </div>
 </div>

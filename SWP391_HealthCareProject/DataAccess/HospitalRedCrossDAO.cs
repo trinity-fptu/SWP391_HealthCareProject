@@ -10,5 +10,11 @@ namespace SWP391_HealthCareProject.DataAccess
             var HR = db.HospitalRedCrosses.FirstOrDefault(x => x.Address == hrAddress);
             return HR;
         }
+        public static HospitalRedCross? GetHRById(int rhId)
+        {
+            using var db = new BloodDonorContext();
+            var HR = db.HospitalRedCrosses.FirstOrDefault(x => x.Rhid == rhId);
+            return HR;
+        }
     }
 }

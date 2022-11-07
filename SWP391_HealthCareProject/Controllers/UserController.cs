@@ -20,7 +20,7 @@ namespace SWP391_HealthCareProject.Controllers
                 }
                 else if (HttpContext.Session.GetObjectFromJson<HospitalRedCrossAdmin>("HRAdmin") != null)
                 {
-                    var hrAdminInfo = HttpContext.Session.GetObjectFromJson<Volunteer>("HRAdmin");
+                    var hrAdminInfo = HttpContext.Session.GetObjectFromJson<HospitalRedCrossAdmin>("HRAdmin");
                     string fullName = hrAdminInfo.LastName + " " + hrAdminInfo.FirstName;
                     ViewBag.FullName = fullName;
                 }
