@@ -65,7 +65,19 @@ namespace SWP391_HealthCareProject.Controllers
 
         public IActionResult CreateCampaign()
         {
+            var rhaInfo = HttpContext.Session.GetObjectFromJson<HospitalRedCrossAdmin>("HRAdmin");
+            var plans = PlanDAO.GetPlansByRHId(rhaInfo.Rhid);
+            ViewBag.Plans = plans;
             return View();
+        }
+        public IActionResult StartCampaign(Campaign campaign, string selectedPlan)
+        {
+            campaign.NumOfVolunteer = 0;
+            string[] splittedPlan = selectedPlan.Split("_");
+            int planId = int.Parse(splittedPlan[1]);
+            campaign.PlanId = planId;
+            CampaignDAO.AddCampaign(campaign);
+            return RedirectToAction("ManageCampaign");
         }
 
         public IActionResult ManagePlan()
