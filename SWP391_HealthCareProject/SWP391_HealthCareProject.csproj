@@ -10,9 +10,13 @@
 
   <ItemGroup>
     <Compile Remove="App_data\**" />
+    <Compile Remove="Views\ManagePost\**" />
     <Content Remove="App_data\**" />
+    <Content Remove="Views\ManagePost\**" />
     <EmbeddedResource Remove="App_data\**" />
+    <EmbeddedResource Remove="Views\ManagePost\**" />
     <None Remove="App_data\**" />
+    <None Remove="Views\ManagePost\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,7 +45,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\ManagePost\" />
     <Folder Include="wwwroot\assets\postImg\" />
   </ItemGroup>
 
