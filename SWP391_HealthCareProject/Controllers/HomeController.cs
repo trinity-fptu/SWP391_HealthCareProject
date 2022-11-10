@@ -15,7 +15,7 @@ namespace SWP391_HealthCareProject.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index(int id)
+        public IActionResult Index()
         {
             if (HttpContext.Session.GetObjectFromJson<User>("User") != null)
             {
@@ -23,13 +23,16 @@ namespace SWP391_HealthCareProject.Controllers
                 string userName = userInfo.UserName;
                 ViewBag.UserName = userName;
             }
-            View3 view = new View3();
-            PostDAO postDao = new PostDAO();
-            CampaignDAO campaignDAO = new CampaignDAO();
-
-            view.post = postDao.getPostById(id);
-            view.campaigns = campaignDAO.getCampaignById(id);
-            return View();
+            PostDAO postDAO = new PostDAO();
+            CampaignDAO campaignDAO = new CampaignDAO();    
+            List<Post> postList = new List<Post>();
+            postList = postDAO.getAllPost();
+            List<Campaign> campaignList = new List<Campaign>();
+            campaignList = campaignDAO.getAllCampaign();
+            HomeModels homeModels = new HomeModels();
+            homeModels.PostViewModel = postList;
+            homeModels.CampaignViewModel = campaignList; 
+            return View(homeModels);
         }
 
         public IActionResult Privacy()

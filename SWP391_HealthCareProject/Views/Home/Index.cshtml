@@ -1,4 +1,6 @@
-﻿@{
+﻿@using SWP391_HealthCareProject.DataAccess;
+@model HomeModels
+@{
     ViewBag.Title = "Home Page";
     Layout = "_Layout";
 }
@@ -30,51 +32,22 @@
     <div class="container">
         <!-- First 3 cards -->
         <div class="row ">
+            @foreach (var item in Model.PostViewModel)
+            {
             <div class="col-lg-4 col-md-6 d-flex justify-content-center">
                 <div class="card " style="width: 18rem;">
                     <img class="card-img-top"
-                         src="https://media.istockphoto.com/photos/offering-patientcentred-care-that-proves-effective-and-efficient-picture-id1301555107?k=20&m=1301555107&s=612x612&w=0&h=Cnj-PabtvN4J6xBVonpez02ub100LmbKDlNPLjy_w9Y="
-                         alt="Card image cap">
+                         src="@item.Img">
                     <div class="card-body">
-                        <h1 class="card-title">Post title</h1>
+                        <h1 class="card-title">@item.Title</h1>
                         <p class="card-text">
-                            Some quick example text to build on the card title and make up the bulk of the card's
-                            content.
+                            @item.Description
                         </p>
                         <a href="#">Read More</a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 d-flex justify-content-center">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top"
-                         src="https://www.eatthis.com/wp-content/uploads/sites/4/2021/09/doctors-face-mask-hospital.jpg?quality=82&strip=1"
-                         alt="Card image cap">
-                    <div class="card-body">
-                        <h1 class="card-title">Title</h1>
-                        <p class="card-text">
-                            Some quick example text to build on the card title and make up the bulk of the card's
-                            content.
-                        </p>
-                        <a href="#">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 d-flex justify-content-center">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top"
-                         src="https://media.istockphoto.com/photos/doctor-holding-digital-tablet-at-meeting-room-picture-id1189304032?k=20&m=1189304032&s=612x612&w=0&h=ovTNnR0JX2cRZkzMBed9exRO_PamZLlysLDFkXesr4Q="
-                         alt="Card image cap">
-                    <div class="card-body">
-                        <h1 class="card-title">Title</h1>
-                        <p class="card-text">
-                            Some quick example text to build on the card title and make up the bulk of the card's
-                            content.
-                        </p>
-                        <a href="#">Read More</a>
-                    </div>
-                </div>
-            </div>
+            }    
         </div>
 
         <div class="row py-4 " style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
@@ -98,34 +71,28 @@
 <section id="carousel">
     <div id="campaigncarousel" class="carousel slide" data-ride="false">
         <div class="carousel-inner">
-            <div class="carousel-item active" style="background-color: #FF6262;">
-                <h2>
-                    Campaign Title
-                </h2>
-                <img src="~/assets/imageholder.png" class="img-responsive" style="width: 20rem;">
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex aut quo cum expedita magnam, optio veritatis! Maiores
-                    perferendis, aperiam vero quae nam incidunt ipsa vel ex ipsum! Impedit, non sint?
-                </p>
-            </div>
-            <div class="carousel-item">
-                <h2>
-                    Campaign Title
-                </h2>
-                <img src="imageholder.png" class="img-responsive" style="width: 20rem;">
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex aut quo cum expedita magnam, optio veritatis! Maiores
-                    perferendis, aperiam vero quae nam incidunt ipsa vel ex ipsum! Impedit, non sint?
-                </p>
-            </div>
-            <a class="carousel-control-prev" href="#campaigncarousel" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#campaigncarousel" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+            @foreach (var item in Model.CampaignViewModel)
+            {
+                <div class="carousel-item active" style="background-color: #FF6262;">
+                    <h2>
+                        @item.Name
+                    </h2>
+                    <h3>Location: @item.Province </h3>
+                    <p>
+                        Start Date: @item.StartDate.ToString("dd/MM/yyyy")<br/>
+                        End Date: @item.EndDate.ToString("dd/MM/yyyy")
+                    </p>
+                </div>
+                <a class="carousel-control-prev" href="#campaigncarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#campaigncarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            }
+            
         </div>
     </div>
 
