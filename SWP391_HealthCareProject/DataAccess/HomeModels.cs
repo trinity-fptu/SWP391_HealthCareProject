@@ -6,5 +6,6 @@ namespace SWP391_HealthCareProject.DataAccess
     {
         public List<Post> PostViewModel { get; set; }
         public List<Campaign> CampaignViewModel { get; set; }
+        public List<Volunteer> VolunteerViewModel { get; set; }
     }
 }

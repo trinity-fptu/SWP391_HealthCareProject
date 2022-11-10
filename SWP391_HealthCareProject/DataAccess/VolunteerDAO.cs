@@ -10,5 +10,12 @@ namespace SWP391_HealthCareProject.DataAccess
             var volunteer = db.Volunteers.FirstOrDefault(x => x.UserId == userId);
             return volunteer;
         }
+        public List<Volunteer> getAllVolunteer()
+        {
+            using var db = new BloodDonorContext();
+            var us = (from item in db.Volunteers
+                      select item).ToList();
+            return us;
+        }
     }
 }
