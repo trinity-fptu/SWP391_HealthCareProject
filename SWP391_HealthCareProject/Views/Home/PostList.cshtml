@@ -2,7 +2,6 @@
 @{
     ViewData["Title"] = "Post List";
     Layout = "_Layout";
-    
 }
 
 <div class="banner">   
@@ -25,19 +24,13 @@
             {
             <div class="col-lg-4 col-md-6 d-flex justify-content-center">
                 <div class="card " style="width: 18rem;">
-                    <img class="card-img-top" asp-for="PostImg"
-                         src=@ViewBag.Post.Img
+                    <img class="card-img-top"
+                         src="@item.Img"
                          alt="Card image cap">
                     <div class="card-body">
-<<<<<<< HEAD
-                        <h1 class="card-title">@ViewBag.Post.Title</h1>
-                        <p class="card-text">
-                            @ViewBag.Description
-=======
                         <h1 class="card-title">@item.Title</h1>
                         <p class="card-text">
                             @item.Description
->>>>>>> 85ad9467ed3570aa4f83d0ccbabfe657ecf6b764
                         </p>
                         <a>@Html.ActionLink("Read More","Index","Post", new {id=item.PostId})</a>
                     </div>
