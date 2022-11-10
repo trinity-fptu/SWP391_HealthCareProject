@@ -1,6 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<SWP391_HealthCareProject.Models.Campaign>
 @{
     ViewData["Title"] = "Detail";
     Layout = "_Layout";
@@ -9,20 +7,22 @@
 
 
 <div class="container top" style="text-align:center;">
+    @foreach (var item in Model)
+    {
     <h1 style="font-weight:600;font-size:3rem;">Campaign Information</h1>
     <span style="font-family:'Segoe UI light'">From hospital/red cross</span>
     <br />
     <p class="mt-5">
-        Name: Hoa la canh cay
+        Name: @item.Name
     </p>
     <p> 
-        Start Date: 22/2/2022
+        Start Date: @item.StartDate
     </p>
     <p>
-        End date: 22/4/2022
+        End date: @item.EndDate
     </p>
     <p class="">
-        Location: Binh Dinh
+        Location: @item.Province
     </p>
     <p class="mt-5">
         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -35,6 +35,6 @@
     </p>
 
     <a href="/Campaign/HealthDeclare" type="button" class="btn continue-btn my-5">Continue</a>
-
+    }
 
 </div>

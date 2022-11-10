@@ -39,7 +39,9 @@ namespace SWP391_HealthCareProject.Controllers
 
         public IActionResult CampaignList()
         {
-            return View();
+            var camDao = new CampaignDAO();
+            var cD = camDao.getAllCampaign();
+            return View(cD);
         }
 
         public IActionResult PostList()
