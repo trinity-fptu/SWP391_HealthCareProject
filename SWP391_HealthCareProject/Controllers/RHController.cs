@@ -21,7 +21,9 @@ namespace SWP391_HealthCareProject.Controllers
 
         public IActionResult ManagePost()
         {
-            return View();
+            var hrAdminInfo = HttpContext.Session.GetObjectFromJson<HospitalRedCrossAdmin>("HRAdmin");
+            List<Post> posts = PostDAO.GetPostsByRHaid(hrAdminInfo.Rhaid);
+            return View(posts);
         }
 
         public IActionResult CreatePost()
@@ -37,13 +39,22 @@ namespace SWP391_HealthCareProject.Controllers
             post.Rhaid = hrAd.Rhaid;
             // Save uploaded image.
             string path = @"wwwroot\assets\postImg";
-            int lastPostId = PostDAO.GetLastRecord().PostId;
-            string savedName = $"PostPic{lastPostId + 1}";
+            Post? lastPost = PostDAO.GetLastRecord();
+            string savedName = $"PostPic{1}";
+            if (lastPost != null)
+            {
+                savedName = $"PostPic{lastPost.PostId + 1}";
+            }         
             string uploadFilepath = postImage.SaveUploadedFile(path, savedName);
             // Set filepath for Img attribute.
             post.Img = uploadFilepath;
             // Add post.
             PostDAO.AddPost(post);
+            return RedirectToAction("ManagePost");
+        }
+        public IActionResult DeletePost(int postId)
+        {
+            PostDAO.DeletePostById(postId);
             return RedirectToAction("ManagePost");
         }
 
@@ -54,7 +65,19 @@ namespace SWP391_HealthCareProject.Controllers
 
         public IActionResult CreateCampaign()
         {
+            var rhaInfo = HttpContext.Session.GetObjectFromJson<HospitalRedCrossAdmin>("HRAdmin");
+            var plans = PlanDAO.GetPlansByRHId(rhaInfo.Rhid);
+            ViewBag.Plans = plans;
             return View();
+        }
+        public IActionResult StartCampaign(Campaign campaign, string selectedPlan)
+        {
+            campaign.NumOfVolunteer = 0;
+            string[] splittedPlan = selectedPlan.Split("_");
+            int planId = int.Parse(splittedPlan[1]);
+            campaign.PlanId = planId;
+            CampaignDAO.AddCampaign(campaign);
+            return RedirectToAction("ManageCampaign");
         }
 
         public IActionResult ManagePlan()
@@ -67,7 +90,7 @@ namespace SWP391_HealthCareProject.Controllers
             return View();
         }
 
-        public IActionResult ManageUser()
+        public IActionResult ManageVolunteer()
         {
             return View();
         }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SWP391_HealthCareProject.DataAccess;
 using SWP391_HealthCareProject.Models;
 using System.Diagnostics;
+using SWP391_HealthCareProject.DataAccess;
 
 namespace SWP391_HealthCareProject.Controllers
 {
@@ -21,6 +23,15 @@ namespace SWP391_HealthCareProject.Controllers
                 string userName = userInfo.UserName;
                 ViewBag.UserName = userName;
             }
+            HomeDAO dao = new HomeDAO();
+            List<Post> listPost = dao.getPostDetail();
+            ViewBag.Post = new Post();
+            foreach (var item in listPost)
+            {
+                ViewBag.Post.Img = item.Img;
+                ViewBag.Post.Title = item.Title;
+                ViewBag.Post.Description = item.Description;
+            }
             return View();
         }
 
@@ -36,7 +47,9 @@ namespace SWP391_HealthCareProject.Controllers
 
         public IActionResult PostList()
         {
-            return View();
+            var postDao = new PostDAO();
+            var pD = postDao.getAllPost();
+            return View(pD);
         }
 
         public IActionResult SearchCampaign()
@@ -49,5 +62,7 @@ namespace SWP391_HealthCareProject.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        
     }
 }

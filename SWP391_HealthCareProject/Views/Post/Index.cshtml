@@ -1,35 +1,26 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<SWP391_HealthCareProject.Models.Post>
 @{
     ViewData["Title"] = "Post";
     Layout = "_Layout";
 }
 
 <div class="container mt-5" style="text-align:center">
-    <h1 style="font-weight:600;font-size:3rem;">Post Title</h1>
-    <span style="font-family:'Segoe UI light'">From hospital/red cross</span>
-    <p class="mt-5">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-        It has survived not only five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-        sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
-        Aldus PageMaker including versions of Lorem Ipsum.
-    </p>
-    <img src="~/assets/imageholder.png" style="width: 400px;object-fit: contain;" />
-    <p class="mt-5">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-        It has survived not only five centuries, but also the leap into electronic typesetting,
-        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-        sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
-        Aldus PageMaker including versions of Lorem Ipsum.
-    </p>
+    @foreach (var item in Model)
+    {
+       
+            <h1 style="font-weight:600;font-size:3rem;">@item.Title</h1>
+            <span style="font-family:'Segoe UI light'">From hospital/red cross</span>
+            <br />
+            <img src="@item.Img" style="width: 400px;object-fit: contain;" />
+            
+            <p class="mt-5">
+                @item.Description
+            </p>
+            <a href="#" type="button" class="btn btn-join my-3">Register Campaign</a>
 
-    <a href="#" type="button" class="btn btn-join my-3">Register Campaign</a>
+        
+
+    }
 
 
 </div>
