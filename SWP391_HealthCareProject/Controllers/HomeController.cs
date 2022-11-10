@@ -25,16 +25,22 @@ namespace SWP391_HealthCareProject.Controllers
             }
             PostDAO postDAO = new PostDAO();
             CampaignDAO campaignDAO = new CampaignDAO();    
+            VolunteerDAO volunteerDAO = new VolunteerDAO();
+
             List<Post> postList = new List<Post>();
             postList = postDAO.getAllPost();
             List<Campaign> campaignList = new List<Campaign>();
             campaignList = campaignDAO.getAllCampaign();
+            List<Volunteer> volunteerList = new List<Volunteer>();
+            volunteerList = volunteerDAO.getAllVolunteer();
+
             HomeModels homeModels = new HomeModels();
             homeModels.PostViewModel = postList;
             homeModels.CampaignViewModel = campaignList; 
+            homeModels.VolunteerViewModel = volunteerList;
             return View(homeModels);
         }
-
+ 
         public IActionResult Privacy()
         {
             return View();
