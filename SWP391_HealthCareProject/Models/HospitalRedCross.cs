@@ -14,7 +14,7 @@ namespace SWP391_HealthCareProject.Models
         public int Rhid { get; set; }
         public string Name { get; set; } = null!;
         public string Address { get; set; } = null!;
-        public int Phone { get; set; }
+        public string Phone { get; set; }
         public string Email { get; set; } = null!;
 
         public virtual ICollection<HospitalRedCrossAdmin> HospitalRedCrossAdmins { get; set; }
