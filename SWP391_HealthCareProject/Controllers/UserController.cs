@@ -18,12 +18,6 @@ namespace SWP391_HealthCareProject.Controllers
                     string fullName = volunteerInfo.LastName + " " + volunteerInfo.FirstName;
                     ViewBag.FullName = fullName;
                 }
-                else if (HttpContext.Session.GetObjectFromJson<HospitalRedCrossAdmin>("HRAdmin") != null)
-                {
-                    var hrAdminInfo = HttpContext.Session.GetObjectFromJson<HospitalRedCrossAdmin>("HRAdmin");
-                    string fullName = hrAdminInfo.LastName + " " + hrAdminInfo.FirstName;
-                    ViewBag.FullName = fullName;
-                }
                 ViewBag.UserName = userInfo.UserName;
                 ViewBag.Email = userInfo.Email;
             }
