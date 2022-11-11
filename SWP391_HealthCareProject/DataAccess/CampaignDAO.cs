@@ -32,8 +32,7 @@ namespace SWP391_HealthCareProject.DataAccess
         public List<Campaign> getAllCampaign()
         {
             using var db = new BloodDonorContext();
-            var us = (from item in db.Campaigns
-                      select item).ToList();
+            var us = db.Campaigns.ToList();
             return us;
         }
         public List<Campaign> getCampaignById(int camId)
