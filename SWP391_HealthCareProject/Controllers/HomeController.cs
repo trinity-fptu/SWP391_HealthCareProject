@@ -2,11 +2,7 @@
 using SWP391_HealthCareProject.DataAccess;
 using SWP391_HealthCareProject.Models;
 using System.Diagnostics;
-<<<<<<< HEAD
 using SWP391_HealthCareProject.DataAccess;
-=======
-using static SWP391_HealthCareProject.DataAccess.HomeDAO;
->>>>>>> 7dc9ea51fa681eac170f16dee2c82fb346e8d73a
 
 namespace SWP391_HealthCareProject.Controllers
 {
@@ -19,7 +15,7 @@ namespace SWP391_HealthCareProject.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public void LoadSession()
         {
             if (HttpContext.Session.GetObjectFromJson<User>("User") != null)
             {
@@ -27,18 +23,11 @@ namespace SWP391_HealthCareProject.Controllers
                 string userName = userInfo.UserName;
                 ViewBag.UserName = userName;
             }
-<<<<<<< HEAD
-            HomeDAO dao = new HomeDAO();
-            List<Post> listPost = dao.getPostDetail();
-            ViewBag.Post = new Post();
-            foreach (var item in listPost)
-            {
-                ViewBag.Post.Img = item.Img;
-                ViewBag.Post.Title = item.Title;
-                ViewBag.Post.Description = item.Description;
-            }
-            return View();
-=======
+        }
+
+        public IActionResult Index()
+        {
+            LoadSession();
             PostDAO postDAO = new PostDAO();
             CampaignDAO campaignDAO = new CampaignDAO();    
             VolunteerDAO volunteerDAO = new VolunteerDAO();
@@ -55,7 +44,6 @@ namespace SWP391_HealthCareProject.Controllers
             homeModels.CampaignViewModel = campaignList; 
             homeModels.VolunteerViewModel = volunteerList;
             return View(homeModels);
->>>>>>> 7dc9ea51fa681eac170f16dee2c82fb346e8d73a
         }
  
         public IActionResult Privacy()
@@ -65,6 +53,7 @@ namespace SWP391_HealthCareProject.Controllers
 
         public IActionResult CampaignList()
         {
+            LoadSession();
             var camDao = new CampaignDAO();
             var cD = camDao.getAllCampaign();
             return View(cD);
