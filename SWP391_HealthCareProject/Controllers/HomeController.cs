@@ -15,7 +15,7 @@ namespace SWP391_HealthCareProject.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public void LoadSession()
         {
             if (HttpContext.Session.GetObjectFromJson<User>("User") != null)
             {
@@ -23,6 +23,11 @@ namespace SWP391_HealthCareProject.Controllers
                 string userName = userInfo.UserName;
                 ViewBag.UserName = userName;
             }
+        }
+
+        public IActionResult Index()
+        {
+            LoadSession();
             PostDAO postDAO = new PostDAO();
             CampaignDAO campaignDAO = new CampaignDAO();    
             VolunteerDAO volunteerDAO = new VolunteerDAO();
@@ -48,6 +53,7 @@ namespace SWP391_HealthCareProject.Controllers
 
         public IActionResult CampaignList()
         {
+            LoadSession();
             var camDao = new CampaignDAO();
             var cD = camDao.getAllCampaign();
             return View(cD);
