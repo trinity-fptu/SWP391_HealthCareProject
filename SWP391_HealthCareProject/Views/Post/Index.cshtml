@@ -7,18 +7,32 @@
 <div class="container mt-5" style="text-align:center">
     @foreach (var item in Model)
     {
-       
-            <h1 style="font-weight:600;font-size:3rem;">@item.Title</h1>
-            <span style="font-family:'Segoe UI light'">From hospital/red cross</span>
-            <br />
-            <img src="@item.Img" style="width: 400px;object-fit: contain;" />
-            
-            <p class="mt-5">
-                &emsp;@item.Description
-            </p>
-            <a href="#" type="button" class="btn btn-join my-3">Register Campaign</a>
 
-        
+
+        <h1 style="font-weight:600;font-size:3rem;">@item.Title</h1>
+        <span style="font-family:'Segoe UI light'">From hospital/red cross</span>
+        <br />
+        <img src="@item.Img" class="img-responsive mt-4"  style="width: 100%;object-fit: contain;" />
+
+        <p class="mt-5">
+            @{
+                var paragraphMarker = Environment.NewLine + Environment.NewLine;
+                var paragraphs = @item.Description.Split(new[] { paragraphMarker },
+                StringSplitOptions.RemoveEmptyEntries);
+                foreach (var paragraph in paragraphs)
+                {
+                    var words = paragraph.Split(new[] { ' ' },
+                    StringSplitOptions.RemoveEmptyEntries)
+                    .Select(w => w.Trim());
+                    <p>
+                        @paragraph
+                    </p>
+                }
+            }
+        </p>
+        <a href="javascript:history.back()" type="button" class="btn btn-join my-3">Back</a>
+
+
 
     }
 
