@@ -32,53 +32,59 @@
         <div class="row ">
             <div class="col-lg-4 col-md-6 d-flex justify-content-center">
                 @{
-                    Post post1 = Model.GetPostById(3);
+                    Post post1 = Model.GetPostById(1);
 
-                        <div class="card " style="width: 18rem;">
-                            <img class="card-img-top"
-                                 src="@post1.Img">
-                            <div class="card-body">
-                                <h1 class="card-title">@post1.Title</h1>
-                                <p class="card-text">
-                                    @post1.Description
-                                </p>
-                                <a>@Html.ActionLink("Read More","Index","Post", new {id=post1.PostId})</a>
-                            </div>
+                    <div class="card " style="width: 18rem;">
+                        <img class="card-img-top"
+                             src="@post1.Img">
+                        <div class="card-body">
+                            <h1 class="card-title">@post1.Title</h1>
+                            <p class="card-text">
+                                @post1.Description
+                            </p>
                         </div>
+                        <div class="container mb-4">
+                            <a>@Html.ActionLink("Read More","Index","Post", new {id=post1.PostId})</a>
+                        </div>
+                    </div>
                 }
             </div>
             <div class="col-lg-4 col-md-6 d-flex justify-content-center">
                 @{
-                    Post post2 = Model.GetPostById(4);
+                    Post post2 = Model.GetPostById(2);
 
-                        <div class="card " style="width: 18rem;">
-                            <img class="card-img-top"
-                                 src="@post2.Img">
-                            <div class="card-body">
-                                <h1 class="card-title">@post2.Title</h1>
-                                <p class="card-text">
-                                    @post2.Description
-                                </p>
-                                <a>@Html.ActionLink("Read More","Index","Post", new {id=post2.PostId})</a>
-                            </div>
+                    <div class="card " style="width: 18rem;">
+                        <img class="card-img-top"
+                             src="@post2.Img">
+                        <div class="card-body">
+                            <h1 class="card-title">@post2.Title</h1>
+                            <p class="card-text">
+                                @post2.Description
+                            </p>
                         </div>
+                        <div class="container mb-4">
+                            <a>@Html.ActionLink("Read More","Index","Post", new {id=post2.PostId})</a>
+                        </div>
+                    </div>
                 }
             </div>
             <div class="col-lg-4 col-md-6 d-flex justify-content-center">
                 @{
-                    Post post3 = Model.GetPostById(5);
+                    Post post3 = Model.GetPostById(3);
 
-                        <div class="card " style="width: 18rem;">
-                            <img class="card-img-top"
-                                 src="@post3.Img">
-                            <div class="card-body">
-                                <h1 class="card-title">@post3.Title</h1>
-                                <p class="card-text">
-                                    @post3.Description
-                                </p>
-                                <a>@Html.ActionLink("Read More","Index","Post", new {id=post3.PostId})</a>
-                            </div>
+                    <div class="card " style="width: 18rem;">
+                        <img class="card-img-top"
+                             src="@post3.Img">
+                        <div class="card-body">
+                            <h1 class="card-title">@post3.Title</h1>
+                            <p class="card-text">
+                                @post3.Description
+                            </p>
                         </div>
+                        <div class="container mb-4">
+                            <a>@Html.ActionLink("Read More","Index","Post", new {id=post3.PostId})</a>
+                        </div>
+                    </div>
                 }
             </div>
         </div>
@@ -112,7 +118,7 @@
                 Campaign c1 = Model.GetCampaignById(3);
                 <div class="carousel-item active" style="background-color: #FF6262;">
                     <h2>
-                        @c.Name.ToUpper();
+                        @c.Name.ToUpper()
                     </h2>
                     <img src="@post1.Img" class="img-responsive img-thumbnail">
                     <p>
@@ -121,7 +127,7 @@
                 </div>
                 <div class="carousel-item">
                     <h2>
-                        @c1.Name.ToUpper();
+                        @c1.Name.ToUpper()
                     </h2>
                     <img src="@post2.Img" class="img-responsive img-thumbnail">
                     <p>
@@ -149,18 +155,15 @@
     <h1>Top Volunteers</h1>
     <hr width="150px" />
     <div class="row">
-        @foreach (var item in Model.VolunteerViewModel)
-        {
-            <div class="col-md-4 volunteer d-flex justify-content-center">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="~/assets/imageholder.png" alt="Card image cap">
-                    <div class="card-body">
-                        <p>Name: @item.FirstName @item.LastName </p>
-                        <p>City: @item.City</p>
-                    </div>
+        <div class="col-md-4 volunteer d-flex justify-content-center">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="~/assets/imageholder.png" alt="Card image cap">
+                <div class="card-body">
+                    <p>Name: </p>
+                    <p>City:</p>
                 </div>
             </div>
-        }
+        </div>
 
     </div>
 </section>
