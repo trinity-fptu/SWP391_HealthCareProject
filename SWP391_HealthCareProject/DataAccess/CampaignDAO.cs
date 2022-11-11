@@ -18,6 +18,17 @@ namespace SWP391_HealthCareProject.DataAccess
                 Console.WriteLine(ex.Message);
             }
         }
+        public static void UpdateCampaign(Campaign campaign)
+        {
+            using var db = new BloodDonorContext();
+            int currentNumb = (from c in db.Campaigns
+             where c.CampaignId == campaign.CampaignId
+             select c).SingleOrDefault().NumOfVolunteer;
+            (from c in db.Campaigns
+             where c.CampaignId == campaign.CampaignId
+             select c).SingleOrDefault().NumOfVolunteer = currentNumb + 1;
+            db.SaveChanges();
+        }
         public List<Campaign> getAllCampaign()
         {
             using var db = new BloodDonorContext();
