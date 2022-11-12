@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SWP391_HealthCareProject.Models;
 
@@ -11,9 +12,10 @@ using SWP391_HealthCareProject.Models;
 namespace SWP391_HealthCareProject.Migrations
 {
     [DbContext(typeof(BloodDonorContext))]
-    partial class BloodDonorContextModelSnapshot : ModelSnapshot
+    [Migration("20221112154046_AddPK")]
+    partial class AddPK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
