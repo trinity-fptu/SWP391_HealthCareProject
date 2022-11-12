@@ -270,6 +270,23 @@ a.btn-readmore {
     margin:1rem;
 }
 
+.continue-btn {
+    border-radius: 8px;
+    background-color: #628EFF;
+    border: none;
+    color: white;
+    width: 8rem;
+    height: 2.5rem;
+    transition: 0.5s;
+    text-decoration: none;
+}
+
+.continue-btn:hover {
+    color: white;
+    background-color: #3769e8;
+    transform: scale(1.1);
+}
+
 
 a.continue-btn {
     border-radius: 8px;
@@ -388,7 +405,10 @@ a.continue-btn:hover{
     background-color: rgb(244, 244, 244);
 }
 
-
+.error {
+    height: 30rem;
+    text-align:center;
+}
 
 /*
     animation part

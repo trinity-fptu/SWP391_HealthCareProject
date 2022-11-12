@@ -160,9 +160,10 @@
     <div class="row">
         @{
             Volunteer v1 = Model.GetVolunteerById(1);
+            User u1 = Model.GetUserById(v1.UserId);
             <div class="col-md-4 volunteer d-flex justify-content-center">
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="~/assets/imageholder.png" alt="Card image cap">
+                    <img class="card-img-top" src="@u1.Avatar" alt="Card image cap">
                     <div class="card-body">
                         <p>Name: @v1.FirstName.ToUpper() @v1.LastName.ToUpper() </p>
                         <p>City: @v1.City</p>
@@ -174,9 +175,10 @@
         }
         @{
             Volunteer v2 = Model.GetVolunteerById(2);
+            User u2 = Model.GetUserById(v2.UserId);
             <div class="col-md-4 volunteer d-flex justify-content-center">
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="~/assets/imageholder.png" alt="Card image cap">
+                    <img class="card-img-top" src="@u2.Avatar" alt="Card image cap">
                     <div class="card-body">
                         <p>Name: @v2.FirstName.ToUpper() @v2.LastName.ToUpper() </p>
                         <p>City: @v2.City</p>
@@ -188,9 +190,10 @@
         }
         @{
             Volunteer v3 = Model.GetVolunteerById(3);
+            User u3 = Model.GetUserById(v3.UserId);
             <div class="col-md-4 volunteer d-flex justify-content-center">
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="~/assets/imageholder.png" alt="Card image cap">
+                    <img class="card-img-top" src="@u3.Avatar" alt="Card image cap">
                     <div class="card-body">
                         <p>Name: @v3.FirstName.ToUpper() @v3.LastName.ToUpper() </p>
                         <p>City: @v3.City</p>
