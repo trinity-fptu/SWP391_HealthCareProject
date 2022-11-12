@@ -96,17 +96,17 @@
         <div class="row py-4 " style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
             @{
                 Post post4 = Model.GetPostById(3);
-                        <div class="col-lg-7 d-flex justify-content-center">
-                            <img src="@post4.Img"
-                                 class="img-responsive " style="width: 40rem;height: 20rem;object-fit: cover;">
-                        </div>
-                        <div class="col-lg-5 big-card ">
-                            <h1 class="py-4">@post4.Title</h1>
-                            <p>
-                                @post4.Description
-                            </p>
-                            @Html.ActionLink("Read More","Index","Post", new {id=post4.PostId}, new { @class = "btn btn-lg btn-join mt-4" })
-                        </div>
+                    <div class="col-lg-7 d-flex justify-content-center">
+                        <img src="@post4.Img"
+                             class="img-responsive " style="width: 40rem;height: 20rem;object-fit: cover;">
+                    </div>
+                    <div class="col-lg-5 big-card ">
+                        <h1 class="py-4">@post4.Title</h1>
+                        <p class="card-text">
+                            @post4.Description
+                        </p>
+                        @Html.ActionLink("Read More","Index","Post", new {id=post4.PostId}, new { @class = "btn btn-lg btn-join mt-4" })
+                    </div>
             }
         </div>
 

@@ -19,5 +19,7 @@ namespace SWP391_HealthCareProject.Models
         public int UserId { get; set; }
 
         public virtual User User { get; set; } = null!;
+
+        public override string? ToString() => $"{VolunteerId} {LastName} {FirstName} {Address} {City} {Phone} {Dob} {Gender} {BloodType} {Attended} {IdCardNumber} {UserId}";
     }
 }
