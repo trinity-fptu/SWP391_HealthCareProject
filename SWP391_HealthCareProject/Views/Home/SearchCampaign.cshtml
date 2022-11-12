@@ -10,14 +10,17 @@
 <div class="container top">
     <h1 style="font-weight:600;font-size:3rem;">Time & Location</h1>
     <span style="font-family:'Segoe UI light'">Find campaigns!</span>
-    <form class="mt-5">
+    @using(Html.BeginForm("ShowSearch","Campaign",FormMethod.Post))
+    {
         <label for="">Date</label>
-        <input type="date" class="form-control" name="date" />
+        <input type="date" class="form-control" name="date" required/>
         <label for="">Location</label>
-        <input type="text" class="form-control" name="location" />
-    </form>
+        <input type="text" class="form-control" name="location" required/>
+        <br/>
+        <button type="submit" class="btn continue-btn my-5">Search</button>
+    }
 
-    <a href="/Campaign/HealthDeclare" type="button" class="btn continue-btn my-5">Continue</a>
+    
 
 
 </div>

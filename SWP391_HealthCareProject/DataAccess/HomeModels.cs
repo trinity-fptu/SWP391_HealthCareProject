@@ -18,7 +18,11 @@ namespace SWP391_HealthCareProject.DataAccess
             Campaign c = bloodDonorContext.Campaigns.Where(x => x.CampaignId == id).FirstOrDefault();
             return c;
         }
-
+        public Volunteer GetVolunteerById(int id)
+        {
+            Volunteer c = bloodDonorContext.Volunteers.Where(x => x.VolunteerId == id).FirstOrDefault();
+            return c;
+        }
         public List<Campaign> CampaignViewModel { get; set; }
         public List<Volunteer> VolunteerViewModel { get; set; }
 
