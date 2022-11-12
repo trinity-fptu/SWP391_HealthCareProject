@@ -4,7 +4,7 @@
     Layout = "_Layout";
 }
 }
-<form asp-action="JoinCampaign">
+<form asp-action="Appointment">
     <input asp-for="Participate.CampaignId" type="hidden" value="@Model.Campaign.CampaignId" />
     <input asp-for= "Participate.Date" asp-format="{0:yyyy-MM-dd}" type="date" />
     <select asp-for="Participate.Location" class="custom-input">

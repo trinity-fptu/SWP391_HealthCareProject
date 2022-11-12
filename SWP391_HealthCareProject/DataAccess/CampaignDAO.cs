@@ -26,6 +26,12 @@ namespace SWP391_HealthCareProject.DataAccess
             updatedRecord.NumOfVolunteer += 1;
             db.SaveChanges();
         }
+        public static void UpdateStatus()
+        {
+            using var db = new BloodDonorContext();
+            db.Campaigns.Where(c => DateTime.Compare(DateTime.Now, c.EndDate) > 0).ToList().ForEach(c => c.Status = false);
+            db.SaveChanges();
+        }
         public List<Campaign> getAllCampaign()
         {
             using var db = new BloodDonorContext();

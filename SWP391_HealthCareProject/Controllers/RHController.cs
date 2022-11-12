@@ -72,12 +72,25 @@ namespace SWP391_HealthCareProject.Controllers
         }
         public IActionResult StartCampaign(Campaign campaign, string selectedPlan)
         {
-            campaign.NumOfVolunteer = 0;
-            string[] splittedPlan = selectedPlan.Split("_");
-            int planId = int.Parse(splittedPlan[1]);
-            campaign.PlanId = planId;
-            CampaignDAO.AddCampaign(campaign);
-            return RedirectToAction("ManageCampaign");
+            TimeSpan duration = new TimeSpan(30, 0, 0, 0);
+            if(DateTime.Compare(campaign.StartDate.Add(duration),campaign.EndDate) > 0)
+            {
+                ModelState.AddModelError("Date error", "End date must be at least 30 days after start date!");
+                var rhaInfo = HttpContext.Session.GetObjectFromJson<HospitalRedCrossAdmin>("HRAdmin");
+                var plans = PlanDAO.GetPlansByRHId(rhaInfo.Rhid);
+                ViewBag.Plans = plans;
+                return View("CreateCampaign", campaign);
+            }
+            else
+            {
+                campaign.NumOfVolunteer = 0;
+                string[] splittedPlan = selectedPlan.Split("_");
+                int planId = int.Parse(splittedPlan[1]);
+                campaign.PlanId = planId;
+                CampaignDAO.AddCampaign(campaign);
+                return RedirectToAction("ManageCampaign");
+            }
+            
         }
 
         public IActionResult ManagePlan()

@@ -36,8 +36,17 @@
             sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
             Aldus PageMaker including versions of Lorem Ipsum.
         </p>
-
-        <input type="submit" class="btn continue-btn my-5" value="Register"  />
+        @{
+            if (DateTime.Compare(DateTime.Now, Model.Campaign.EndDate)>0)
+            {
+                <button>Campaign End</button>
+            }
+            else
+            {
+                <input type="submit" class="btn continue-btn my-5" value="Register" />
+            }
+        }
+        
     </form>
        
     

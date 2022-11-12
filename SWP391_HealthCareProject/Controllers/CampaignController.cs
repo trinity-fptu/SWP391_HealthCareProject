@@ -26,8 +26,13 @@ namespace SWP391_HealthCareProject.Controllers
         }
 
         [RequestAuthentication]
-        public IActionResult Appointment()
+        public IActionResult Appointment(CampaignParticipationViewModel participateDetails)
         {
+            var volunteer = HttpContext.Session.GetObjectFromJson<Volunteer>("Volunteer");
+            participateDetails.Participate.VolunteerId = volunteer.VolunteerId;
+            participateDetails.Participate.RegisteredDate = DateTime.Now;
+            ParticipateDAO.AddParticipate(participateDetails.Participate);
+            CampaignDAO.UpdateCampaign(participateDetails.Participate.CampaignId);
             return View();
         }
         public IActionResult JoinCampaign(CampaignParticipationViewModel participateDetails)
