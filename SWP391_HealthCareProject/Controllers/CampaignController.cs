@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using SWP391_HealthCareProject.DataAccess;
 using SWP391_HealthCareProject.Filters;
 using SWP391_HealthCareProject.Models;
@@ -11,8 +10,7 @@ namespace SWP391_HealthCareProject.Controllers
     {
         public IActionResult Detail(int id)
         {
-            var campaignDao = new CampaignDAO();
-            var cD = campaignDao.getCampaignById(id);
+            var cD = CampaignDAO.getCampaignById(id);
             CampaignParticipationViewModel participateDetails = new CampaignParticipationViewModel()
             {
                 Campaign = cD
@@ -20,7 +18,12 @@ namespace SWP391_HealthCareProject.Controllers
             return View(participateDetails);
         }
 
-        
+        public IActionResult Register(CampaignParticipationViewModel participateDetails)
+        {
+            var locations = CampaignLocationDAO.GetLocationsByCampaignId(participateDetails.Campaign.CampaignId);
+            participateDetails.CampaignLocations= locations;
+            return View(participateDetails);
+        }
 
         [RequestAuthentication]
         public IActionResult Appointment()
@@ -32,19 +35,9 @@ namespace SWP391_HealthCareProject.Controllers
             var volunteer = HttpContext.Session.GetObjectFromJson<Volunteer>("Volunteer");
             participateDetails.Participate.VolunteerId = volunteer.VolunteerId;
             participateDetails.Participate.RegisteredDate = DateTime.Now;
-            return View();
-        }
-        public IActionResult ErrorCampaign()
-        {
-            return View();
-        }
-        public ActionResult ShowSearch(DateTime date, string location)
-        {
-            var cD = new CampaignDAO();
-            var model = cD.searchCampaign(date, location);
-            if(model.Count==0) { return RedirectToAction("ErrorCampaign"); }
-            else
-            return View(model);
+            ParticipateDAO.AddParticipate(participateDetails.Participate);
+            CampaignDAO.UpdateCampaign(participateDetails.Participate.CampaignId);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -1,0 +1,20 @@
+﻿@model SWP391_HealthCareProject.ViewModels.CampaignParticipationViewModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "_Layout";
+}
+}
+<form asp-action="JoinCampaign">
+    <input asp-for="Participate.CampaignId" type="hidden" value="@Model.Campaign.CampaignId" />
+    <input asp-for= "Participate.Date" asp-format="{0:yyyy-MM-dd}" type="date" />
+    <select asp-for="Participate.Location" class="custom-input">
+        @foreach (var item in Model.CampaignLocations)
+        {
+            <option>
+                @item.Location
+            </option>
+        }
+
+    </select>
+    <input type="submit" />
+</form>

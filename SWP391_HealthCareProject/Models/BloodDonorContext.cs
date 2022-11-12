@@ -137,7 +137,8 @@ namespace SWP391_HealthCareProject.Models
 
             modelBuilder.Entity<Participate>(entity =>
             {
-                entity.HasNoKey();
+                //entity.HasNoKey();
+                entity.HasKey(nameof(Participate.VolunteerId),nameof(Participate.CampaignId));
 
                 entity.Property(e => e.CampaignId).HasColumnName("CampaignID");
 
