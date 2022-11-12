@@ -1,4 +1,5 @@
-﻿using SWP391_HealthCareProject.Models;
+﻿using Microsoft.SqlServer.Management.Smo;
+using SWP391_HealthCareProject.Models;
 
 namespace SWP391_HealthCareProject.DataAccess
 {
@@ -42,6 +43,16 @@ namespace SWP391_HealthCareProject.DataAccess
                       where item.CampaignId == camId
                       select item).ToList();
             return us;
+        }
+        public List<Campaign> searchCampaign(DateTime date, string location)
+        {
+            using var db = new BloodDonorContext();
+            
+                var model = (from item in db.Campaigns
+                             where item.StartDate >= date && item.Province.Contains(location)
+                             select item).ToList();
+                return model.ToList();
+            
         }
     }
 }
