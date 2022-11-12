@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SWP391_HealthCareProject;
 using SWP391_HealthCareProject.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +21,7 @@ builder.Services.AddSession(options =>
 
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddHostedService<MyInitializer>();
 
 var app = builder.Build();
 
