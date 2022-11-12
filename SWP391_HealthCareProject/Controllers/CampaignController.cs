@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using SWP391_HealthCareProject.DataAccess;
 using SWP391_HealthCareProject.Filters;
 using SWP391_HealthCareProject.Models;
@@ -32,6 +33,18 @@ namespace SWP391_HealthCareProject.Controllers
             participateDetails.Participate.VolunteerId = volunteer.VolunteerId;
             participateDetails.Participate.RegisteredDate = DateTime.Now;
             return View();
+        }
+        public IActionResult ErrorCampaign()
+        {
+            return View();
+        }
+        public ActionResult ShowSearch(DateTime date, string location)
+        {
+            var cD = new CampaignDAO();
+            var model = cD.searchCampaign(date, location);
+            if(model.Count==0) { return RedirectToAction("ErrorCampaign"); }
+            else
+            return View(model);
         }
     }
 }
