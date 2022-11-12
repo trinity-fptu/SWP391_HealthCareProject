@@ -36,20 +36,6 @@ namespace SWP391_HealthCareProject.Controllers
                 var volunteer = VolunteerDAO.GetVolunteerByUserId(userInfo.UserId);
                 string fullName = volunteer.LastName + " " + volunteer.FirstName;
                 ViewBag.FullName = fullName;
-                //ViewBag.UserName = userInfo.UserName;
-                //ViewBag.Email = userInfo.Email;
-                //ViewBag.FirstName = volunteer.FirstName;
-                //ViewBag.LastName = volunteer.LastName;
-                //ViewBag.DOB = volunteer.Dob.ToString("yyyy-MM-dd");
-                //ViewBag.Gender = volunteer.Gender;
-                //ViewBag.BloodGroup = volunteer.BloodType;
-                //ViewBag.Attend = volunteer.Attended;
-                //ViewBag.IdCardNumber = volunteer.IdCardNumber;
-                //ViewBag.Phone = volunteer.Phone;
-                //ViewBag.Email = userInfo.Email;
-                //ViewBag.Address = volunteer.Address;
-                //ViewBag.City = volunteer.City;
-                //ViewBag.Avatar = userInfo.Avatar;
                 ViewBag.UserId = userInfo.UserId;
                 ViewBag.VolunteerId = volunteer.VolunteerId;
             }
@@ -57,10 +43,16 @@ namespace SWP391_HealthCareProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Volunteer volunteer)
+        public IActionResult Edit(Volunteer volunteer, int attended)
         {
+            Volunteer v = VolunteerDAO.GetVolunteerByUserId(GetUserSession().UserId);
             volunteer.VolunteerId = VolunteerDAO.GetVolunteerByUserId(GetUserSession().UserId).VolunteerId;
             volunteer.UserId = GetUserSession().UserId;
+            if (attended == 0)
+            {
+                volunteer.Attended = v.Attended;
+
+            }
             if (volunteer == null)
             {
                 return NotFound();

@@ -126,6 +126,11 @@ body {
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
+.navbar-light {
+    background-color: white;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+}
+
 .nav-link {
     padding: .25rem 0;
     font-weight: 500;

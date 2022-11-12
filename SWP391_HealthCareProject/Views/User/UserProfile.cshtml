@@ -17,21 +17,22 @@
 
 
 <div class="container mt-5 tabcontent" id="General">
-    <div class="form-general">
-        <div class="row">
-            <div class="col-md-3 avatar-container-general vertical-align-custom d-flex flex-row">
-                <div id="userAvatar" class="user-avatar-shadow" style="background-image: url('../assets/avatardemo.jpg');">
-                    <label for="inputTag" style="cursor: pointer;width:131px;height:103px;opacity:0; ">
-                        Select File
-                        <input id="inputTag" type="file" style="display:none;" />
-                    </label>
+    @{
+        User user = Model.GetUserById(ViewBag.UserId);
+        <div class="form-general">
+            <div class="row">
+                <div class="col-md-3 avatar-container-general vertical-align-custom d-flex flex-row">
+                    <div id="userAvatar" class="user-avatar-shadow" style="background-image: url('@user.Avatar');">
+                        <label for="inputTag" style="cursor: pointer;width:131px;height:103px;opacity:0; ">
+                            Select File
+                            <input id="inputTag" type="file" style="display:none;" />
+                        </label>
+                    </div>
+
+
                 </div>
+                <div class="col-md-8 info-container-general">
 
-
-            </div>
-            <div class="col-md-8 info-container-general">
-                @{
-                    User user = Model.GetUserById(ViewBag.UserId);
                     <form>
                         <div class="mb-3">
                             <label for="exampleInputName">Full Name</label>
@@ -75,29 +76,30 @@
                         </div>
                         <button type="submit" class="save mt-3">Save Changes</button>
                     </form>
-                }
+                </div>
             </div>
         </div>
-    </div>
-    <div class="form-general mt-5 mb-5">
-        <div class="password-container-general">
-            <div class="form-label">
-                <h3>Change your password</h3>
-                <p>Make your password strong</p>
+        <div class="form-general mt-5 mb-5">
+            <div class="password-container-general">
+                <div class="form-label">
+                    <h3>Change your password</h3>
+                    <p>Make your password strong</p>
+                </div>
+                <form>
+                    <div class="mb-3">
+                        <label for="exampleInputOldPwd">Old Password</label>
+                        <input type="password" class="form-control" name="oldPwd" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputNewPwd">New Password</label>
+                        <input type="password" class="form-control" name="newPwd" />
+                    </div>
+                    <button type="submit" class="save mt-3">Save Password</button>
+                </form>
             </div>
-            <form>
-                <div class="mb-3">
-                    <label for="exampleInputOldPwd">Old Password</label>
-                    <input type="password" class="form-control" name="oldPwd" />
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputNewPwd">New Password</label>
-                    <input type="password" class="form-control" name="newPwd" />
-                </div>
-                <button type="submit" class="save mt-3">Save Password</button>
-            </form>
         </div>
-    </div>
+    }
+
 </div>
 
 
@@ -167,7 +169,7 @@
                     <label for="inputAttend">Attended</label>
                 </div>
                 <div class="form-item-field-detail">
-                    <input asp-for="@volunteer.Attended" type="number" class="form-control" value="@volunteer.Attended" disabled />
+                    <input name="attended" type="number" class="form-control" value="@volunteer.Attended" disabled />
                 </div>
             </div>
             <div class="form-item-detail">
@@ -204,7 +206,7 @@
             </div>
             <div class="form-item-detail">
                 <div class="save mt-3">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="save">
                         Save Changes
                     </button>
                 </div>
