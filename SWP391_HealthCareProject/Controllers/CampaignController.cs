@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SWP391_HealthCareProject.DataAccess;
 using SWP391_HealthCareProject.Filters;
+using SWP391_HealthCareProject.Models;
+using SWP391_HealthCareProject.ViewModels;
 
 namespace SWP391_HealthCareProject.Controllers
 {
@@ -10,18 +12,25 @@ namespace SWP391_HealthCareProject.Controllers
         {
             var campaignDao = new CampaignDAO();
             var cD = campaignDao.getCampaignById(id);
-            return View(cD);
+            CampaignParticipationViewModel participateDetails = new CampaignParticipationViewModel()
+            {
+                Campaign = cD
+            };
+            return View(participateDetails);
         }
 
-        [RequestAuthentication]
-        public IActionResult HealthDeclare()
-        {
-            return View();
-        }
+        
 
         [RequestAuthentication]
         public IActionResult Appointment()
         {
+            return View();
+        }
+        public IActionResult JoinCampaign(CampaignParticipationViewModel participateDetails)
+        {
+            var volunteer = HttpContext.Session.GetObjectFromJson<Volunteer>("Volunteer");
+            participateDetails.Participate.VolunteerId = volunteer.VolunteerId;
+            participateDetails.Participate.RegisteredDate = DateTime.Now;
             return View();
         }
     }

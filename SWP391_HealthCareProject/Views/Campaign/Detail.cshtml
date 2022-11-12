@@ -1,4 +1,4 @@
-﻿@model List<SWP391_HealthCareProject.Models.Campaign>
+﻿@model SWP391_HealthCareProject.ViewModels.CampaignParticipationViewModel
 @{
     ViewData["Title"] = "Detail";
     Layout = "_Layout";
@@ -7,22 +7,21 @@
 
 
 <div class="container top" style="text-align:center;">
-    @foreach (var item in Model)
-    {
+    
     <h1 style="font-weight:600;font-size:3rem;">Campaign Information</h1>
     <span style="font-family:'Segoe UI light'">From hospital/red cross</span>
     <br />
     <p class="mt-5">
-        Name: @item.Name
+        Name: @Model.Campaign.Name
     </p>
     <p> 
-        Start Date: @item.StartDate
+        Start Date: @Model.Campaign.StartDate
     </p>
     <p>
-        End date: @item.EndDate
+        End date: @Model.Campaign.EndDate
     </p>
     <p class="">
-        Location: @item.Province
+        Location: @Model.Campaign.Province
     </p>
     <p class="mt-5">
         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -34,7 +33,7 @@
         Aldus PageMaker including versions of Lorem Ipsum.
     </p>
 
-    <a href="/Campaign/HealthDeclare" type="button" class="btn continue-btn my-5">Continue</a>
-    }
+    <a href="/Campaign/HealthDeclare" type="button" class="btn continue-btn my-5">Register</a>
+    
 
 </div>

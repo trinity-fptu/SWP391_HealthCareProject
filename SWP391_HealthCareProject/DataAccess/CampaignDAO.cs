@@ -35,12 +35,10 @@ namespace SWP391_HealthCareProject.DataAccess
             var us = db.Campaigns.ToList();
             return us;
         }
-        public List<Campaign> getCampaignById(int camId)
+        public Campaign getCampaignById(int camId)
         {
             using var db = new BloodDonorContext();
-            var us = (from item in db.Campaigns
-                      where item.CampaignId == camId
-                      select item).ToList();
+            var us = db.Campaigns.Find(camId);
             return us;
         }
     }
