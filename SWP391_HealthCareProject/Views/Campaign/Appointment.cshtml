@@ -1,4 +1,4 @@
-﻿@page
+﻿@model SWP391_HealthCareProject.ViewModels.CampaignParticipationViewModel
 @{
     Layout = "_Layout";
 }
@@ -11,10 +11,20 @@
         <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
     </svg>
     <span>You have registed campaign</span>
-    <h2 style="color:#628EFF;">Campaign Title</h2>
-    <span>30 hoa lac</span><br />
-    <span>31/1/2022</span>
+    <h2 style="color:#628EFF;">@Model.Campaign.Name</h2>
+    <span>@Model.Participate.Location</span><br />
+    <span>@Model.Participate.Date</span>
 </div>
+@{
+    Volunteer volunteerInfo = ViewBag.Volunteer;
+    string volunteerName = $"{volunteerInfo.FirstName} {volunteerInfo.LastName}";
+    string idCardNumber = volunteerInfo.IdCardNumber;
+    string volunteerDOB = volunteerInfo.Dob.ToString();
+    string volunteerGender = (volunteerInfo.Gender) ? "Male" : "Female";
+    string volunteerBlood = volunteerInfo.BloodType;
+    string volunteerAddress = volunteerInfo.Address;
+    string volunteerPhone = volunteerInfo.Phone;
+}
 <div class="container">
     <div class="row d-flex justify-content-center ">
         <div class="col-md-6 d-flex flex-column">
@@ -22,23 +32,23 @@
                 <p style="font-weight:600;color:rgb(28, 82, 145);padding:20px 20px;margin-bottom:0;">Campaign Information</p>
                 <div class="customer-label">
                     <p>Full Name:</p>
-                    <p class="left">Hoa La Canh</p>
+                    <p class="left">@volunteerName</p>
                 </div>
                 <div class="customer-label">
                     <p>ID Card Number:</p>
-                    <p class="left">030202001234</p>
+                    <p class="left">@idCardNumber</p>
                 </div>
                 <div class="customer-label">
                     <p>Date of Birth:</p>
-                    <p class="left">2/2/2001</p>
+                    <p class="left">@volunteerDOB</p>
                 </div>
                 <div class="customer-label">
                     <p>Gender:</p>
-                    <p class="left">Male</p>
+                    <p class="left">@volunteerGender</p>
                 </div>
                 <div class="customer-label">
                     <p>Blood Group:</p>
-                    <p class="left">AB</p>
+                    <p class="left">@volunteerBlood</p>
                 </div>
                 <div class="customer-label">
                     <p>Last Donate Date:</p>
@@ -49,11 +59,11 @@
                 <p style="font-weight:600;color:rgb(28, 82, 145);padding:20px 20px;margin-bottom:0;">Contact Information</p>
                 <div class="customer-label">
                     <p>Address:</p>
-                    <p class="left">s3.01 vinhome, Phường Long Thạnh Mỹ, Quận 9, Tp Hồ Chí Minh</p>
+                    <p class="left">@volunteerAddress</p>
                 </div>
                 <div class="customer-label">
                     <p>Phone Number:</p>
-                    <p class="left">123456789</p>
+                    <p class="left">@volunteerPhone</p>
                 </div>
                 <div class="customer-label">
                     <p>Email:</p>
