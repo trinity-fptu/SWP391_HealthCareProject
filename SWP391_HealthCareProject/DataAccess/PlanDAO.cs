@@ -16,5 +16,12 @@ namespace SWP391_HealthCareProject.DataAccess
             var plan = db.Plans.Find(planId);
             return plan;
         }
+        public List<Plan> getAllPlan()
+        {
+            using var db = new BloodDonorContext();
+            var us = (from item in db.Plans
+                      select item).ToList();
+            return us;
+        }
     }
 }

@@ -16,7 +16,19 @@ namespace SWP391_HealthCareProject.Controllers
                 string userName = userInfo.UserName;
                 ViewBag.UserName = userName;
             }
-            return View();
+            
+            PostDAO postDAO = new PostDAO();
+            CampaignDAO campaignDAO = new CampaignDAO();
+
+            List<Post> postList = new List<Post>();
+            postList = postDAO.getAllPost();
+            List<Campaign> campaignList = new List<Campaign>();
+            campaignList = campaignDAO.getAllCampaign();
+
+            HomeModels homeModels = new HomeModels();
+            homeModels.PostViewModel = postList;
+            homeModels.CampaignViewModel = campaignList;
+            return View(homeModels);
         }
 
         public IActionResult ManagePost()
@@ -93,6 +105,39 @@ namespace SWP391_HealthCareProject.Controllers
         public IActionResult ManageVolunteer()
         {
             return View();
+        }
+        public ActionResult Edit(int? id)
+        {
+            if (id == null) { return NotFound(); }
+            HospitalRedCrossDAO RHDAO = new HospitalRedCrossDAO();
+            var campaigns = RHDAO.getCampaignById(id.Value);
+            if (campaigns == null)
+            {
+                return NotFound();
+            }
+            return View(campaigns);
+        }
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, Campaign campaign)
+        {
+            try
+            {
+                if (id != campaign.CampaignId)
+                {
+                    return NotFound();
+                }
+                if (ModelState.IsValid)
+                {
+                    HospitalRedCrossDAO RHDAO = new HospitalRedCrossDAO();
+                    RHDAO.updateCampaign(campaign);
+                }
+                return RedirectToAction("Index", "RH");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.message = ex.Message;
+                return View();
+            }
         }
     }
 }

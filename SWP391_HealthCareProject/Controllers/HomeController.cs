@@ -31,6 +31,7 @@ namespace SWP391_HealthCareProject.Controllers
             PostDAO postDAO = new PostDAO();
             CampaignDAO campaignDAO = new CampaignDAO();    
             VolunteerDAO volunteerDAO = new VolunteerDAO();
+            PlanDAO planDAO = new PlanDAO();
 
             List<Post> postList = new List<Post>();
             postList = postDAO.getAllPost();
@@ -38,11 +39,14 @@ namespace SWP391_HealthCareProject.Controllers
             campaignList = campaignDAO.getAllCampaign();
             List<Volunteer> volunteerList = new List<Volunteer>();
             volunteerList = volunteerDAO.getAllVolunteer();
+            List<Plan> planplist = new List<Plan>();
+            planplist = planDAO.getAllPlan();
 
             HomeModels homeModels = new HomeModels();
             homeModels.PostViewModel = postList;
             homeModels.CampaignViewModel = campaignList; 
             homeModels.VolunteerViewModel = volunteerList;
+            homeModels.PlanViewModel = planplist;
             return View(homeModels);
         }
  
