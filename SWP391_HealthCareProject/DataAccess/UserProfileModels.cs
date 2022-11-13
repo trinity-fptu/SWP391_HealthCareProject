@@ -13,6 +13,10 @@ namespace SWP391_HealthCareProject.DataAccess
 
         public List<Volunteer> VolunteerViewModel { get; set; }
 
+
+        public HospitalRedCrossAdmin GetRHAById(int id) => bloodDonorContext.HospitalRedCrossAdmins.Where(x => x.UserId == id).FirstOrDefault();
+        public HospitalRedCross GetHRById(int id) => bloodDonorContext.HospitalRedCrosses.Where(x => x.Rhid == id).FirstOrDefault();
+
         public User GetUserById(int id) => bloodDonorContext.Users.Where(x => x.UserId == id).FirstOrDefault();
 
         public Volunteer GetVolunteerById(int id)

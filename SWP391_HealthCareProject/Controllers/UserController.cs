@@ -103,6 +103,10 @@ namespace SWP391_HealthCareProject.Controllers
             VolunteerDAO volunteerDAO = new VolunteerDAO();
             string uniqueFileName = UploadedFile(user);
             user.Avatar = uniqueFileName;
+            if (user.Avatar == null)
+            {
+                user.Avatar = u.Avatar;
+            }
             volunteerDAO.updateUser(user);
             
             return RedirectToAction("UserProfile", "User");
@@ -144,9 +148,25 @@ namespace SWP391_HealthCareProject.Controllers
             VolunteerDAO volunteerDAO = new VolunteerDAO();
             string uniqueFileName = UploadedFile(user);
             user.Avatar = uniqueFileName;
+            if (user.Avatar == null)
+            {
+                user.Avatar = u.Avatar;
+            }
             volunteerDAO.updateUser(user);
 
-            return RedirectToAction("UserProfile", "User");
+            return RedirectToAction("RHProfile", "User");
+        }
+
+        [HttpPost]
+        public IActionResult EditRH(HospitalRedCross HR)
+        {
+            User u = GetUserSession();
+            HospitalRedCrossAdmin hra = HospitalRedCrossAdminDAO.GetHRAdrByUserId(u.UserId);
+            HospitalRedCross oldHR = HospitalRedCrossDAO.GetHRById(hra.Rhid);
+            HR.Rhid = oldHR.Rhid;
+            Console.WriteLine($"{HR.Rhid} {HR.Name}");
+            HospitalRedCrossDAO.UpdateHR(HR);
+            return RedirectToAction("RHProfile", "User");
         }
 
         public IActionResult RHProfile()

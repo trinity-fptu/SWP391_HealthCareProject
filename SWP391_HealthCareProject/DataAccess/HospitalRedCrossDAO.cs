@@ -1,4 +1,5 @@
-﻿using SWP391_HealthCareProject.Models;
+﻿using Microsoft.SqlServer.Management.Smo;
+using SWP391_HealthCareProject.Models;
 
 namespace SWP391_HealthCareProject.DataAccess
 {
@@ -15,6 +16,28 @@ namespace SWP391_HealthCareProject.DataAccess
             using var db = new BloodDonorContext();
             var HR = db.HospitalRedCrosses.FirstOrDefault(x => x.Rhid == rhId);
             return HR;
+        }
+
+
+        public static void UpdateHR(HospitalRedCross HR)
+        {
+            using var db = new BloodDonorContext();
+            try
+            {
+                if (HR != null)
+                {
+                    db.HospitalRedCrosses.Update(HR);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("HR does not exít");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
