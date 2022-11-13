@@ -1,9 +1,9 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using SWP391_HealthCareProject.DataAccess;
+@model HomeModels
 @{
-	ViewBag.Title = "Detail Page";
+    ViewBag.Title = "Detail Page";
     Layout = "_LayoutAdminRH";
+
 }
 <div class="container pt-3">
     <!-- Page Heading -->
@@ -29,7 +29,10 @@
                             <div class="text-xs font-weight-bold text-uppercase mb-1">
                                 Total Campaign
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">30</div>
+                            @{
+                                List<Campaign> cam1 = Model.getAllCampaign();
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">@cam1.Count()</div>
+                            }
                         </div>
                         <div class="col-auto">
                             <i class="fa fa-solid fa-megaphone"></i>
@@ -48,7 +51,10 @@
                             <div class="text-xs font-weight-bold text-uppercase mb-1">
                                 Total Post
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">20</div>
+                            @{
+                                List<Post> post1 = Model.getAllPost();
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">@post1.Count()</div>
+                            }                          
                         </div>
                         <div class="col-auto">
                             <i class="fa fa-sticky-note-o"></i>
@@ -65,21 +71,18 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-uppercase mb-1">
-                                Tasks
+                                Total Plan
                             </div>
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                </div>
-                                <div class="col">
-                                    <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar " role="progressbar"
-                                             style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                             aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
+                            @{
+                                List<Plan> plan1 = Model.getAllPlan();
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">@plan1.Count()</div>
+                            }
+
                         </div>
+                        <div class="col-auto">
+                            <i class="fa fa-sticky-note-o"></i>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -128,17 +131,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Hoa La</td>
-                                        <td>22/1/2022</td>
-                                        <td>22/3/2022</td>
-                                        <td>150</td>
-                                        <td>
-                                            <a class="add" title="Add" data-toggle="tooltip"><i class="fa-solid fa-plus"></i></a>
-                                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
-                                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
-                                        </td>
-                                    </tr>
+                                    @foreach (var item in Model.CampaignViewModel)
+                                    {
+                                        <tr>
+                                            <td>@item.Name</td>
+                                            <td>@item.StartDate.ToString("dd/MM/yyyy")</td>
+                                            <td>@item.EndDate.ToString("dd/MM/yyyy")</td>
+                                            <td>@item.NumOfVolunteer</td>
+                                            <td>
+                                                @{
+                                                    Campaign campaign = Model.GetCampaignById(item.CampaignId);
+                                                }
+                                                @Html.ActionLink("Update","Edit",new {id=item.CampaignId})
+                                                
+                                                <a class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                    
                                 </tbody>
                             </table>
                         </div>

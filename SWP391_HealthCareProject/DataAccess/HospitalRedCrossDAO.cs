@@ -17,6 +17,38 @@ namespace SWP391_HealthCareProject.DataAccess
             var HR = db.HospitalRedCrosses.FirstOrDefault(x => x.Rhid == rhId);
             return HR;
         }
+        public Campaign getCampaignById(int id)
+        {
+            using var db = new BloodDonorContext();
+            var cam = db.Campaigns.Find(id);
+            return cam;
+        }
+        public void updateCampaign(Campaign campaign)
+        {
+            try
+            {
+                using var db = new BloodDonorContext();
+                Campaign _campaign = getCampaignById(campaign.CampaignId);
+                if (_campaign != null)
+                {
+                    int currentNumb = (from c in db.Campaigns
+                                       where c.CampaignId == campaign.CampaignId
+                                       select c).SingleOrDefault().NumOfVolunteer;
+                    (from c in db.Campaigns
+                     where c.CampaignId == campaign.CampaignId
+                     select c).SingleOrDefault().NumOfVolunteer = currentNumb + 1;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("Campaign does not exít");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
 
         public static void UpdateHR(HospitalRedCross HR)
