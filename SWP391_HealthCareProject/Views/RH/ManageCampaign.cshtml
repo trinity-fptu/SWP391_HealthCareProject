@@ -1,4 +1,5 @@
-﻿@page
+﻿@using SWP391_HealthCareProject.DataAccess;
+@model ParticipateDAO
 @{
     ViewBag.Title = "Manage Post";
     Layout = "_LayoutAdminRH";
@@ -42,18 +43,23 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><a href="/RH/ManageVolunteer">1</a></td>
-                                    <td>Hoa La</td>
-                                    <td>1</td>
-                                    <td>Canh Cay</td>
-                                    <td>Hoa Lac</td>
-                                    <td>2/3/2022</td>
-                                    <td>1/12/2021</td>
+
+                                @foreach(var item in Model.GetAllParticipates())
+                                {
+                                    <tr>
+                                    <td><a href="@Url.Action("ManageVolunteer", "RH", new {id=item.VolunteerId})"><span>@item.VolunteerId</span></a></td>
+                                    <td>@Model.GetVolunteerById(item.VolunteerId).FirstName</td>
+                                    <td>@item.CampaignId</td>
+                                    <td>@Model.GetCampaignById(item.CampaignId).Name</td>
+                                    <td>@item.Location</td>
+                                    <td>@item.Date</td>
+                                    <td>@item.RegisteredDate</td>
                                     <td>
                                         <a class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
                                     </td>
-                                </tr>
+                                </tr> 
+                                }
+                                
                             </tbody>
                         </table>
                     </div>
