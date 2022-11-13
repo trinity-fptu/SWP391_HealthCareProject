@@ -125,7 +125,8 @@ namespace SWP391_HealthCareProject.Controllers
         public IActionResult ManagePlan()
         {
             LoadSession();
-            return View();
+            PlanDAO planDAO = new PlanDAO();
+            return View(planDAO);
         }
 
         public IActionResult CreatePlan()
