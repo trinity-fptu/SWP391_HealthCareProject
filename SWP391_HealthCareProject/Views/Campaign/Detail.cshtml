@@ -39,7 +39,16 @@
             Aldus PageMaker including versions of Lorem Ipsum.
         </p>
 
-        <input type="submit" class="btn continue-btn my-5" value="Register"  />
+        @{
+            if (DateTime.Compare(DateTime.Now, Model.Campaign.EndDate) > 0)
+            {
+                <button>Campaign End</button>
+            }
+            else
+            {
+                <a>@Html.ActionLink("Read More","Register","Campaign", new {id=@Model.Campaign.CampaignId},new { @class = "btn continue-btn my-5" })</a>
+            }
+        }
     </form>
 
 

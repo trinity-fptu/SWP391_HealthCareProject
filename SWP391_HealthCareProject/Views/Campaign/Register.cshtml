@@ -3,7 +3,6 @@
     ViewData["Title"] = "Register";
     Layout = "_Layout";
 }
-
 <div class="container mt-4">
     <a href="javascript:history.back()">
         <i class="fa-solid fa-arrow-left-long back"></i>
@@ -12,14 +11,14 @@
 
 <div class="container top">
     @{
-        Campaign campaign = ViewBag.Campaign;
+        Campaign campaign = Model.GetCampaignById(ViewBag.CampaignId);
     }
     <h1 style="font-weight:600;font-size:3rem;">Register Campaign @campaign.Name</h1>
     <span style="font-family:'Segoe UI light'">From hospital/red cross</span>
     <br />
     <div class="mt-4">
-        
-        <form asp-action="JoinCampaign">
+
+        <form asp-action="Appointment">
             <input asp-for="Participate.CampaignId" type="hidden" value="@campaign.CampaignId" />
             <div class="form-item-detail">
                 <div class="form-item-label-detail">
