@@ -8,13 +8,14 @@ namespace SWP391_HealthCareProject.Controllers
     [RequestAuthentication]
     public class RHController : Controller
     {
-        public IActionResult Index()
+        public void LoadSession()
         {
             if (HttpContext.Session.GetObjectFromJson<User>("User") != null)
             {
                 var userInfo = HttpContext.Session.GetObjectFromJson<User>("User");
                 string userName = userInfo.UserName;
                 ViewBag.UserName = userName;
+                ViewBag.User = userInfo;
             }
             
             PostDAO postDAO = new PostDAO();
@@ -29,6 +30,13 @@ namespace SWP391_HealthCareProject.Controllers
             homeModels.PostViewModel = postList;
             homeModels.CampaignViewModel = campaignList;
             return View(homeModels);
+        }
+
+
+        public IActionResult Index()
+        {
+            LoadSession();
+            return View();
         }
 
         public IActionResult ManagePost()
@@ -84,12 +92,25 @@ namespace SWP391_HealthCareProject.Controllers
         }
         public IActionResult StartCampaign(Campaign campaign, string selectedPlan)
         {
-            campaign.NumOfVolunteer = 0;
-            string[] splittedPlan = selectedPlan.Split("_");
-            int planId = int.Parse(splittedPlan[1]);
-            campaign.PlanId = planId;
-            CampaignDAO.AddCampaign(campaign);
-            return RedirectToAction("ManageCampaign");
+            TimeSpan duration = new TimeSpan(30, 0, 0, 0);
+            if(DateTime.Compare(campaign.StartDate.Add(duration),campaign.EndDate) > 0)
+            {
+                ModelState.AddModelError("Date error", "End date must be at least 30 days after start date!");
+                var rhaInfo = HttpContext.Session.GetObjectFromJson<HospitalRedCrossAdmin>("HRAdmin");
+                var plans = PlanDAO.GetPlansByRHId(rhaInfo.Rhid);
+                ViewBag.Plans = plans;
+                return View("CreateCampaign", campaign);
+            }
+            else
+            {
+                campaign.NumOfVolunteer = 0;
+                string[] splittedPlan = selectedPlan.Split("_");
+                int planId = int.Parse(splittedPlan[1]);
+                campaign.PlanId = planId;
+                CampaignDAO.AddCampaign(campaign);
+                return RedirectToAction("ManageCampaign");
+            }
+            
         }
 
         public IActionResult ManagePlan()

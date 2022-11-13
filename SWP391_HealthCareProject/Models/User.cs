@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SWP391_HealthCareProject.Models
 {
@@ -17,6 +18,10 @@ namespace SWP391_HealthCareProject.Models
         public int Role { get; set; }
         public string? Avatar { get; set; }
         public DateTime? CreatedDate { get; set; }
+
+        [NotMapped]
+        public IFormFile ImageFile { get; set; }
+
 
         public virtual ICollection<HospitalRedCrossAdmin> HospitalRedCrossAdmins { get; set; }
         public virtual ICollection<Volunteer> Volunteers { get; set; }

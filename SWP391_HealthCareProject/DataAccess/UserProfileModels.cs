@@ -1,4 +1,5 @@
 ﻿using SWP391_HealthCareProject.Models;
+using System.Text.RegularExpressions;
 
 namespace SWP391_HealthCareProject.DataAccess
 {
@@ -7,7 +8,14 @@ namespace SWP391_HealthCareProject.DataAccess
         BloodDonorContext bloodDonorContext = new BloodDonorContext();
         public List<User> UserViewModel { get; set; }
 
+
+        public List<HospitalRedCrossAdmin> HRAdminViewModel { get; set; }
+
         public List<Volunteer> VolunteerViewModel { get; set; }
+
+
+        public HospitalRedCrossAdmin GetRHAById(int id) => bloodDonorContext.HospitalRedCrossAdmins.Where(x => x.UserId == id).FirstOrDefault();
+        public HospitalRedCross GetHRById(int id) => bloodDonorContext.HospitalRedCrosses.Where(x => x.Rhid == id).FirstOrDefault();
 
         public User GetUserById(int id) => bloodDonorContext.Users.Where(x => x.UserId == id).FirstOrDefault();
 
@@ -15,5 +23,12 @@ namespace SWP391_HealthCareProject.DataAccess
         {
             return bloodDonorContext.Volunteers.Where(x => x.VolunteerId == id).FirstOrDefault();
         }
+
+        public static bool CheckPasswordPattern(string password)
+        {
+            Regex regex = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$");
+            return regex.IsMatch(password);
+        }
+
     }
 }

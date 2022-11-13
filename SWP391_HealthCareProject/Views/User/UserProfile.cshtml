@@ -1,7 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@using SWP391_HealthCareProject.DataAccess;
+﻿@using SWP391_HealthCareProject.DataAccess;
 @model UserProfileModels
 @{
     ViewData["Title"] = "General Page";
@@ -17,28 +14,38 @@
 
 
 <div class="container mt-5 tabcontent" id="General">
-    <div class="form-general">
-        <div class="row">
-            <div class="col-md-3 avatar-container-general vertical-align-custom d-flex flex-row">
-                <div id="userAvatar" class="user-avatar-shadow" style="background-image: url('../assets/avatardemo.jpg');">
-                    <label for="inputTag" style="cursor: pointer;width:131px;height:103px;opacity:0; ">
-                        Select File
-                        <input id="inputTag" type="file" style="display:none;" />
-                    </label>
-                </div>
+    @{
+        User user = Model.GetUserById(ViewBag.UserId);
 
+        <div class="form-general">
+            <form method="post" asp-action="EditUser" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-3 avatar-container-general vertical-align-custom d-flex flex-row">
+                        <div>
+                            @if (user.Avatar == null)
+                            {
+                                <img src="~/assets/defaultAvatar.png" id="userAvatar" class="user-avatar-shadow">
+                            }
+                            else
+                            {
+                                <img src="~/assets/userAvatar/@user.Avatar" id="userAvatar" class="user-avatar-shadow">
 
-            </div>
-            <div class="col-md-8 info-container-general">
-                @{
-                    User user = Model.GetUserById(ViewBag.UserId);
-                    <form>
+                            }
+
+                        </div>
+                        <label for="inputTag" style="cursor: pointer;width:131px;height:103px;opacity:0;position:absolute; ">
+                            Select File
+                            <input asp-for="@user.ImageFile" id="inputTag" type="file" style="display:none;" />
+                        </label>
+                    </div>
+                    <div class="col-md-8 info-container-general">
+
                         <div class="mb-3">
                             <label for="exampleInputName">Full Name</label>
                             @{
                                 if (user != null)
                                 {
-                                    <input type="text" class="form-control" name="fullName" value="@ViewBag.FullName" />
+                                    <input type="text" class="form-control" name="fullName" value="@ViewBag.FullName" disabled />
                                 }
                                 else
                                 {
@@ -52,7 +59,7 @@
                             @{
                                 if (@user != null)
                                 {
-                                    <input type="text" class="form-control" name="userName" value="@user.UserName" />
+                                    <input asp-for="@user.UserName" type="text" class="form-control" value="@user.UserName" />
                                 }
                                 else
                                 {
@@ -65,7 +72,7 @@
                             @{
                                 if (@user != null)
                                 {
-                                    <input type="text" class="form-control" name="email" value="@user.Email" />
+                                    <input asp-for="@user.Email" type="text" class="form-control" value="@user.Email" />
                                 }
                                 else
                                 {
@@ -74,30 +81,33 @@
                             }
                         </div>
                         <button type="submit" class="save mt-3">Save Changes</button>
-                    </form>
-                }
-            </div>
-        </div>
-    </div>
-    <div class="form-general mt-5 mb-5">
-        <div class="password-container-general">
-            <div class="form-label">
-                <h3>Change your password</h3>
-                <p>Make your password strong</p>
-            </div>
-            <form>
-                <div class="mb-3">
-                    <label for="exampleInputOldPwd">Old Password</label>
-                    <input type="password" class="form-control" name="oldPwd" />
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="exampleInputNewPwd">New Password</label>
-                    <input type="password" class="form-control" name="newPwd" />
-                </div>
-                <button type="submit" class="save mt-3">Save Password</button>
+
             </form>
+
         </div>
-    </div>
+        <div class="form-general mt-5 mb-5">
+            <div class="password-container-general">
+                <div class="form-label">
+                    <h3>Change your password</h3>
+                    <p>Make your password strong</p>
+                </div>
+                <form method="post" asp-action="ChangePassword">
+                    <div class="mb-3">
+                        <label for="exampleInputOldPwd">Old Password</label>
+                        <input type="password" class="form-control" name="oldPwd" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputNewPwd">New Password</label>
+                        <input type="password" class="form-control" name="newPwd" />
+                    </div>
+                    <button type="submit" class="save mt-3">Save Password</button>
+                </form>
+            </div>
+        </div>
+    }
+
 </div>
 
 
@@ -167,7 +177,7 @@
                     <label for="inputAttend">Attended</label>
                 </div>
                 <div class="form-item-field-detail">
-                    <input asp-for="@volunteer.Attended" type="number" class="form-control" value="@volunteer.Attended" disabled />
+                    <input name="attended" type="number" class="form-control" value="@volunteer.Attended" disabled />
                 </div>
             </div>
             <div class="form-item-detail">
@@ -204,7 +214,7 @@
             </div>
             <div class="form-item-detail">
                 <div class="save mt-3">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="save">
                         Save Changes
                     </button>
                 </div>
@@ -214,14 +224,51 @@
     }
 </div>
 
-<div id="Achievement" class="info-form-achievement tabcontent">
-    bla
+<div id="Achievement" class="container info-form-achievement tabcontent mt-5 mb-5">
+    <div class="row">
+        @if (volunteer.Attended > 1)
+        {
+            <div class="col-md-4 d-flex align-items-center achieve-wrap">
+                <img src="~/assets/achieve1.png" class="achieve-custom" />
+                <div class="achieve-info">
+                    <div class="size-18 bold">Love</div>
+                    <p class="m-0 faded">Participate in a campaign for a first time</p>
+                </div>
+            </div>
+        }
+        else if (volunteer.Attended > 3)
+        {
+            <div class="col-md-4 d-flex align-items-center achieve-wrap">
+                <img src="~/assets/achieve2.png" class="achieve-custom" />
+                <div class="achieve-info">
+                    <div class="size-18 bold">Kindness</div>
+                    <p class="m-0 faded">To those who have shown to be truly kind</p>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-md-4 d-flex align-items-center achieve-wrap">
+                <img src="~/assets/achieve3.png" class="achieve-custom" />
+                <div class="achieve-info">
+                    <div class="size-18 bold">Hero</div>
+                    <p class="m-0 faded">Heroes who have saved million of lifes</p>
+                </div>
+            </div>
+        }
+
+    </div>
 </div>
 
 <script>
 
     document.getElementById("defaultOpen").click();
-
+    function updated() {
+        alert("Updated Successful");
+    }
+    function notUpdated() {
+        alert("Updated Fail, Check again");
+    }
 
 </script>
 

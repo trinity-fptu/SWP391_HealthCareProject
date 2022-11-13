@@ -5,6 +5,22 @@
     Layout = "_Layout";
 }
 
+@{
+    if (ViewBag.User != null)
+    {
+        Volunteer currentVolunteer = Model.GetVolunteerById(ViewBag.UserId);
+        if (currentVolunteer.FirstName == null)
+        {
+            <script type="text/javascript">
+                window.onload = function () {
+                    notifyMe()
+                };
+            </script>
+        }
+    }
+}
+
+
 <!-- Header Image -->
 <header class="masthead">
     <div class="container h-100">
@@ -28,25 +44,26 @@
 </header>
 
 <section class="py-5" id="content">
+
     <div class="container">
         <div class="row ">
             <div class="col-lg-4 col-md-6 d-flex justify-content-center">
                 @{
                     Post post1 = Model.GetPostById(1);
 
-                        <div class="card " style="width: 18rem;">
-                            <img class="card-img-top"
-                                 src="@post1.Img">
-                            <div class="card-body">
-                                <h1 class="card-title">@post1.Title</h1>
-                                <p class="card-text">
-                                    @post1.Description
-                                </p>
-                            </div>
-                            <div class="container mb-4">
-                                <a>@Html.ActionLink("Read More","Index","Post", new {id=post1.PostId})</a>
-                            </div>
+                    <div class="card " style="width: 18rem;">
+                        <img class="card-img-top"
+                             src="@post1.Img">
+                        <div class="card-body">
+                            <h1 class="card-title">@post1.Title</h1>
+                            <p class="card-text">
+                                @post1.Description
+                            </p>
                         </div>
+                        <div class="container mb-4">
+                            <a>@Html.ActionLink("Read More","Index","Post", new {id=post1.PostId})</a>
+                        </div>
+                    </div>
 
                 }
             </div>
@@ -54,19 +71,19 @@
                 @{
                     Post post2 = Model.GetPostById(2);
 
-                        <div class="card " style="width: 18rem;">
-                            <img class="card-img-top"
-                                 src="@post2.Img">
-                            <div class="card-body">
-                                <h1 class="card-title">@post2.Title</h1>
-                                <p class="card-text">
-                                    @post2.Description
-                                </p>
-                            </div>
-                            <div class="container mb-4">
-                                <a>@Html.ActionLink("Read More","Index","Post", new {id=post2.PostId})</a>
-                            </div>
+                    <div class="card " style="width: 18rem;">
+                        <img class="card-img-top"
+                             src="@post2.Img">
+                        <div class="card-body">
+                            <h1 class="card-title">@post2.Title</h1>
+                            <p class="card-text">
+                                @post2.Description
+                            </p>
                         </div>
+                        <div class="container mb-4">
+                            <a>@Html.ActionLink("Read More","Index","Post", new {id=post2.PostId})</a>
+                        </div>
+                    </div>
 
                 }
             </div>
@@ -74,19 +91,20 @@
                 @{
                     Post post3 = Model.GetPostById(3);
 
-                        <div class="card " style="width: 18rem;">
-                            <img class="card-img-top"
-                                 src="@post3.Img">
-                            <div class="card-body">
-                                <h1 class="card-title">@post3.Title</h1>
-                                <p class="card-text">
-                                    @post3.Description
-                                </p>
-                            </div>
-                            <div class="container mb-4">
-                                <a>@Html.ActionLink("Read More","Index","Post", new {id=post3.PostId})</a>
-                            </div>
+                    <div class="card " style="width: 18rem;">
+                        <img class="card-img-top"
+                             src="@post3.Img">
+                        <div class="card-body">
+                            <h1 class="card-title">@post3.Title</h1>
+                            <p class="card-text">
+                                @post3.Description
+                            </p>
                         </div>
+                        <div class="container mb-4">
+
+                            <a>@Html.ActionLink("Read More","Index","Post", new {id=post3.PostId})</a>
+                        </div>
+                    </div>
 
                 }
             </div>
@@ -96,17 +114,17 @@
         <div class="row py-4 " style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
             @{
                 Post post4 = Model.GetPostById(3);
-                    <div class="col-lg-7 d-flex justify-content-center">
-                        <img src="@post4.Img"
-                             class="img-responsive " style="width: 40rem;height: 20rem;object-fit: cover;">
-                    </div>
-                    <div class="col-lg-5 big-card ">
-                        <h1 class="py-4">@post4.Title</h1>
-                        <p class="card-text">
-                            @post4.Description
-                        </p>
-                        @Html.ActionLink("Read More","Index","Post", new {id=post4.PostId}, new { @class = "btn btn-lg btn-join mt-4" })
-                    </div>
+                <div class="col-lg-7 d-flex justify-content-center">
+                    <img src="@post4.Img"
+                         class="img-responsive " style="width: 40rem;height: 20rem;object-fit: cover;">
+                </div>
+                <div class="col-lg-5 big-card ">
+                    <h1 class="py-4">@post4.Title</h1>
+                    <p class="card-text">
+                        @post4.Description
+                    </p>
+                    @Html.ActionLink("Read More","Index","Post", new {id=post4.PostId}, new { @class = "btn btn-lg btn-join mt-4" })
+                </div>
             }
         </div>
 
@@ -119,24 +137,24 @@
             @{
                 Campaign c = Model.GetCampaignById(1);
                 Campaign c1 = Model.GetCampaignById(3);
-                    <div class="carousel-item active" style="background-color: #FF6262;">
-                        <h2>
-                            @c.Name.ToUpper()
-                        </h2>
-                        <img src="@post1.Img" class="img-responsive img-thumbnail">
-                        <p>
-                            Join this campaign right now. there are more than 124 volunteers have registerd!
-                        </p>
-                    </div>
-                    <div class="carousel-item">
-                        <h2>
-                            @c1.Name.ToUpper()
-                        </h2>
-                        <img src="@post2.Img" class="img-responsive img-thumbnail">
-                        <p>
-                            Join this campaign right now. there are more than 124 volunteers have registerd!
-                        </p>
-                    </div>
+                <div class="carousel-item active" style="background-color: #FF6262;">
+                    <h2>
+                        @c.Name.ToUpper()
+                    </h2>
+                    <img src="@post1.Img" class="img-responsive img-thumbnail">
+                    <p>
+                        Join this campaign right now. there are more than 124 volunteers have registerd!
+                    </p>
+                </div>
+                <div class="carousel-item">
+                    <h2>
+                        @c1.Name.ToUpper()
+                    </h2>
+                    <img src="@post2.Img" class="img-responsive img-thumbnail">
+                    <p>
+                        Join this campaign right now. there are more than 124 volunteers have registerd!
+                    </p>
+                </div>
             }
             <a class="carousel-control-prev" href="#campaigncarousel" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -160,9 +178,10 @@
     <div class="row">
         @{
             Volunteer v1 = Model.GetVolunteerById(1);
+            User u1 = Model.GetUserById(v1.UserId);
             <div class="col-md-4 volunteer d-flex justify-content-center">
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="~/assets/imageholder.png" alt="Card image cap">
+                    <img class="card-img-top" src="~/assets/userAvatar/@u1.Avatar" alt="Card image cap">
                     <div class="card-body">
                         <p>Name: @v1.FirstName.ToUpper() @v1.LastName.ToUpper() </p>
                         <p>City: @v1.City</p>
@@ -174,9 +193,10 @@
         }
         @{
             Volunteer v2 = Model.GetVolunteerById(2);
+            User u2 = Model.GetUserById(v2.UserId);
             <div class="col-md-4 volunteer d-flex justify-content-center">
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="~/assets/imageholder.png" alt="Card image cap">
+                    <img class="card-img-top" src="@u2.Avatar" alt="Card image cap">
                     <div class="card-body">
                         <p>Name: @v2.FirstName.ToUpper() @v2.LastName.ToUpper() </p>
                         <p>City: @v2.City</p>
@@ -188,9 +208,10 @@
         }
         @{
             Volunteer v3 = Model.GetVolunteerById(3);
+            User u3 = Model.GetUserById(v3.UserId);
             <div class="col-md-4 volunteer d-flex justify-content-center">
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="~/assets/imageholder.png" alt="Card image cap">
+                    <img class="card-img-top" src="@u3.Avatar" alt="Card image cap">
                     <div class="card-body">
                         <p>Name: @v3.FirstName.ToUpper() @v3.LastName.ToUpper() </p>
                         <p>City: @v3.City</p>
@@ -201,8 +222,8 @@
             </div>
         }
     </div>
-  
-   
+
+
 </section>
 
 <section id="find-campaign">
@@ -225,6 +246,50 @@
             </div>
         </div>
     </div>
-
 </section>
+
+
+
+<script>
+    //$(document).ready(function () {
+    //    notifyMe();
+    //});
+
+    function createNotification() {
+
+        var options = {
+            body: 'Please go into your profile and fill in your details profile',
+            icon: '/wwwroot/favicon.ico',
+            dir: 'ltr'
+        };
+
+        var notification = new Notification("Hi there", options);
+
+        notification.onclick = function () {
+            window.open("https://localhost:7082/User/UserProfile");
+        };
+    }
+
+    function notifyMe() {
+        if (!("Notification" in window)) {
+            alert("This browser does not support desktop notification");
+        }
+        else if (Notification.permission === "granted") {
+
+            createNotification();
+
+        }
+        else if (Notification.permission !== 'denied') {
+            Notification.requestPermission(function (permission) {
+                if (!('permission' in Notification)) {
+                    Notification.permission = permission;
+                }
+                if (permission === 'granted') {
+
+                    createNotification();
+                }
+            });
+        }
+    }
+</script>
 

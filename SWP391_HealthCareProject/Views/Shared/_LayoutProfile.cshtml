@@ -1,6 +1,8 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@using SWP391_HealthCareProject.DataAccess;
+@model UserProfileModels
 @{
 }
 <!DOCTYPE html>
@@ -46,7 +48,7 @@
                 </div>
             </nav>
 
-            <nav class="navbar navbar-expand-lg navbar-light">
+            <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
                 <div class="container">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,12 +65,16 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/Home/PostList">Post</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Home/SearchCampaign">Search</a>
+                            </li>
 
                         </ul>
                     </div>
                     <ul class="navbar-nav ml-auto">
                         @{
-                            if (ViewBag.UserName == null)
+                            User user = Model.GetUserById(ViewBag.UserId);
+                            if (user == null)
                             {
                                 <li class="nav-item">
                                     <a class="nav-link" asp-controller="Login" asp-action="Index">Login</a>
@@ -93,7 +99,15 @@
                                 <!--avatar-->
                                 <li class="dropdown">
                                     <a href="#" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <img src="~/assets/avatardemo.jpg" class="rounded-circle navbar-user-avatar">
+                                        @if (user.Avatar == null)
+                                        {
+                                            <img src="~/assets/defaultAvatar.png" class="rounded-circle navbar-user-avatar">
+                                        }
+                                        else
+                                        {
+                                            <img src="~/assets/userAvatar/@user.Avatar" class="rounded-circle navbar-user-avatar">
+
+                                        }
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="/User/UserProfile" style="color:black;">User Profile</a>

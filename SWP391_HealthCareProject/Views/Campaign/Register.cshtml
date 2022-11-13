@@ -1,0 +1,48 @@
+﻿@model SWP391_HealthCareProject.ViewModels.CampaignParticipationViewModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "_Layout";
+}
+<div class="container mt-4">
+    <a href="javascript:history.back()">
+        <i class="fa-solid fa-arrow-left-long back"></i>
+    </a>
+</div>
+
+<div class="container top">
+    @{
+        Campaign campaign = Model.GetCampaignById(ViewBag.CampaignId);
+    }
+    <h1 style="font-weight:600;font-size:3rem;">Register Campaign @campaign.Name</h1>
+    <span style="font-family:'Segoe UI light'">From hospital/red cross</span>
+    <br />
+    <div class="mt-4">
+
+        <form asp-action="Appointment">
+            <input asp-for="Participate.CampaignId" type="hidden" value="@campaign.CampaignId" />
+            <div class="form-item-detail">
+                <div class="form-item-label-detail">
+                    <label>When you will be there?</label>
+                </div>
+                <div class="form-item-field-detail">
+                    <input asp-for="Participate.Date" class="form-select customer-input" asp-format="{0:yyyy-MM-dd}" type="date" />
+                </div>
+                <div class="form-item-label-detail">
+                    <label>Location</label>
+                </div>
+                <div class="form-item-field-detail">
+                    <select asp-for="Participate.Location" class="form-select customer-input">
+                        @foreach (var item in Model.CampaignLocations)
+                        {
+                            <option>
+                                @item.Location
+                            </option>
+                        }
+
+                    </select>
+                </div>
+            </div>
+            <button class="continue-btn mt-5">Submit</button>
+        </form>
+    </div>
+</div>

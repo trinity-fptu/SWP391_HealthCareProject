@@ -1,41 +1,77 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using SWP391_HealthCareProject.DataAccess;
 using SWP391_HealthCareProject.Filters;
+using SWP391_HealthCareProject.Models;
+using SWP391_HealthCareProject.ViewModels;
 
 namespace SWP391_HealthCareProject.Controllers
 {
     public class CampaignController : Controller
     {
+
+        public void LoadSession()
+        {
+            if (HttpContext.Session.GetObjectFromJson<User>("User") != null)
+            {
+                var userInfo = HttpContext.Session.GetObjectFromJson<User>("User");
+                ViewBag.UserName = userInfo.UserName;
+                ViewBag.UserId = userInfo.UserId;
+                ViewBag.User = userInfo;
+                ViewBag.Volunteer = VolunteerDAO.GetVolunteerByUserId(userInfo.UserId);
+            }
+        }
         public IActionResult Detail(int id)
         {
-            var campaignDao = new CampaignDAO();
-            var cD = campaignDao.getCampaignById(id);
-            return View(cD);
+            LoadSession();
+            var cD = CampaignDAO.getCampaignById(id);
+            CampaignParticipationViewModel participateDetails = new CampaignParticipationViewModel()
+            {
+                Campaign = cD
+            };
+            return View(participateDetails);
         }
 
-        [RequestAuthentication]
-        public IActionResult HealthDeclare()
-        {
-            return View();
-        }
 
         [RequestAuthentication]
-        public IActionResult Appointment()
+        public IActionResult Register(int id)
         {
-            return View();
+            LoadSession();
+            var locations = CampaignLocationDAO.GetLocationsByCampaignId(id);
+            CampaignParticipationViewModel participateDetails = new CampaignParticipationViewModel();
+            ViewBag.CampaignId = id;
+            participateDetails.CampaignLocations = locations;
+            return View(participateDetails);
         }
+
         public IActionResult ErrorCampaign()
         {
+            LoadSession();
             return View();
         }
         public ActionResult ShowSearch(DateTime date, string location)
         {
-            var cD = new CampaignDAO();
-            var model = cD.searchCampaign(date, location);
-            if(model.Count==0) { return RedirectToAction("ErrorCampaign"); }
+            LoadSession();
+            var model = CampaignDAO.searchCampaign(date, location);
+            if (model.Count == 0) { return RedirectToAction("ErrorCampaign"); }
             else
-            return View(model);
+                return View(model);
         }
+
+        [RequestAuthentication]
+        public IActionResult Appointment(CampaignParticipationViewModel participateDetails)
+        {
+            LoadSession();
+            var cD = CampaignDAO.getCampaignById(participateDetails.Participate.CampaignId);
+            var volunteer = HttpContext.Session.GetObjectFromJson<Volunteer>("Volunteer");
+            participateDetails.Campaign = cD;
+            participateDetails.Participate.VolunteerId = volunteer.VolunteerId;
+            participateDetails.Participate.RegisteredDate = DateTime.Now;
+            ParticipateDAO.AddParticipate(participateDetails.Participate);
+            CampaignDAO.UpdateCampaign(participateDetails.Participate.CampaignId);
+            ViewBag.Volunteer = volunteer;
+            return View(participateDetails);
+        }
+
+
     }
 }

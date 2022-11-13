@@ -19,16 +19,32 @@ namespace SWP391_HealthCareProject.DataAccess
                 Console.WriteLine(ex.Message);
             }
         }
-        public static void UpdateCampaign(Campaign campaign)
+        public static void UpdateCampaign(int id)
         {
             using var db = new BloodDonorContext();
-            int currentNumb = (from c in db.Campaigns
-             where c.CampaignId == campaign.CampaignId
-             select c).SingleOrDefault().NumOfVolunteer;
-            (from c in db.Campaigns
-             where c.CampaignId == campaign.CampaignId
-             select c).SingleOrDefault().NumOfVolunteer = currentNumb + 1;
-            db.SaveChanges();
+            var updatedRecord = db.Campaigns.Find(id);
+            updatedRecord.NumOfVolunteer += 1;
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        public static void UpdateStatus()
+        {
+            using var db = new BloodDonorContext();
+            db.Campaigns.Where(c => DateTime.Compare(DateTime.Now, c.EndDate) > 0).ToList().ForEach(c => c.Status = false);
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
         public List<Campaign> getAllCampaign()
         {
@@ -36,15 +52,13 @@ namespace SWP391_HealthCareProject.DataAccess
             var us = db.Campaigns.ToList();
             return us;
         }
-        public List<Campaign> getCampaignById(int camId)
+        public static Campaign getCampaignById(int camId)
         {
             using var db = new BloodDonorContext();
-            var us = (from item in db.Campaigns
-                      where item.CampaignId == camId
-                      select item).ToList();
+            var us = db.Campaigns.Find(camId);
             return us;
         }
-        public List<Campaign> searchCampaign(DateTime date, string location)
+        public static List<Campaign> searchCampaign(DateTime date, string location)
         {
             using var db = new BloodDonorContext();
             

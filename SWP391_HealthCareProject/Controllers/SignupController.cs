@@ -16,13 +16,14 @@ namespace SWP391_HealthCareProject.Controllers
             return View();
         }
 
-        public IActionResult Register(User user, string confirmedPassword)
+        public IActionResult Register(User user, Volunteer volunteer ,string confirmedPassword)
         {
             if (!SignupDAO.IsUserExist(user.UserName) && SignupDAO.CheckEmailPattern(user.Email) &&
                 SignupDAO.CheckPasswordPattern(user.Password) && user.Password == confirmedPassword)
             {
                 user.Role = 1;
                 SignupDAO.Register(user);
+                SignupDAO.RegisterVolunteer(volunteer, user);
                 return RedirectToAction("Index", "Login");
             }
             else

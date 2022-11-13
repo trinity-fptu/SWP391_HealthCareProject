@@ -3,6 +3,9 @@ using SWP391_HealthCareProject.DataAccess;
 using SWP391_HealthCareProject.Models;
 using System.Diagnostics;
 using SWP391_HealthCareProject.DataAccess;
+using Microsoft.SqlServer.Management.Smo;
+using NuGet.ContentModel;
+using User = SWP391_HealthCareProject.Models.User;
 
 namespace SWP391_HealthCareProject.Controllers
 {
@@ -20,8 +23,12 @@ namespace SWP391_HealthCareProject.Controllers
             if (HttpContext.Session.GetObjectFromJson<User>("User") != null)
             {
                 var userInfo = HttpContext.Session.GetObjectFromJson<User>("User");
-                string userName = userInfo.UserName;
-                ViewBag.UserName = userName;
+                VolunteerDAO volunteerDAO = new VolunteerDAO();
+                var volunteer = VolunteerDAO.GetVolunteerByUserId(userInfo.UserId);
+                ViewBag.UserName = userInfo.UserName;
+                ViewBag.UserId = userInfo.UserId;
+                ViewBag.User = userInfo;
+                ViewBag.Volunteer = volunteer;
             }
         }
 
@@ -33,6 +40,7 @@ namespace SWP391_HealthCareProject.Controllers
             VolunteerDAO volunteerDAO = new VolunteerDAO();
             PlanDAO planDAO = new PlanDAO();
 
+
             List<Post> postList = new List<Post>();
             postList = postDAO.getAllPost();
             List<Campaign> campaignList = new List<Campaign>();
@@ -42,16 +50,19 @@ namespace SWP391_HealthCareProject.Controllers
             List<Plan> planplist = new List<Plan>();
             planplist = planDAO.getAllPlan();
 
+            List<User> userList = VolunteerDAO.getAllUser();
             HomeModels homeModels = new HomeModels();
             homeModels.PostViewModel = postList;
             homeModels.CampaignViewModel = campaignList; 
             homeModels.VolunteerViewModel = volunteerList;
             homeModels.PlanViewModel = planplist;
+            homeModels.UserViewModel = userList;
             return View(homeModels);
         }
  
         public IActionResult Privacy()
         {
+
             return View();
         }
 
@@ -65,6 +76,7 @@ namespace SWP391_HealthCareProject.Controllers
 
         public IActionResult PostList()
         {
+            LoadSession();
             var postDao = new PostDAO();
             var pD = postDao.getAllPost();
             return View(pD);
@@ -72,6 +84,7 @@ namespace SWP391_HealthCareProject.Controllers
 
         public IActionResult SearchCampaign()
         {
+            LoadSession();
             return View();
         }
 

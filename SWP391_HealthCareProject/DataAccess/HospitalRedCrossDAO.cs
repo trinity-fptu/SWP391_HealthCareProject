@@ -49,5 +49,27 @@ namespace SWP391_HealthCareProject.DataAccess
                 throw new Exception(ex.Message);
             }
         }
+
+
+        public static void UpdateHR(HospitalRedCross HR)
+        {
+            using var db = new BloodDonorContext();
+            try
+            {
+                if (HR != null)
+                {
+                    db.HospitalRedCrosses.Update(HR);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("HR does not exít");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

@@ -3,7 +3,12 @@
     ViewData["Title"] = "ErrorCampaign";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<section class="py-5" id="content">
-<h1>There is not any available campaign</h1>
+<section class="error py-5" id="content">
+    <div class="container mt-4" style="position:relative;">
+        <h1>NO CAMPAIGN FOUND</h1>
+        <span>Try find another campaign</span><br />
+        <a href="javascript:history.back()" type="button" class="btn continue-btn my-5">Back</a>
 
+    </div>
+    
 </section>

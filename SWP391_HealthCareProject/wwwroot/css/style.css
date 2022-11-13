@@ -10,6 +10,22 @@
     text-align:center;
 }
 
+.back {
+    width:70px;
+    font-size: 40px;
+    opacity:0.3;
+    color: black;
+    position: relative;
+    left: 0;
+    -webkit-transition: all 1s;
+    transition: all 1s;
+}
+
+.back:hover{
+    opacity:1;
+    left: -30px;
+}
+
 main {
 }
 
@@ -270,6 +286,23 @@ a.btn-readmore {
     margin:1rem;
 }
 
+.continue-btn {
+    border-radius: 8px;
+    background-color: #628EFF;
+    border: none;
+    color: white;
+    width: 8rem;
+    height: 2.5rem;
+    transition: 0.5s;
+    text-decoration: none;
+}
+
+.continue-btn:hover {
+    color: white;
+    background-color: #3769e8;
+    transform: scale(1.1);
+}
+
 
 a.continue-btn {
     border-radius: 8px;
@@ -388,7 +421,10 @@ a.continue-btn:hover{
     background-color: rgb(244, 244, 244);
 }
 
-
+.error {
+    height: 30rem;
+    text-align:center;
+}
 
 /*
     animation part

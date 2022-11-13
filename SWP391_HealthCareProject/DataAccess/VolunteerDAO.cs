@@ -80,5 +80,12 @@ namespace SWP391_HealthCareProject.DataAccess
                 throw new Exception(ex.Message);
             }
         }
+
+        public static User? GetUserLastRecord()
+        {
+            using var db = new BloodDonorContext();
+            var user = db.Users.OrderByDescending(x => x.UserId).FirstOrDefault();
+            return user;
+        }
     }
 }
