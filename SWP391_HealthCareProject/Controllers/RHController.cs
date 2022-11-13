@@ -18,6 +18,13 @@ namespace SWP391_HealthCareProject.Controllers
                 ViewBag.User = userInfo;
             }
             
+            
+        }
+
+
+        public IActionResult Index()
+        {
+            LoadSession();
             PostDAO postDAO = new PostDAO();
             CampaignDAO campaignDAO = new CampaignDAO();
 
@@ -30,13 +37,6 @@ namespace SWP391_HealthCareProject.Controllers
             homeModels.PostViewModel = postList;
             homeModels.CampaignViewModel = campaignList;
             return View(homeModels);
-        }
-
-
-        public IActionResult Index()
-        {
-            LoadSession();
-            return View();
         }
 
         public IActionResult ManagePost()
