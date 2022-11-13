@@ -74,8 +74,10 @@ namespace SWP391_HealthCareProject.DataAccess
             try
             {
                 User user = getUserById(id);
+                Volunteer volunteer = VolunteerDAO.GetVolunteerByUserId(user.UserId);
                 if(user != null)
                 {
+                    db.Volunteers.Remove(volunteer);
                     db.Users.Remove(user);
                     db.SaveChanges();
                 }
