@@ -17,6 +17,7 @@ namespace SWP391_HealthCareProject.Controllers
                 ViewBag.UserName = userInfo.UserName;
                 ViewBag.UserId = userInfo.UserId;
                 ViewBag.User = userInfo;
+                ViewBag.Volunteer = VolunteerDAO.GetVolunteerByUserId(userInfo.UserId);
             }
         }
         public IActionResult Detail(int id)

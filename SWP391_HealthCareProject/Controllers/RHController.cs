@@ -8,14 +8,21 @@ namespace SWP391_HealthCareProject.Controllers
     [RequestAuthentication]
     public class RHController : Controller
     {
-        public IActionResult Index()
+        public void LoadSession()
         {
             if (HttpContext.Session.GetObjectFromJson<User>("User") != null)
             {
                 var userInfo = HttpContext.Session.GetObjectFromJson<User>("User");
                 string userName = userInfo.UserName;
                 ViewBag.UserName = userName;
+                ViewBag.User = userInfo;
             }
+        }
+
+
+        public IActionResult Index()
+        {
+            LoadSession();
             return View();
         }
 

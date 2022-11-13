@@ -8,6 +8,9 @@ namespace SWP391_HealthCareProject.DataAccess
         BloodDonorContext bloodDonorContext = new BloodDonorContext();
         public List<User> UserViewModel { get; set; }
 
+
+        public List<HospitalRedCrossAdmin> HRAdminViewModel { get; set; }
+
         public List<Volunteer> VolunteerViewModel { get; set; }
 
         public User GetUserById(int id) => bloodDonorContext.Users.Where(x => x.UserId == id).FirstOrDefault();

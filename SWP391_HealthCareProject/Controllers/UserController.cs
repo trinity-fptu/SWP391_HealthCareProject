@@ -132,9 +132,31 @@ namespace SWP391_HealthCareProject.Controllers
         }
 
 
+        [HttpPost]
+        public IActionResult EditUserRH(User user)
+        {
+            User u = GetUserSession();
+            user.UserId = u.UserId;
+            user.Password = u.Password;
+            user.Role = u.Role;
+            user.CreatedDate = u.CreatedDate;
+            Console.WriteLine(user.UserId + user.UserName + user.Role + user.Avatar + user.Email);
+            VolunteerDAO volunteerDAO = new VolunteerDAO();
+            string uniqueFileName = UploadedFile(user);
+            user.Avatar = uniqueFileName;
+            volunteerDAO.updateUser(user);
+
+            return RedirectToAction("UserProfile", "User");
+        }
+
         public IActionResult RHProfile()
         {
-            return View();
+            User u = GetUserSession();
+            UserProfileModels us = new UserProfileModels();
+            ViewBag.UserId = u.UserId;
+            ViewBag.UserName = u.UserName;
+            ViewBag.User = u;
+            return View(us);
         }
     }
 }
