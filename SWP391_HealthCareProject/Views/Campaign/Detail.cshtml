@@ -19,11 +19,11 @@
             <input type="hidden" asp-for="Campaign.CampaignId" value="@Model.Campaign.CampaignId" />
         </p>
         <p>
-            Start Date: @Model.Campaign.StartDate
+            Start Date: @Model.Campaign.StartDate.ToString("dd/MM/yyyy")
 
         </p>
         <p>
-            End date: @Model.Campaign.EndDate
+            End date: @Model.Campaign.EndDate.ToString("dd/MM/yyyy")
         </p>
         <p class="">
             Location: @Model.Campaign.Province
