@@ -75,21 +75,33 @@
                             else
                             {
                                 User user = ViewBag.User;
+                                Volunteer volunteer = ViewBag.Volunteer;
                                 <!--nofitcation-->
                                 <li class="mx-3" style="margin:auto;">
                                     <div class="dropdown">
                                         <a id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fa-regular fa-bell nav-link"></i>
                                         </a>
-                                        <div class="dropdown-menu mt-3" aria-labelledby="dropdownMenu2">
-                                            <div class="dropdown-item" type="button">A campaign has started</div>
-                                        </div>
+                                        @if (volunteer.FirstName == null)
+                                        {
+                                            <ul>
+                                                <li class="dropdown-menu mt-3">
+                                                    <div class="dropdown-item" type="button">Please update profile</div>
+                                                </li>
+                                            </ul>
+                                        }
                                     </div>
                                 </li>
                                 <!--avatar-->
                                 <li class="dropdown">
                                     <a href="#" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        @if(@user.Avatar==null){
+                                        <img src="~/assets/defaultAvatar.png" class="rounded-circle navbar-user-avatar">
+                                        }
+                                        else{
                                         <img src="~/assets/userAvatar/@user.Avatar" class="rounded-circle navbar-user-avatar">
+
+                                        }
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="/User/UserProfile" style="color:black;">User Profile</a>

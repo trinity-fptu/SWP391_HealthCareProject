@@ -23,7 +23,7 @@ namespace SWP391_HealthCareProject.Controllers
             {
                 user.Role = 1;
                 SignupDAO.Register(user);
-                //SignupDAO.RegisterVolunteer(volunteer, user);
+                SignupDAO.RegisterVolunteer(volunteer, user);
                 return RedirectToAction("Index", "Login");
             }
             else

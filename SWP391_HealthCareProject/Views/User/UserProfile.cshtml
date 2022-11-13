@@ -22,7 +22,15 @@
                 <div class="row">
                     <div class="col-md-3 avatar-container-general vertical-align-custom d-flex flex-row">
                         <div>
-                            <img src="~/assets/userAvatar/@user.Avatar" id="userAvatar" class="user-avatar-shadow">
+                            @if (user.Avatar == null)
+                            {
+                                <img src="~/assets/defaultAvatar.png" id="userAvatar" class="user-avatar-shadow">
+                            }
+                            else
+                            {
+                                <img src="~/assets/userAvatar/@user.Avatar" id="userAvatar" class="user-avatar-shadow">
+
+                            }
 
                         </div>
                         <label for="inputTag" style="cursor: pointer;width:131px;height:103px;opacity:0;position:absolute; ">
@@ -37,7 +45,7 @@
                             @{
                                 if (user != null)
                                 {
-                                    <input type="text" class="form-control" name="fullName" value="@ViewBag.FullName" disable />
+                                    <input type="text" class="form-control" name="fullName" value="@ViewBag.FullName" disabled />
                                 }
                                 else
                                 {

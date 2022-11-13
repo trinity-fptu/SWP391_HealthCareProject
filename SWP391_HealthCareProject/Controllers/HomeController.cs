@@ -23,9 +23,12 @@ namespace SWP391_HealthCareProject.Controllers
             if (HttpContext.Session.GetObjectFromJson<User>("User") != null)
             {
                 var userInfo = HttpContext.Session.GetObjectFromJson<User>("User");
+                VolunteerDAO volunteerDAO = new VolunteerDAO();
+                var volunteer = VolunteerDAO.GetVolunteerByUserId(userInfo.UserId);
                 ViewBag.UserName = userInfo.UserName;
                 ViewBag.UserId = userInfo.UserId;
                 ViewBag.User = userInfo;
+                ViewBag.Volunteer = volunteer;
             }
         }
 
@@ -44,7 +47,6 @@ namespace SWP391_HealthCareProject.Controllers
             List<Volunteer> volunteerList = new List<Volunteer>();
             volunteerList = volunteerDAO.getAllVolunteer();
             List<User> userList = VolunteerDAO.getAllUser();
-
             HomeModels homeModels = new HomeModels();
             homeModels.PostViewModel = postList;
             homeModels.CampaignViewModel = campaignList; 

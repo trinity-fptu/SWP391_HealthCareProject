@@ -42,9 +42,24 @@ namespace SWP391_HealthCareProject.Controllers
             return View(participateDetails);
         }
 
+        public IActionResult ErrorCampaign()
+        {
+            LoadSession();
+            return View();
+        }
+        public ActionResult ShowSearch(DateTime date, string location)
+        {
+            LoadSession();
+            var model = CampaignDAO.searchCampaign(date, location);
+            if (model.Count == 0) { return RedirectToAction("ErrorCampaign"); }
+            else
+                return View(model);
+        }
+
         [RequestAuthentication]
         public IActionResult Appointment(CampaignParticipationViewModel participateDetails)
         {
+            LoadSession();
             var cD = CampaignDAO.getCampaignById(participateDetails.Participate.CampaignId);
             var volunteer = HttpContext.Session.GetObjectFromJson<Volunteer>("Volunteer");
             participateDetails.Campaign = cD;
