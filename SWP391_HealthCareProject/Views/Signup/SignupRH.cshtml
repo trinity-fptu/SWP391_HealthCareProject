@@ -7,28 +7,27 @@
 
 <section class="ftco-section">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12 col-lg-10">
-                <div class="wrap d-md-flex">
-                    <div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last">
-                        <div class="text w-100">
-                            <h2>Upload your license</h2>
-                            <p>Click below</p>
-                            <form>
-                            <label for="inputTag" style="cursor: pointer;">
-                                Select File
-                                <input id="inputTag" type="file" style="display:none;"/>
-                            </label>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="login-wrap p-4 p-lg-5">
-                        <div class="d-flex">
-                            <div class="w-100">
-                                <h3 class="mb-4">Register for Admin</h3>
+        <form method="post" asp-controller="Signup" asp-action="RegisterRH" class="signin-form" enctype="multipart/form-data">
+
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-10">
+                    <div class="wrap d-md-flex">
+                        <div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last">
+                            <div class="text w-100">
+                                <h2>Upload your license</h2>
+                                <p>Click below</p>
+                                <label for="inputTag" style="cursor: pointer;">
+                                    Select File
+                                    <input name="File" id="inputTag" type="file" style="display:none;" required />
+                                </label>
                             </div>
                         </div>
-                        <form method="post" asp-controller="Signup" asp-action="RegisterRH" class="signin-form">
+                        <div class="login-wrap p-4 p-lg-5">
+                            <div class="d-flex">
+                                <div class="w-100">
+                                    <h3 class="mb-4">Register for Admin</h3>
+                                </div>
+                            </div>
                             <div class="form-group mb-3">
                                 <label class="label" for="name">Username</label>
                                 <input type="text" asp-for="UserName" class="form-control" placeholder="Username" required>
@@ -81,11 +80,13 @@
                             <div class="register d-flex justify-content-start form-group">
                                 <span>Already have an account? <a href="/Login">Login Now</a></span>
                             </div>
-                        </form>
+                        </div>
+
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
+
     </div>
 </section>
 

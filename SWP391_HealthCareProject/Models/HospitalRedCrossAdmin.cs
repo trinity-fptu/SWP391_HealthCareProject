@@ -1,4 +1,6 @@
-﻿namespace SWP391_HealthCareProject.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace SWP391_HealthCareProject.Models
 {
     public partial class HospitalRedCrossAdmin
     {
@@ -13,6 +15,9 @@
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
         public string License { get; set; } = null!;
+
+        [NotMapped]
+        public IFormFile ImageFile { get; set; }
 
         public virtual HospitalRedCross Rh { get; set; } = null!;
         public virtual User User { get; set; } = null!;
