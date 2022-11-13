@@ -53,6 +53,42 @@ body {
     animation: fadeEffect 1s;
 }
 
+.info-form-achievement {
+    background-color: white;
+    border: 1px solid #8A8A8A;
+    border-radius: 18px;
+    padding: 2rem;
+    animation: fadeEffect 1s;
+}
+
+.achieve-wrap {
+    overflow: hidden;
+    opacity: 0.6;
+    transition: all 0.25s ease;
+}
+
+.achieve-wrap:hover{
+    opacity:1;
+}
+
+.achieve-card{
+    text-align:center;
+}
+
+.achieve-custom {
+    width: 128px;
+    filter: drop-shadow(2px 4px 6px gray);
+    margin-bottom: 10px;
+}
+
+.faded {
+    opacity: 0.75;
+}
+
+.bold{
+    font-size:18px;
+    font-weight:bold;
+}
 /* Go from zero to full opacity */
 @keyframes fadeEffect {
     from {

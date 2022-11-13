@@ -72,6 +72,26 @@ namespace SWP391_HealthCareProject.Controllers
         }
 
         [HttpPost]
+        public IActionResult ChangePassword(string oldPwd, string newPwd)
+        {
+            bool isUpdated;
+            User user = GetUserSession();
+            if (UserProfileModels.CheckPasswordPattern(newPwd) && oldPwd == newPwd)
+            {
+                user.Password = newPwd;
+                VolunteerDAO volunteerDAO = new VolunteerDAO();
+                volunteerDAO.updateUser(user);
+                isUpdated = true;
+                ViewBag.Updated = isUpdated; 
+                return RedirectToAction("UserProfile", "User");
+            }
+            isUpdated = false;
+            ViewBag.Updated = isUpdated;
+            return RedirectToAction("UserProfile", "User");
+        }
+
+
+        [HttpPost]
         public IActionResult EditUser(User user)
         {
             User u = GetUserSession();

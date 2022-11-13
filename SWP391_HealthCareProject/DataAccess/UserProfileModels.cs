@@ -1,4 +1,5 @@
 ﻿using SWP391_HealthCareProject.Models;
+using System.Text.RegularExpressions;
 
 namespace SWP391_HealthCareProject.DataAccess
 {
@@ -15,5 +16,12 @@ namespace SWP391_HealthCareProject.DataAccess
         {
             return bloodDonorContext.Volunteers.Where(x => x.VolunteerId == id).FirstOrDefault();
         }
+
+        public static bool CheckPasswordPattern(string password)
+        {
+            Regex regex = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$");
+            return regex.IsMatch(password);
+        }
+
     }
 }

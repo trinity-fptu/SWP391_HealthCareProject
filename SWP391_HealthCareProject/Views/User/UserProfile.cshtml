@@ -93,7 +93,7 @@
                     <h3>Change your password</h3>
                     <p>Make your password strong</p>
                 </div>
-                <form>
+                <form method="post" asp-action="ChangePassword">
                     <div class="mb-3">
                         <label for="exampleInputOldPwd">Old Password</label>
                         <input type="password" class="form-control" name="oldPwd" />
@@ -224,14 +224,51 @@
     }
 </div>
 
-<div id="Achievement" class="info-form-achievement tabcontent">
-    bla
+<div id="Achievement" class="container info-form-achievement tabcontent mt-5 mb-5">
+    <div class="row">
+        @if (volunteer.Attended > 1)
+        {
+            <div class="col-md-4 d-flex align-items-center achieve-wrap">
+                <img src="~/assets/achieve1.png" class="achieve-custom" />
+                <div class="achieve-info">
+                    <div class="size-18 bold">Love</div>
+                    <p class="m-0 faded">Participate in a campaign for a first time</p>
+                </div>
+            </div>
+        }
+        else if (volunteer.Attended > 3)
+        {
+            <div class="col-md-4 d-flex align-items-center achieve-wrap">
+                <img src="~/assets/achieve2.png" class="achieve-custom" />
+                <div class="achieve-info">
+                    <div class="size-18 bold">Kindness</div>
+                    <p class="m-0 faded">To those who have shown to be truly kind</p>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-md-4 d-flex align-items-center achieve-wrap">
+                <img src="~/assets/achieve3.png" class="achieve-custom" />
+                <div class="achieve-info">
+                    <div class="size-18 bold">Hero</div>
+                    <p class="m-0 faded">Heroes who have saved million of lifes</p>
+                </div>
+            </div>
+        }
+
+    </div>
 </div>
 
 <script>
 
     document.getElementById("defaultOpen").click();
-
+    function updated() {
+        alert("Updated Successful");
+    }
+    function notUpdated() {
+        alert("Updated Fail, Check again");
+    }
 
 </script>
 
