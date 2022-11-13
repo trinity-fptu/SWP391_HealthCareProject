@@ -31,12 +31,29 @@ namespace SWP391_HealthCareProject.DataAccess
                 Campaign _campaign = getCampaignById(campaign.CampaignId);
                 if (_campaign != null)
                 {
-                    int currentNumb = (from c in db.Campaigns
-                                       where c.CampaignId == campaign.CampaignId
-                                       select c).SingleOrDefault().NumOfVolunteer;
-                    (from c in db.Campaigns
-                     where c.CampaignId == campaign.CampaignId
-                     select c).SingleOrDefault().NumOfVolunteer = currentNumb + 1;
+                    db.Campaigns.Update(campaign);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("Campaign does not exít");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public void deleteCampaign(int id)
+        {
+            using var db = new BloodDonorContext();
+            try
+            {
+                Campaign campaign = getCampaignById(id);
+                if (campaign != null)
+                {
+                    
+                    db.Campaigns.Remove(campaign);
                     db.SaveChanges();
                 }
                 else

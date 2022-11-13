@@ -150,11 +150,10 @@ namespace SWP391_HealthCareProject.Controllers
                 {
                     return NotFound();
                 }
-                if (ModelState.IsValid)
-                {
+                
                     HospitalRedCrossDAO RHDAO = new HospitalRedCrossDAO();
                     RHDAO.updateCampaign(campaign);
-                }
+                
                 return RedirectToAction("Index", "RH");
             }
             catch (Exception ex)
@@ -162,6 +161,31 @@ namespace SWP391_HealthCareProject.Controllers
                 ViewBag.message = ex.Message;
                 return View();
             }
+        }
+        public ActionResult Delete(int? id)
+        {
+            if (id == null) { return NotFound(); }
+            HospitalRedCrossDAO RHDAO = new HospitalRedCrossDAO();
+            var campaign = RHDAO.getCampaignById(id.Value);
+            if (campaign == null) { return NotFound(); }
+            return View(campaign);
+        }
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+
+                HospitalRedCrossDAO RHDAO = new HospitalRedCrossDAO();
+                RHDAO.deleteCampaign(id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                ViewBag.message = ex.Message;
+                return View();
+            }
+
         }
     }
 }

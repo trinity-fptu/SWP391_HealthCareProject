@@ -142,9 +142,10 @@
                                                 @{
                                                     Campaign campaign = Model.GetCampaignById(item.CampaignId);
                                                 }
-                                                @Html.ActionLink("Update","Edit",new {id=item.CampaignId})
-                                                
-                                                <a class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
+
+                                                <a class="edit" title="Edit" data-toggle="tooltip"> @Html.ActionLink("Edit","Edit",new {id=campaign.CampaignId})</a>
+
+                                                <a class="delete" title="Delete" data-toggle="tooltip">@Html.ActionLink("Delete","Delete",new {id=campaign.CampaignId})</a>
                                             </td>
                                         </tr>
                                     }
