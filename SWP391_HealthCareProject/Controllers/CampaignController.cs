@@ -8,8 +8,20 @@ namespace SWP391_HealthCareProject.Controllers
 {
     public class CampaignController : Controller
     {
+
+        public void LoadSession()
+        {
+            if (HttpContext.Session.GetObjectFromJson<User>("User") != null)
+            {
+                var userInfo = HttpContext.Session.GetObjectFromJson<User>("User");
+                ViewBag.UserName = userInfo.UserName;
+                ViewBag.UserId = userInfo.UserId;
+                ViewBag.User = userInfo;
+            }
+        }
         public IActionResult Detail(int id)
         {
+            LoadSession();
             var cD = CampaignDAO.getCampaignById(id);
             CampaignParticipationViewModel participateDetails = new CampaignParticipationViewModel()
             {
@@ -18,9 +30,14 @@ namespace SWP391_HealthCareProject.Controllers
             return View(participateDetails);
         }
 
-        public IActionResult Register(CampaignParticipationViewModel participateDetails)
+
+        [RequestAuthentication]
+        public IActionResult Register(int id)
         {
-            var locations = CampaignLocationDAO.GetLocationsByCampaignId(participateDetails.Campaign.CampaignId);
+            LoadSession();
+            var locations = CampaignLocationDAO.GetLocationsByCampaignId(id);
+            CampaignParticipationViewModel participateDetails = new CampaignParticipationViewModel();
+            ViewBag.Campaign = participateDetails.GetCampaignById(id);
             participateDetails.CampaignLocations= locations;
             return View(participateDetails);
         }
@@ -30,6 +47,7 @@ namespace SWP391_HealthCareProject.Controllers
         {
             return View();
         }
+
         public IActionResult JoinCampaign(CampaignParticipationViewModel participateDetails)
         {
             var volunteer = HttpContext.Session.GetObjectFromJson<Volunteer>("Volunteer");

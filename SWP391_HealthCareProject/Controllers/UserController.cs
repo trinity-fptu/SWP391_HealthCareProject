@@ -1,13 +1,42 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.SqlServer.Management.Smo;
 using SWP391_HealthCareProject.DataAccess;
 using SWP391_HealthCareProject.Filters;
 using SWP391_HealthCareProject.Models;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using User = SWP391_HealthCareProject.Models.User;
 
 namespace SWP391_HealthCareProject.Controllers
 {
     [RequestAuthentication]
     public class UserController : Controller
     {
+        private readonly IWebHostEnvironment _hostEnvironment;
+        private readonly BloodDonorContext _db;
+
+        public UserController(BloodDonorContext db, IWebHostEnvironment hostEnvironment)
+        {
+            _db = db;
+            this._hostEnvironment = hostEnvironment;
+        }
+
+        private string UploadedFile(User user)
+        {
+            string uniqueFileName = null;
+            if(user.ImageFile != null)
+            {
+                string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "assets/userAvatar");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + user.ImageFile.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    user.ImageFile.CopyTo(fileStream);
+                }
+            }
+            return uniqueFileName;
+        }
+
 
         public User? GetUserSession()
         {
@@ -40,6 +69,23 @@ namespace SWP391_HealthCareProject.Controllers
                 ViewBag.VolunteerId = volunteer.VolunteerId;
             }
             return View(us);
+        }
+
+        [HttpPost]
+        public IActionResult EditUser(User user)
+        {
+            User u = GetUserSession();
+            user.UserId = u.UserId;
+            user.Password = u.Password;
+            user.Role = u.Role;
+            user.CreatedDate = u.CreatedDate;
+            Console.WriteLine(user.UserId + user.UserName + user.Role + user.Avatar + user.Email);
+            VolunteerDAO volunteerDAO = new VolunteerDAO();
+            string uniqueFileName = UploadedFile(user);
+            user.Avatar = uniqueFileName;
+            volunteerDAO.updateUser(user);
+            
+            return RedirectToAction("UserProfile", "User");
         }
 
         [HttpPost]

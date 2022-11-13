@@ -10,6 +10,22 @@
     text-align:center;
 }
 
+.back {
+    width:70px;
+    font-size: 40px;
+    opacity:0.3;
+    color: black;
+    position: relative;
+    left: 0;
+    -webkit-transition: all 1s;
+    transition: all 1s;
+}
+
+.back:hover{
+    opacity:1;
+    left: -30px;
+}
+
 main {
 }
 

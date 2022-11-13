@@ -3,6 +3,9 @@ using SWP391_HealthCareProject.DataAccess;
 using SWP391_HealthCareProject.Models;
 using System.Diagnostics;
 using SWP391_HealthCareProject.DataAccess;
+using Microsoft.SqlServer.Management.Smo;
+using NuGet.ContentModel;
+using User = SWP391_HealthCareProject.Models.User;
 
 namespace SWP391_HealthCareProject.Controllers
 {
@@ -22,7 +25,7 @@ namespace SWP391_HealthCareProject.Controllers
                 var userInfo = HttpContext.Session.GetObjectFromJson<User>("User");
                 ViewBag.UserName = userInfo.UserName;
                 ViewBag.UserId = userInfo.UserId;
-                ViewBag.Avatar = userInfo.Avatar;
+                ViewBag.User = userInfo;
             }
         }
 
@@ -52,6 +55,7 @@ namespace SWP391_HealthCareProject.Controllers
  
         public IActionResult Privacy()
         {
+
             return View();
         }
 
@@ -65,6 +69,7 @@ namespace SWP391_HealthCareProject.Controllers
 
         public IActionResult PostList()
         {
+            LoadSession();
             var postDao = new PostDAO();
             var pD = postDao.getAllPost();
             return View(pD);
@@ -72,6 +77,7 @@ namespace SWP391_HealthCareProject.Controllers
 
         public IActionResult SearchCampaign()
         {
+            LoadSession();
             return View();
         }
 

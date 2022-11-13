@@ -27,6 +27,8 @@ namespace SWP391_HealthCareProject.DataAccess
             return c;
         }
 
+        public List<Campaign> GetCampaign() => bloodDonorContext.Campaigns.ToList();
+        public List<Post> GetPost() => bloodDonorContext.Posts.ToList();
 
         public List<User> UserViewModel { get; set; }
 

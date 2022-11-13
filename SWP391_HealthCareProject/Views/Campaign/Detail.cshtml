@@ -3,11 +3,13 @@
     ViewData["Title"] = "Detail";
     Layout = "_Layout";
 }
-
-
+<div class="container mt-4">
+    <a href="javascript:history.back()">
+        <i class="fa-solid fa-arrow-left-long back"></i>
+        </a>
+</div>
 
 <div class="container top" style="text-align:center;">
-    
     <h1 style="font-weight:600;font-size:3rem;">Campaign Information</h1>
     <span style="font-family:'Segoe UI light'">From hospital/red cross</span>
     <br />
@@ -36,10 +38,9 @@
             sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
             Aldus PageMaker including versions of Lorem Ipsum.
         </p>
-
-        <input type="submit" class="btn continue-btn my-5" value="Register"  />
+        <a>@Html.ActionLink("Read More","Register","Campaign", new {id=@Model.Campaign.CampaignId},new { @class = "btn continue-btn my-5" })</a>
     </form>
-       
-    
+
+
 
 </div>

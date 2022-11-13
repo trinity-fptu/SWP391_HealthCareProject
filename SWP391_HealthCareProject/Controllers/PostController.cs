@@ -8,9 +8,9 @@ namespace SWP391_HealthCareProject.Controllers
     {
         public IActionResult Index(int id)
         {
-            var postDao = new PostDAO();
-            var pD = postDao.getPostById(id);
-            return View(pD);
+            var pD = new PostDAO();
+            var p = pD.getPostById(id);
+            return View(p);
         }
        
        

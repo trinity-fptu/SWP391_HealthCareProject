@@ -1,7 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@using SWP391_HealthCareProject.DataAccess;
+﻿@using SWP391_HealthCareProject.DataAccess;
 @model UserProfileModels
 @{
     ViewData["Title"] = "General Page";
@@ -19,27 +16,28 @@
 <div class="container mt-5 tabcontent" id="General">
     @{
         User user = Model.GetUserById(ViewBag.UserId);
+
         <div class="form-general">
-            <div class="row">
-                <div class="col-md-3 avatar-container-general vertical-align-custom d-flex flex-row">
-                    <div id="userAvatar" class="user-avatar-shadow" style="background-image: url('@user.Avatar');">
-                        <label for="inputTag" style="cursor: pointer;width:131px;height:103px;opacity:0; ">
+            <form method="post" asp-action="EditUser" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-3 avatar-container-general vertical-align-custom d-flex flex-row">
+                        <div>
+                            <img src="~/assets/userAvatar/@user.Avatar" id="userAvatar" class="user-avatar-shadow">
+
+                        </div>
+                        <label for="inputTag" style="cursor: pointer;width:131px;height:103px;opacity:0;position:absolute; ">
                             Select File
-                            <input id="inputTag" type="file" style="display:none;" />
+                            <input asp-for="@user.ImageFile" id="inputTag" type="file" style="display:none;" />
                         </label>
                     </div>
+                    <div class="col-md-8 info-container-general">
 
-
-                </div>
-                <div class="col-md-8 info-container-general">
-
-                    <form>
                         <div class="mb-3">
                             <label for="exampleInputName">Full Name</label>
                             @{
                                 if (user != null)
                                 {
-                                    <input type="text" class="form-control" name="fullName" value="@ViewBag.FullName" />
+                                    <input type="text" class="form-control" name="fullName" value="@ViewBag.FullName" disable />
                                 }
                                 else
                                 {
@@ -53,7 +51,7 @@
                             @{
                                 if (@user != null)
                                 {
-                                    <input type="text" class="form-control" name="userName" value="@user.UserName" />
+                                    <input asp-for="@user.UserName" type="text" class="form-control" value="@user.UserName" />
                                 }
                                 else
                                 {
@@ -66,7 +64,7 @@
                             @{
                                 if (@user != null)
                                 {
-                                    <input type="text" class="form-control" name="email" value="@user.Email" />
+                                    <input asp-for="@user.Email" type="text" class="form-control" value="@user.Email" />
                                 }
                                 else
                                 {
@@ -75,9 +73,11 @@
                             }
                         </div>
                         <button type="submit" class="save mt-3">Save Changes</button>
-                    </form>
+                    </div>
                 </div>
-            </div>
+
+            </form>
+
         </div>
         <div class="form-general mt-5 mb-5">
             <div class="password-container-general">

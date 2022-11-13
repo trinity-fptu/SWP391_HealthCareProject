@@ -28,6 +28,7 @@
 </header>
 
 <section class="py-5" id="content">
+
     <div class="container">
         <div class="row ">
             <div class="col-lg-4 col-md-6 d-flex justify-content-center">
@@ -84,6 +85,7 @@
                                 </p>
                             </div>
                             <div class="container mb-4">
+
                                 <a>@Html.ActionLink("Read More","Index","Post", new {id=post3.PostId})</a>
                             </div>
                         </div>
@@ -163,7 +165,7 @@
             User u1 = Model.GetUserById(v1.UserId);
             <div class="col-md-4 volunteer d-flex justify-content-center">
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="@u1.Avatar" alt="Card image cap">
+                    <img class="card-img-top" src="~/assets/userAvatar/@u1.Avatar" alt="Card image cap">
                     <div class="card-body">
                         <p>Name: @v1.FirstName.ToUpper() @v1.LastName.ToUpper() </p>
                         <p>City: @v1.City</p>
