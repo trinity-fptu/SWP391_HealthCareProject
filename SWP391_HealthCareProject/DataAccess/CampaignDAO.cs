@@ -94,5 +94,11 @@ namespace SWP391_HealthCareProject.DataAccess
                 return model.ToList();
             
         }
+        public static Campaign? GetCampaignByPlanId(int id)
+        {
+            using var db = new BloodDonorContext();
+            var campaign = db.Campaigns.FirstOrDefault(x => x.PlanId == id);
+            return campaign;
+        }
     }
 }

@@ -92,5 +92,19 @@ namespace SWP391_HealthCareProject.DataAccess
                       select item).ToList();
             return us;
         }
+        public static Post? GetPostByCampaignId(int id)
+        {
+            using var db = new BloodDonorContext();
+            var post = db.Posts.FirstOrDefault(x => x.CampaignId == id);
+            if (post == null)
+            {
+                return null;
+            }
+            else
+            {
+                post.CampaignId = null;
+            }
+            return post;
+        }
     }
 }

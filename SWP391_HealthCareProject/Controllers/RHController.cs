@@ -234,6 +234,31 @@ namespace SWP391_HealthCareProject.Controllers
                 return View();
             }
         }
+        public ActionResult DeletePlan(int? id)
+        {
+            if (id == null) { return NotFound(); }
+            HospitalRedCrossDAO hospitalRedCrossDAO = new HospitalRedCrossDAO();
+            var plan = hospitalRedCrossDAO.GetPlansById(id.Value);
+            if (plan == null) { return NotFound(); }
+            return View(plan);
+        }
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult DeletePlan(int id)
+        {
+            try
+            {
+
+                HospitalRedCrossDAO hospitalRedCrossDAO=new HospitalRedCrossDAO();
+                hospitalRedCrossDAO.deletePlan(id);
+                return RedirectToAction("ManagePlan");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.message = ex.Message;
+                return View();
+            }
+
+        }
         public IActionResult ManageVolunteer(int id)
         {
             LoadSession();

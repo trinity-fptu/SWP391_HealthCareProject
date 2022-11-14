@@ -51,8 +51,8 @@
                                             @{
                                                 Plan plan = Model.GetPlansById(item.PlanId);
                                             }
-                                            <a class="edit" title="Edit" data-toggle="tooltip"> @Html.ActionLink("Edit","EditPlan",new {id=plan.PlanId})</a>
-                                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
+                                            <a asp-controller="RH" asp-action="EditPlan" asp-route-id="@plan.PlanId" class="edit" title="Edit" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            <a asp-controller="RH" asp-action="DeletePlan" asp-route-id="@plan.PlanId" class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 }

@@ -4,7 +4,7 @@
     ViewData["Title"] = "EditPlan";
     Layout = "~/Views/Shared/_LayoutAdminRH.cshtml";
 }
-
+<div class="container py-4">
 <h1>EditPlan</h1>
 
 <h4>Plan</h4>
@@ -43,7 +43,11 @@
                 <input asp-for="ExpectedAmount" class="form-control" />
                 <span asp-validation-for="ExpectedAmount" class="text-danger"></span>
             </div>
-            
+            <div class="form-group">
+                <label asp-for="Rhid" class="control-label"></label>
+                <input asp-for="Rhid" class="form-control" />
+                <span asp-validation-for="Rhid" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
@@ -53,6 +57,7 @@
 
 <div>
     <a asp-action="ManagePlan">Back to List</a>
+</div>
 </div>
 
 

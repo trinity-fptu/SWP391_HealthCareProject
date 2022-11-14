@@ -101,9 +101,10 @@ namespace SWP391_HealthCareProject.DataAccess
             try
             {
                 Campaign campaign = getCampaignById(id);
+                Post post = PostDAO.GetPostByCampaignId(campaign.CampaignId);
                 if (campaign != null)
                 {
-                    
+                    db.Posts.Update(post);
                     db.Campaigns.Remove(campaign);
                     db.SaveChanges();
                 }
@@ -139,7 +140,45 @@ namespace SWP391_HealthCareProject.DataAccess
                 throw new Exception(ex.Message);
             }
         }
-
+        public void deletePlan(int id)
+        {
+            using var db = new BloodDonorContext();
+            try
+            {
+                Plan plan = GetPlansById(id);
+                Campaign campaign = CampaignDAO.GetCampaignByPlanId(plan.PlanId);
+                if(campaign != null)
+                {
+                    if (plan != null)
+                    {
+                        db.Campaigns.Remove(campaign);
+                        db.Plans.Remove(plan);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        throw new Exception("Plan does not exít");
+                    }
+                }else if(campaign == null)
+                {
+                    if (plan != null)
+                    {
+                        
+                        db.Plans.Remove(plan);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        throw new Exception("Plan does not exít");
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
         public static void UpdateHR(HospitalRedCross HR)
         {
             using var db = new BloodDonorContext();
