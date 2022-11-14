@@ -6,6 +6,34 @@ namespace SWP391_HealthCareProject.Controllers
 {
     public class SignupController : Controller
     {
+
+
+        private readonly IWebHostEnvironment _hostEnvironment;
+        private readonly BloodDonorContext _db;
+
+
+        public SignupController(BloodDonorContext db, IWebHostEnvironment hostEnvironment)
+        {
+            _db = db;
+            this._hostEnvironment = hostEnvironment;
+        }
+
+        public string UploadedFile(IFormFile File)
+        {
+            string uniqueFileName = null;
+            if (File != null)
+            {
+                string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "assets/license");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + File.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    File.CopyTo(fileStream);
+                }
+            }
+            return uniqueFileName;
+        }
+
         public IActionResult Signup()
         {
             return View();
@@ -49,7 +77,7 @@ namespace SWP391_HealthCareProject.Controllers
             }
         }
 
-        public IActionResult RegisterRH(User user, string confirmedPassword, string hrAddress, string hrPhone)
+        public IActionResult RegisterRH(User user, string confirmedPassword, string hrAddress, string hrPhone, IFormFile File)
         {
             if (user.Password != confirmedPassword || SignupDAO.IsUserExist(user.UserName)
                 || HospitalRedCrossDAO.GetHRByAddress(hrAddress) == null)
@@ -72,7 +100,15 @@ namespace SWP391_HealthCareProject.Controllers
             user.Role = 2;
             SignupDAO.Register(user);
             User newUser = LoginDAO.Login(user.UserName, user.Password);
-            HospitalRedCrossAdminDAO.CreateHRAdmin(newUser, hrAddress, hrPhone);
+            HospitalRedCrossAdmin hrAdmin = new HospitalRedCrossAdmin();
+            HospitalRedCross hr = HospitalRedCrossDAO.GetHRByAddress(hrAddress);
+            hrAdmin.UserId = newUser.UserId;
+            hrAdmin.Rhid = hr.Rhid;
+            hrAdmin.FirstName = ".";
+            hrAdmin.LastName= ".";
+            string uniqueName = UploadedFile(File);
+            hrAdmin.License = uniqueName;
+            HospitalRedCrossAdminDAO.CreateHRAdmin(hrAdmin);
             return RedirectToAction("Index", "Login");
         }
     }

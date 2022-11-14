@@ -1,4 +1,4 @@
-﻿@page
+﻿@model Volunteer
 @{
     ViewBag.Title = "Manage User";
     Layout = "_LayoutAdminRH";
@@ -23,42 +23,56 @@
                 <p style="font-weight:600;color:rgb(28, 82, 145);padding:20px 20px;margin-bottom:0;">Campaign Information</p>
                 <div class="customer-label">
                     <p>Full Name:</p>
-                    <p class="left">Hoa La Canh</p>
+                    @{
+                        string fullName = $"{Model.FirstName} {Model.LastName}";
+                    }
+                    <p class="left">@fullName</p>
                 </div>
                 <div class="customer-label">
                     <p>ID Card Number:</p>
-                    <p class="left">030202001234</p>
+                    <p class="left">@Model.IdCardNumber</p>
                 </div>
                 <div class="customer-label">
                     <p>Date of Birth:</p>
-                    <p class="left">2/2/2001</p>
+                    <p class="left">@Model.Dob.ToString("dd/MM/yyyy")</p>
                 </div>
                 <div class="customer-label">
                     <p>Gender:</p>
-                    <p class="left">Male</p>
+                    @if (Model.Gender)
+                    {
+                        <p class="left">
+                            Male
+                        </p>
+                    }
+                    else
+                    {
+                        <p class="left">
+                            Female
+                        </p>
+                    }
+
                 </div>
                 <div class="customer-label">
                     <p>Blood Group:</p>
-                    <p class="left">AB</p>
-                </div>
-                <div class="customer-label">
-                    <p>Last Donate Date:</p>
-                    <p class="left">5/6/2022</p>
+                    <p class="left">@Model.BloodType</p>
                 </div>
             </div>
             <div class="appointment-body" style="padding:0;">
                 <p style="font-weight:600;color:rgb(28, 82, 145);padding:20px 20px;margin-bottom:0;">Contact Information</p>
                 <div class="customer-label">
                     <p>Address:</p>
-                    <p class="left">s3.01 vinhome, Phường Long Thạnh Mỹ, Quận 9, Tp Hồ Chí Minh</p>
+                    <p class="left">@Model.Address</p>
                 </div>
                 <div class="customer-label">
                     <p>Phone Number:</p>
-                    <p class="left">123456789</p>
+                    <p class="left">@Model.Phone</p>
                 </div>
                 <div class="customer-label">
                     <p>Email:</p>
-                    <p class="left">hainam@gmail.com</p>
+                    @{
+                        User u = ViewBag.User;
+                    }
+                    <p class="left">@u.Email</p>
                 </div>
             </div>
         </div>

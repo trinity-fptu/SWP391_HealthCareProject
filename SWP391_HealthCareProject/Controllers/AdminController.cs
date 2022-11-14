@@ -89,11 +89,8 @@ namespace SWP391_HealthCareProject.Controllers
                 {
                     return NotFound();
                 }
-                if (ModelState.IsValid)
-                {
                     AdminDAO adminDAO = new AdminDAO();
                     adminDAO.updateUser(user);
-                }
                 return RedirectToAction("Index", "Admin");
             }
             catch(Exception ex)

@@ -1,0 +1,73 @@
+﻿@using SWP391_HealthCareProject.DataAccess;
+@model ParticipateDAO
+@{
+    ViewBag.Title = "Volunteer List";
+    Layout = "_LayoutAdminRH";
+}
+
+<div class="container pt-3">
+
+
+
+    <!-- Page Heading -->
+    <div class=" mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Volunteer List</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background-color: #f9f8f8;padding:10px 0;">
+                <li class="breadcrumb-item"><a href="/RH">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Volunteer List</li>
+            </ol>
+        </nav>
+    </div>
+
+
+    <div class="mt-5">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold ">Volunteer List</h6>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div class="table-wrapper">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Last Name</th>
+                                    <th>First Name</th>
+                                    <th>Address</th>
+                                    <th>City</th>
+                                    <th>Phone</th>
+                                    <th>DOB</th>
+                                    <th>Blood Type</th>
+                                    <th>Attended</th>
+                                    <th>ID Card Number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    List<Participate> participate = Model.GetParticipatesByCampaignId(ViewBag.CampaignId);
+                                    foreach (var item in Model.GetVolunteerListInParticipate(participate.Select(x => x.VolunteerId).FirstOrDefault()))
+                                    {
+                                        <tr>
+                                            <th>@item.LastName</th>
+                                            <th>@item.FirstName</th>
+                                            <th>@item.Address</th>
+                                            <th>@item.City</th>
+                                            <th>@item.Phone</th>
+                                            <th>@item.Dob.ToString("dd/MM/yyyy")</th>
+                                            <th>@item.BloodType</th>
+                                            <th>@item.Attended</th>
+                                            <th>@item.IdCardNumber</th>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -21,7 +21,7 @@ namespace SWP391_HealthCareProject.Controllers
             this._hostEnvironment = hostEnvironment;
         }
 
-        private string UploadedFile(User user)
+        public string UploadedFile(User user)
         {
             string uniqueFileName = null;
             if(user.ImageFile != null)

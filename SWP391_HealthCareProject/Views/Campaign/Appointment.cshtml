@@ -24,6 +24,7 @@
     string volunteerBlood = volunteerInfo.BloodType;
     string volunteerAddress = volunteerInfo.Address;
     string volunteerPhone = volunteerInfo.Phone;
+    User user = Model.GetUserByVolunteerId(volunteerInfo.UserId);
 }
 <div class="container">
     <div class="row d-flex justify-content-center ">
@@ -50,10 +51,6 @@
                     <p>Blood Group:</p>
                     <p class="left">@volunteerBlood</p>
                 </div>
-                <div class="customer-label">
-                    <p>Last Donate Date:</p>
-                    <p class="left">5/6/2022</p>
-                </div>
             </div>
             <div class="appointment-body" style="padding:0;">
                 <p style="font-weight:600;color:rgb(28, 82, 145);padding:20px 20px;margin-bottom:0;">Contact Information</p>
@@ -67,15 +64,17 @@
                 </div>
                 <div class="customer-label">
                     <p>Email:</p>
-                    <p class="left">hainam@gmail.com</p>
+                    <p class="left">@user.Email</p>
                 </div>
+                
             </div>
+            <div class="">
+                    <a href="javascript:history.back()" type="button" class="btn continue-btn my-5">Back</a>
+                    <a href="/Campaign/Appointment" type="button" class="btn continue-btn my-5 mx-2">Home</a>
+                </div>
         </div>
-        
+
     </div>
 
-    <div class="d-flex justify-content-start">
-        <a href="javascript:history.back()" type="button" class="btn continue-btn my-5">Back</a>
-        <a href="/Campaign/Appointment" type="button" class="btn continue-btn my-5 mx-2">Home</a>
-    </div>
+
 </div>

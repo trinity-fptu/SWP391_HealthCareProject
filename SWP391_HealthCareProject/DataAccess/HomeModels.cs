@@ -13,6 +13,8 @@ namespace SWP391_HealthCareProject.DataAccess
             return p;
         }
 
+        public Post GetPostByCampaignId(int id) => bloodDonorContext.Posts.Where(x => x.CampaignId == id).FirstOrDefault();
+
         public Campaign GetCampaignById(int id)
         {
             Campaign c = bloodDonorContext.Campaigns.Where(x => x.CampaignId == id).FirstOrDefault();
@@ -26,9 +28,32 @@ namespace SWP391_HealthCareProject.DataAccess
             Volunteer c = bloodDonorContext.Volunteers.Where(x => x.VolunteerId == id).FirstOrDefault();
             return c;
         }
+        public List<Campaign> getAllCampaign()
+        {
+            using var db = new BloodDonorContext();
+            var us = db.Campaigns.ToList();
+            return us;
+        }
+        public List<Post> getAllPost()
+        {
+            using var db = new BloodDonorContext();
+            var us = (from item in db.Posts
+                      select item).ToList();
+            return us;
+        }
+        public List<Plan> getAllPlan()
+        {
+            using var db = new BloodDonorContext();
+            var us = (from item in db.Plans
+                      select item).ToList();
+            return us;
+        }
+        public List<Plan> PlanViewModel { get; set; }
 
         public List<Campaign> GetCampaign() => bloodDonorContext.Campaigns.ToList();
         public List<Post> GetPost() => bloodDonorContext.Posts.ToList();
+
+
 
         public List<User> UserViewModel { get; set; }
 
