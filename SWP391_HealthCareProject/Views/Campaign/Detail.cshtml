@@ -14,7 +14,7 @@
     <span style="font-family:'Segoe UI light'">From hospital/red cross</span>
     <br />
     <form asp-action="Register">
-        <p class="mt-5" style="text-align:center;">
+        <p class="mt-3" style="text-align:center;">
             Name: @Model.Campaign.Name
             <input type="hidden" asp-for="Campaign.CampaignId" value="@Model.Campaign.CampaignId" />
         </p>
@@ -35,7 +35,7 @@
         }
         @if (p != null)
         {
-            <img src="@p.Img" class="img-responsive mt-4" style="width: 100%;object-fit: contain;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));" />
+            <img src="@p.Img" class="img-responsive mt-4" style="width: 50%;object-fit: contain;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));" />
             var paragraphMarker = Environment.NewLine + Environment.NewLine;
             var paragraphs = @p.Description.Split(new[] { paragraphMarker },
             StringSplitOptions.RemoveEmptyEntries);
@@ -49,9 +49,18 @@
                 </p>
             }
         }
-
-
+        @if (ViewBag.VolunteerId is not null)
+        {
+        <input type="hidden" asp-for="Campaign.CampaignId" value="@Model.Campaign.CampaignId" />
+        <input type="hidden" asp-for="Participate.VolunteerId" value="@ViewBag.VolunteerId" />
+            <input type="submit" asp-controller="Campaign" asp-action="UnenrollCampaign" class="continue-btn my-5" value="Unenroll" />
+        }else{
         <a>@Html.ActionLink("Register Now","Register","Campaign", new {id=@Model.Campaign.CampaignId},new { @class = "btn continue-btn my-5" })</a>
+
+        }
+
+
+
 
     </form>
 
