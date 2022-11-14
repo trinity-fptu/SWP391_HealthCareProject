@@ -13,10 +13,10 @@
     <h1 style="font-weight:600;font-size:3rem;">Campaign Information</h1>
     <span style="font-family:'Segoe UI light'">From hospital/red cross</span>
     <br />
-    <form asp-action="Register">
+    <form>
         <p class="mt-5">
             Name: @Model.Campaign.Name
-            <input type="hidden" asp-for="Campaign.CampaignId" value="@Model.Campaign.CampaignId" />
+            
         </p>
         <p>
             Start Date: @Model.Campaign.StartDate
@@ -46,7 +46,15 @@
             }
             else
             {
-                <a>@Html.ActionLink("Read More","Register","Campaign", new {id=@Model.Campaign.CampaignId},new { @class = "btn continue-btn my-5" })</a>
+                if (ViewBag.VolunteerId is not null)
+                {
+                    <input type="hidden" asp-for="Campaign.CampaignId" value="@Model.Campaign.CampaignId" />
+                    <input type="hidden" asp-for="Participate.VolunteerId" value="@ViewBag.VolunteerId"  />
+                    <input type="submit" asp-controller="Campaign" asp-action="UnenrollCampaign" value="Unenroll" />
+                }else{
+                    <a>@Html.ActionLink("Read More","Register","Campaign", new {id=@Model.Campaign.CampaignId},new { @class = "btn continue-btn my-5" })</a>
+                }
+                
             }
         }
     </form>
