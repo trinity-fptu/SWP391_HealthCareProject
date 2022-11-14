@@ -22,7 +22,11 @@ namespace SWP391_HealthCareProject.DataAccess
             }
         }
 
-        public List<Participate> GetParticipatesByCampaignId(int id) => _db.Participates.Where(x => x.CampaignId == id).ToList();
+        public static List<Participate> GetParticipatesByCampaignId(int id)
+        {   
+            using var db= new BloodDonorContext();
+            return db.Participates.Where(x => x.CampaignId == id).ToList();
+        }
 
         public List<Volunteer> GetVolunteerListInParticipate(int id) => _db.Volunteers.Where(x => x.VolunteerId == id).ToList();
 
@@ -46,6 +50,21 @@ namespace SWP391_HealthCareProject.DataAccess
             {
                 db.Participates.Remove(participate);
                 db.SaveChanges();
+            }
+        }
+        public static void RemoveParticipate(int campaignId)
+        {
+            using var db = new BloodDonorContext();
+            var participates = GetParticipatesByCampaignId(campaignId);
+            db.Participates.RemoveRange(participates);
+            db.SaveChanges();
+        }
+        public static void RemoveParticipate(List<int> removedCampaignId)
+        {
+            using var db = new BloodDonorContext();
+            foreach(int id in removedCampaignId)
+            {
+                RemoveParticipate(id);
             }
         }
 

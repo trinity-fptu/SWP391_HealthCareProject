@@ -71,6 +71,22 @@ namespace SWP391_HealthCareProject.Controllers
             return View(us);
         }
 
+
+        public IActionResult RegisteredCampaign()
+        {
+            UserProfileModels us = new UserProfileModels();
+            if (HttpContext.Session.GetObjectFromJson<User>("User") != null)
+            {
+                var userInfo = HttpContext.Session.GetObjectFromJson<User>("User");
+                var volunteer = VolunteerDAO.GetVolunteerByUserId(userInfo.UserId);
+                string fullName = volunteer.LastName + " " + volunteer.FirstName;
+                ViewBag.FullName = fullName;
+                ViewBag.UserId = userInfo.UserId;
+                ViewBag.VolunteerId = volunteer.VolunteerId;
+            }
+            return View(us);
+        }
+
         [HttpPost]
         public IActionResult ChangePassword(string oldPwd, string newPwd)
         {

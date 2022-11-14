@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "ShowSearch";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    
+
 }
 
 <section class="py-5" id="content">
@@ -11,22 +11,19 @@
         <div class="row">
             @foreach (var item in Model)
             {
-                  <div class="card " style="width: 18rem;">
-                        <img class="card-img-top"
-                                 src="">
-                        <div class="card-body">
-                                    <h1 class="card-title">@item.Name</h1>
-                                    <p class="card-text">
-                                        Place: @item.Province<br/>
-                                        Start Date: @item.StartDate.ToString("dd/MM/yyyy")
-                                    </p>
-                        </div>
-                         <div class="container mb-4">
-                                    <a href="#">Register Now</a>
-                                    <a href="#">Read More</a>
-                          </div>
-                 </div>
+                <div class="card " style="width: 18rem;">
+                    <div class="card-body mt-3">
+                        <h1 class="card-title">@item.Name</h1>
+                        <p class="card-text">
+                            Place: @item.Province<br />
+                            Start Date: @item.StartDate.ToString("dd/MM/yyyy")
+                        </p>
+                    </div>
+                    <div class="container mb-4">
+                        <a>@Html.ActionLink("Read More","Detail","Campaign",new {id=item.CampaignId}, new {@style = "color: #EE2E2E;"})</a>
+                    </div>
+                </div>
             }
-        </div>    
+        </div>
     </div>
 </section>

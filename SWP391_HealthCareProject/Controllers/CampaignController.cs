@@ -20,6 +20,8 @@ namespace SWP391_HealthCareProject.Controllers
                 ViewBag.Volunteer = VolunteerDAO.GetVolunteerByUserId(userInfo.UserId);
             }
         }
+
+        [RequestAuthentication]
         public IActionResult Detail(int id)
         {
             LoadSession();
@@ -60,7 +62,10 @@ namespace SWP391_HealthCareProject.Controllers
             var model = CampaignDAO.searchCampaign(date, location);
             if (model.Count == 0) { return RedirectToAction("ErrorCampaign"); }
             else
+            {
                 return View(model);
+
+            }
         }
 
         [RequestAuthentication]
@@ -80,7 +85,9 @@ namespace SWP391_HealthCareProject.Controllers
 
         public IActionResult UnenrollCampaign(CampaignParticipationViewModel participateDetails)
         {
+            LoadSession();
             ParticipateDAO.RemoveParticipate(participateDetails.Participate.VolunteerId, participateDetails.Campaign.CampaignId);
+            CampaignDAO.ReduceVolunteerNumber(participateDetails.Campaign.CampaignId);
             var cD = CampaignDAO.getCampaignById(participateDetails.Campaign.CampaignId);
             participateDetails.Campaign = cD;
             return View("Detail", participateDetails);

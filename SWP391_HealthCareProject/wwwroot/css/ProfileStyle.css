@@ -80,9 +80,43 @@ body {
     filter: drop-shadow(2px 4px 6px gray);
     margin-bottom: 10px;
 }
+.registered-campaign-img {
+    width: 50%;
+    height:300px;
+    object-fit:cover;
+    filter: drop-shadow(2px 4px 6px gray);
+    margin-bottom: 10px;
+}
+
+.achieve-wrap2 {
+    overflow: hidden;
+    opacity: 1;
+    transition: all 0.25s ease;
+}
+
+achieve-info2{
+    width:100px;
+    transition:0.5s;
+}
+
+.achieve-info2:hover {
+    left:10px;
+}
+
 
 .faded {
     opacity: 0.75;
+}
+
+.faded2 {
+    font-size: 20px;
+    font-family:'Segoe UI';
+}
+
+
+.bold2 {
+    font-size: 30px;
+    font-weight: bold;
 }
 
 .bold{

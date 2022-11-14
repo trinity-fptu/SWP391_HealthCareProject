@@ -63,7 +63,7 @@ namespace SWP391_HealthCareProject.Controllers
             HospitalRedCrossAdmin hrAd = HospitalRedCrossAdminDAO.GetHRAdrByUserId(userInfo.UserId);
             post.Rhaid = hrAd.Rhaid;
             // Save uploaded image.
-            string path = @"wwwroot\assets\postImg";
+            string path = @"~\postImg";
             Post? lastPost = PostDAO.GetLastRecord();
             string savedName = $"PostPic{1}";
             if (lastPost != null)

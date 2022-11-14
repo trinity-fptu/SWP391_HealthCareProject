@@ -1,0 +1,86 @@
+﻿@using SWP391_HealthCareProject.DataAccess;
+@model UserProfileModels
+@{
+    ViewData["Title"] = "Registered Campaign";
+    Layout = "_LayoutProfile";
+}
+
+<div class="container mt-5 mb-5 info-form-achievement tabcontent" id="Campaign">
+    
+    @{
+        Volunteer volunteer = Model.GetVolunteerById(ViewBag.VolunteerId);
+        List<Participate> participate = Model.GetParticipatesByVolunteerId(volunteer.VolunteerId);
+        var campaigns = Model.GetAllCampaigns()
+        .Where(t => participate.Select(x => x.CampaignId).ToList().Contains(t.CampaignId));
+    }
+    @if (campaigns.Count() == 0)
+    {
+        <div class="my-5" style="text-align:center">
+            <h1 style="font-weight:600;font-size:3rem;">You Have not registered in any campaign</h1>
+            <br>
+            <span style="font-family:'Segoe UI light'">Participate a campaign and it will shown below</span>
+        </div>
+    }
+    else
+    {
+       <h1 style="font-weight:600;font-size:3rem;">Campaign You Have Registered</h1>
+    <span style="font-family:'Segoe UI light'">Remind for you</span>
+    <div class="py-3"></div>
+
+        <div class="row">
+            @{
+            }
+            @foreach (var item in campaigns)
+            {
+                if (!item.Status)
+                {
+                    Post p = Model.GetPostByCampaign(item.CampaignId);
+
+                    <div class="col-md-4 d-flex align-items-center achieve-wrap">
+                        @if (@p != null)
+                        {
+                            <img src="@p.Img" class="achieve-custom mr-3" />
+                        }
+                        else
+                        {
+                            <img src="https://img.freepik.com/premium-vector/every-blood-donor-is-hero-blood-donation-quote-typography-quote-lettering_558159-594.jpg?w=2000"
+                 class="achieve-custom mr-3" />
+                        }
+                        <div class="achieve-info">
+                            <div class="size-18 bold">@item.Name</div>
+                            <p class="m-0 faded">@item.Province</p>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    }
+    <div class="row">
+        @foreach (var item in campaigns)
+        {
+            if (item.Status)
+            {
+                Post p = Model.GetPostByCampaign(item.CampaignId);
+                Participate participateCampaign = Model.GetParticipateByCampaignId(item.CampaignId);
+
+                <div class="col-md-12 d-flex align-items-center achieve-wrap2">
+                    @if (@p != null)
+                    {
+                        <img src="@p.Img" class="registered-campaign-img mr-3" />
+                    }
+                    else
+                    {
+                        <img src="https://img.freepik.com/premium-vector/every-blood-donor-is-hero-blood-donation-quote-typography-quote-lettering_558159-594.jpg?w=2000"
+                 class="registered-campaign-img mr-5" />
+                    }
+                    <div class="achieve-info2">
+                        <a>@Html.ActionLink(@item.Name,"Detail","Campaign",new {id=item.CampaignId}, new { @class = "size-18 bold2" })</a>
+                        <p class="m-0 faded2">@item.Province</p>
+                        <p class="m-0 faded2">@participateCampaign.Date</p>
+                        <p class="m-0 faded2">@participateCampaign.Location</p>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

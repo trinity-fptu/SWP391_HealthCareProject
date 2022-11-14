@@ -6,7 +6,11 @@ namespace SWP391_HealthCareProject
     {
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            CampaignDAO.UpdateStatus();
+            List<int>? removedCampaignId = CampaignDAO.UpdateStatus();
+            if(removedCampaignId is not null)
+            {
+                ParticipateDAO.RemoveParticipate(removedCampaignId);
+            }
             return Task.CompletedTask;
         }
 

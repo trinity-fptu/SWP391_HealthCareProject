@@ -33,10 +33,11 @@ namespace SWP391_HealthCareProject.DataAccess
                 Console.WriteLine(ex.Message);
             }
         }
-        public static void UpdateStatus()
+        public static void ReduceVolunteerNumber(int id)
         {
             using var db = new BloodDonorContext();
-            db.Campaigns.Where(c => DateTime.Compare(DateTime.Now, c.EndDate) > 0).ToList().ForEach(c => c.Status = false);
+            var updatedRecord = db.Campaigns.Find(id);
+            updatedRecord.NumOfVolunteer -= 1;
             try
             {
                 db.SaveChanges();
@@ -45,6 +46,31 @@ namespace SWP391_HealthCareProject.DataAccess
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+        public static List<int>? UpdateStatus()
+        {
+            using var db = new BloodDonorContext();
+            var updatedCampaigns = db.Campaigns.Where(c => DateTime.Compare(DateTime.Now, c.EndDate) > 0).ToList();
+            if (updatedCampaigns.Count != 0)
+            {
+                db.Campaigns.Where(c => DateTime.Compare(DateTime.Now, c.EndDate) > 0).ToList().ForEach(c => c.Status = false);
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                List<int> removedCampaignId = new();
+                foreach (var c in updatedCampaigns)
+                {
+                    removedCampaignId.Add(c.CampaignId);
+                }
+                return removedCampaignId;
+            }
+            return null;
+            
         }
         public List<Campaign> getAllCampaign()
         {
