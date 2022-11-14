@@ -23,7 +23,13 @@ namespace SWP391_HealthCareProject.Controllers
         public IActionResult Detail(int id)
         {
             LoadSession();
+            var volunteerInfo = HttpContext.Session.GetObjectFromJson<Volunteer>("Volunteer");
             var cD = CampaignDAO.getCampaignById(id);
+            var participate = ParticipateDAO.GetParticipate(volunteerInfo.VolunteerId, id);
+            if(participate != null)
+            {
+                ViewBag.VolunteerId = participate.VolunteerId;
+            }
             CampaignParticipationViewModel participateDetails = new CampaignParticipationViewModel()
             {
                 Campaign = cD
@@ -70,6 +76,14 @@ namespace SWP391_HealthCareProject.Controllers
             CampaignDAO.UpdateCampaign(participateDetails.Participate.CampaignId);
             ViewBag.Volunteer = volunteer;
             return View(participateDetails);
+        }
+
+        public IActionResult UnenrollCampaign(CampaignParticipationViewModel participateDetails)
+        {
+            ParticipateDAO.RemoveParticipate(participateDetails.Participate.VolunteerId, participateDetails.Campaign.CampaignId);
+            var cD = CampaignDAO.getCampaignById(participateDetails.Campaign.CampaignId);
+            participateDetails.Campaign = cD;
+            return View("Detail", participateDetails);
         }
 
 

@@ -1,4 +1,5 @@
 ﻿using SWP391_HealthCareProject.Models;
+using System.Collections.Generic;
 
 namespace SWP391_HealthCareProject.DataAccess
 {
@@ -30,6 +31,22 @@ namespace SWP391_HealthCareProject.DataAccess
         public Volunteer GetVolunteerById(int id) => _db.Volunteers.Where(x => x.VolunteerId == id).FirstOrDefault();
 
         public Campaign GetCampaignById(int id) => _db.Campaigns.Where(x => x.CampaignId == id).FirstOrDefault();
+        public static Participate? GetParticipate(int volunteerId, int campaignId)
+        {
+            using var db = new BloodDonorContext();
+            var participate = db.Participates.SingleOrDefault(p => p.VolunteerId == volunteerId && p.CampaignId == campaignId);
+            return participate;
+        }
 
+        public static void RemoveParticipate(int volunteerId, int campaignId)
+        {
+            using var db = new BloodDonorContext();
+            var participate = GetParticipate(volunteerId, campaignId);
+            if (participate != null)
+            {
+                db.Participates.Remove(participate);
+                db.SaveChanges();
+            }
+        }
     }
 }
