@@ -81,7 +81,8 @@ namespace SWP391_HealthCareProject.Controllers
         {
             LoadSession();
             if (id == null) { return NotFound(); }
-            var post = PostDAO.GetPostById(id.Value);
+            HospitalRedCrossDAO rhDao = new HospitalRedCrossDAO();
+            var post = rhDao.GetPostById(id.Value);
             if ( post == null)
             {
                 return NotFound();
@@ -99,7 +100,9 @@ namespace SWP391_HealthCareProject.Controllers
                 {
                     return NotFound();
                 }
-                PostDAO.UpdatePostById(id);
+
+                HospitalRedCrossDAO RHDAO = new HospitalRedCrossDAO();
+                RHDAO.UpdatePostById(post);
 
                 return RedirectToAction("ManagePost");
             }
@@ -109,10 +112,32 @@ namespace SWP391_HealthCareProject.Controllers
                 return View();
             }
         }
-        public IActionResult DeletePost(int postId)
+        public ActionResult DeletePost(int? id)
         {
-            PostDAO.DeletePostById(postId);
-            return RedirectToAction("ManagePost");
+            LoadSession();
+            if (id == null) { return NotFound(); }
+            HospitalRedCrossDAO RHDAO = new HospitalRedCrossDAO();
+            var post = RHDAO.GetPostById(id.Value);
+            if (post == null) { return NotFound(); }
+            return View(post);
+        }
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult DeletePost(int id)
+        {
+
+            try
+            {
+
+                HospitalRedCrossDAO RHDAO = new HospitalRedCrossDAO();
+                RHDAO.deletePost(id);
+                return RedirectToAction("ManagePost");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.message = ex.Message;
+                return View();
+            }
+
         }
 
         public IActionResult ManageCampaign()
@@ -174,7 +199,41 @@ namespace SWP391_HealthCareProject.Controllers
             LoadSession();
             return View();
         }
+        public ActionResult EditPlan(int? id)
+        {
+            LoadSession();
+            if (id == null) { return NotFound(); }
+            HospitalRedCrossDAO RHDAO = new HospitalRedCrossDAO();
+            var plan = RHDAO.GetPlansById(id.Value);
+            if (plan == null)
+            {
+                return NotFound();
+            }
+            return View(plan);
+        }
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult EditPlan(int id, Plan plan)
+        {
 
+
+            try
+            {
+                if (id != plan.PlanId)
+                {
+                    return NotFound();
+                }
+
+                HospitalRedCrossDAO RHDAO = new HospitalRedCrossDAO();
+                RHDAO.UpdatePlanById(plan);
+
+                return RedirectToAction("ManagePlan", "RH");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.message = ex.Message;
+                return View();
+            }
+        }
         public IActionResult ManageVolunteer(int id)
         {
             LoadSession();
@@ -232,7 +291,7 @@ namespace SWP391_HealthCareProject.Controllers
                 return View();
             }
         }
-        public ActionResult Delete(int? id)
+        public ActionResult DeleteCampaign(int? id)
         {
             LoadSession();
             if (id == null) { return NotFound(); }
@@ -242,7 +301,7 @@ namespace SWP391_HealthCareProject.Controllers
             return View(campaign);
         }
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Delete(int id)
+        public ActionResult DeleteCampaign(int id)
         {
 
             try
