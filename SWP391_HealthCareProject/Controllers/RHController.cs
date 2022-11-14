@@ -2,6 +2,8 @@
 using SWP391_HealthCareProject.DataAccess;
 using SWP391_HealthCareProject.Filters;
 using SWP391_HealthCareProject.Models;
+using System.Net;
+using System.Net.Mail;
 
 namespace SWP391_HealthCareProject.Controllers
 {
@@ -34,12 +36,12 @@ namespace SWP391_HealthCareProject.Controllers
             HomeModels homeModels = new HomeModels();
             homeModels.PostViewModel = postList;
             homeModels.CampaignViewModel = campaignList;
-            
+
             return View(homeModels);
 
 
 
-        
+
         }
 
         public IActionResult ManagePost()
@@ -69,7 +71,7 @@ namespace SWP391_HealthCareProject.Controllers
             if (lastPost != null)
             {
                 savedName = $"PostPic{lastPost.PostId + 1}";
-            }         
+            }
             string uploadFilepath = postImage.SaveUploadedFile(path, savedName);
             // Set filepath for Img attribute.
             post.Img = uploadFilepath;
@@ -83,7 +85,7 @@ namespace SWP391_HealthCareProject.Controllers
             if (id == null) { return NotFound(); }
             HospitalRedCrossDAO rhDao = new HospitalRedCrossDAO();
             var post = rhDao.GetPostById(id.Value);
-            if ( post == null)
+            if (post == null)
             {
                 return NotFound();
             }
@@ -159,7 +161,7 @@ namespace SWP391_HealthCareProject.Controllers
         {
             LoadSession();
             TimeSpan duration = new TimeSpan(30, 0, 0, 0);
-            if(DateTime.Compare(campaign.StartDate.Add(duration),campaign.EndDate) > 0)
+            if (DateTime.Compare(campaign.StartDate.Add(duration), campaign.EndDate) > 0)
             {
                 ModelState.AddModelError("Date error", "End date must be at least 30 days after start date!");
                 var rhaInfo = HttpContext.Session.GetObjectFromJson<HospitalRedCrossAdmin>("HRAdmin");
@@ -174,16 +176,36 @@ namespace SWP391_HealthCareProject.Controllers
                 int planId = int.Parse(splittedPlan[1]);
                 campaign.PlanId = planId;
                 CampaignDAO.AddCampaign(campaign);
+
+
+                MailMessage mail = new MailMessage();
+                    mail.To.Add("lnphuc2006@gmail.com");
+                    mail.To.Add("machaidangms@gmail.com");
+                mail.To.Add("nguyenvuongbach933@gmail.com");
+                mail.From = new MailAddress("phamtuancuonghg@gmail.com");
+                mail.Subject = "Blood Donor Campaign";
+                mail.Body = "A new campaign Has started, join now!";
+                mail.IsBodyHtml = true;
+
+                SmtpClient smtp = new SmtpClient();
+                smtp.Port = 587;
+                smtp.EnableSsl= true;
+                smtp.UseDefaultCredentials = false;
+                smtp.Host = "smtp.gmail.com";
+                smtp.Credentials = new System.Net.NetworkCredential("phamtuancuonghg@gmail.com", "evqrvqurandnfffo");
+                smtp.Send(mail);
+
+
                 return RedirectToAction("ManageCampaign");
             }
-            
+
         }
 
         public IActionResult ListVolunteerInOneCampaign(int id)
         {
             LoadSession();
             ParticipateDAO participateModel = new ParticipateDAO();
-            ViewBag.CampaignId = id; 
+            ViewBag.CampaignId = id;
             return View(participateModel);
         }
 
@@ -269,6 +291,18 @@ namespace SWP391_HealthCareProject.Controllers
             ViewBag.User = user;
             return View(volunteer);
         }
+
+
+        public IActionResult EndCampaign(int id)
+        {
+            Campaign campaign = CampaignDAO.getCampaignById(id);
+            campaign.EndDate = DateTime.Now;
+            campaign.Status = false;
+            HospitalRedCrossDAO RHDAO = new HospitalRedCrossDAO();
+            RHDAO.updateCampaign(campaign);
+            return RedirectToAction("Index", "RH");
+        }
+
         public ActionResult EditCampaign(int? id)
         {
             LoadSession();
@@ -284,7 +318,7 @@ namespace SWP391_HealthCareProject.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult EditCampaign(int id, Campaign campaign)
         {
-            
+
 
             try
             {
@@ -292,10 +326,10 @@ namespace SWP391_HealthCareProject.Controllers
                 {
                     return NotFound();
                 }
-                
-                    HospitalRedCrossDAO RHDAO = new HospitalRedCrossDAO();
-                    RHDAO.updateCampaign(campaign);
-                
+
+                HospitalRedCrossDAO RHDAO = new HospitalRedCrossDAO();
+                RHDAO.updateCampaign(campaign);
+
                 return RedirectToAction("Index", "RH");
             }
             catch (Exception ex)

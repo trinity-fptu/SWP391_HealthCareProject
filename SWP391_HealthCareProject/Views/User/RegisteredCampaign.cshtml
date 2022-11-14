@@ -6,12 +6,12 @@
 }
 
 <div class="container mt-5 mb-5 info-form-achievement tabcontent" id="Campaign">
-    
+
     @{
         Volunteer volunteer = Model.GetVolunteerById(ViewBag.VolunteerId);
         List<Participate> participate = Model.GetParticipatesByVolunteerId(volunteer.VolunteerId);
         var campaigns = Model.GetAllCampaigns()
-        .Where(t => participate.Select(x => x.CampaignId).ToList().Contains(t.CampaignId));
+        .Where(t => participate.Select(x => x.CampaignId).ToList().Contains(t.CampaignId) && t.Status == true);
     }
     @if (campaigns.Count() == 0)
     {
@@ -23,42 +23,11 @@
     }
     else
     {
-       <h1 style="font-weight:600;font-size:3rem;">Campaign You Have Registered</h1>
-    <span style="font-family:'Segoe UI light'">Remind for you</span>
-    <div class="py-3"></div>
-
+        <h1 style="font-weight:600;font-size:3rem;">Campaign You Have Registered</h1>
+        <span style="font-family:'Segoe UI light'">Remind for you</span>
+        <div class="py-3"></div>
         <div class="row">
-            @{
-            }
             @foreach (var item in campaigns)
-            {
-                if (!item.Status)
-                {
-                    Post p = Model.GetPostByCampaign(item.CampaignId);
-
-                    <div class="col-md-4 d-flex align-items-center achieve-wrap">
-                        @if (@p != null)
-                        {
-                            <img src="@p.Img" class="achieve-custom mr-3" />
-                        }
-                        else
-                        {
-                            <img src="https://img.freepik.com/premium-vector/every-blood-donor-is-hero-blood-donation-quote-typography-quote-lettering_558159-594.jpg?w=2000"
-                 class="achieve-custom mr-3" />
-                        }
-                        <div class="achieve-info">
-                            <div class="size-18 bold">@item.Name</div>
-                            <p class="m-0 faded">@item.Province</p>
-                        </div>
-                    </div>
-                }
-            }
-        </div>
-    }
-    <div class="row">
-        @foreach (var item in campaigns)
-        {
-            if (item.Status)
             {
                 Post p = Model.GetPostByCampaign(item.CampaignId);
                 Participate participateCampaign = Model.GetParticipateByCampaignId(item.CampaignId);
@@ -81,6 +50,7 @@
                     </div>
                 </div>
             }
-        }
-    </div>
+        </div>
+    }
+
 </div>
