@@ -45,8 +45,7 @@
                                         <tr>
                                             <td>@post.Title</td>
                                             <td>
-                                                <a class="add" title="Add" data-toggle="tooltip"><i class="fa-solid fa-plus"></i></a>
-                                                <a class="edit" title="Edit" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                <a asp-controller="RH" asp-action="EditPost" asp-route-id="@post.PostId" class="edit" title="Edit" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
                                                 <a asp-controller="RH" asp-action="DeletePost" asp-route-postId="@post.PostId" class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
                                             </td>
                                         </tr>

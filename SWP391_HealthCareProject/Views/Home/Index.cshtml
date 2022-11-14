@@ -8,7 +8,7 @@
 @{
     if (ViewBag.User != null)
     {
-        Volunteer currentVolunteer = Model.GetVolunteerById(ViewBag.UserId);
+        Volunteer currentVolunteer = Model.GetVolunteerByUserId(ViewBag.UserId);
         if (currentVolunteer.FirstName == null)
         {
             <script type="text/javascript">
@@ -177,11 +177,11 @@
     <hr width="150px" />
     <div class="row">
         @{
-            Volunteer v1 = Model.GetVolunteerById(1);
+            Volunteer v1 = Model.GetVolunteerById(10);
             User u1 = Model.GetUserById(v1.UserId);
             <div class="col-md-4 volunteer d-flex justify-content-center">
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="~/assets/userAvatar/@u1.Avatar" alt="Card image cap">
+                    <img class="card-img-top" src="@u1.Avatar" alt="Card image cap">
                     <div class="card-body">
                         <p>Name: @v1.FirstName.ToUpper() @v1.LastName.ToUpper() </p>
                         <p>City: @v1.City</p>

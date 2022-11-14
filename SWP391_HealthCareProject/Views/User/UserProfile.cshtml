@@ -8,6 +8,7 @@
     <ul class="nav tab">
         <li class="nav-item"><button id="defaultOpen" class="tablinks" onclick="openTab(event, 'General')"><i class="fa-solid fa-gear"></i> General</button></li>
         <li class="nav-item"><button class="tablinks" onclick="openTab(event, 'Details')"><i class="fa-solid fa-circle-info"></i> Details</button></li>
+        <li class="nav-item"><button class="tablinks" onclick="openTab(event, 'Campaign')"><i class="fa-solid fa-flag"></i> Campaign</button></li>
         <li class="nav-item"><button class="tablinks" onclick="openTab(event, 'Achievement')"><i class="fa-solid fa-trophy"></i> Achievement</button></li>
     </ul>
 </div>
@@ -239,8 +240,8 @@
         else if (volunteer.Attended > 3)
         {
             <div class="col-md-4 d-flex align-items-center achieve-wrap">
-                <img src="~/assets/achieve2.png" class="achieve-custom" />
-                <div class="achieve-info">
+                <img src="~/assets/achieve2.png" class="achieve-custom " />
+                <div class="achieve-info ">
                     <div class="size-18 bold">Kindness</div>
                     <p class="m-0 faded">To those who have shown to be truly kind</p>
                 </div>
@@ -259,6 +260,61 @@
 
     </div>
 </div>
+
+
+<div class="container mt-5 mb-5 info-form-achievement tabcontent" id="Campaign">
+    @{
+        List<Participate> participate = Model.GetParticipatesByVolunteerId(volunteer.VolunteerId);
+        var campaigns = Model.GetAllCampaigns()
+        .Where(t => participate.Select(x => x.CampaignId).ToList().Contains(t.CampaignId));
+    }
+
+    @if (campaigns.Count() == 0)
+    {
+        <div class="my-5" style="text-align:center">
+            <h1 style="font-weight:600;font-size:3rem;">You Have not attended in any campaign</h1>
+            <br>
+            <span style="font-family:'Segoe UI light'">Participate a campaign and it will shown below</span>
+        </div>
+    }
+    else
+    {
+        <h1 style="font-weight:600;font-size:3rem;">Participated Campaign</h1>
+        <span style="font-family:'Segoe UI light'">Every campaigns you have attended</span>
+        <div class="py-3"></div>
+
+        <div class="row">
+            @{
+            }
+            @foreach (var item in campaigns)
+            {
+                if (!item.Status)
+                {
+                    Post p = Model.GetPostByCampaign(item.CampaignId);
+
+                    <div class="col-md-4 d-flex align-items-center achieve-wrap">
+                        @if (@p != null)
+                        {
+                            <img src="@p.Img" class="achieve-custom mr-3" />
+                        }
+                        else
+                        {
+                            <img src="https://img.freepik.com/premium-vector/every-blood-donor-is-hero-blood-donation-quote-typography-quote-lettering_558159-594.jpg?w=2000"
+                 class="achieve-custom mr-3" />
+                        }
+                        <div class="achieve-info">
+                            <div class="size-18 bold">@item.Name</div>
+                            <p class="m-0 faded">@item.Province</p>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    }
+
+</div>
+
+
 
 <script>
 

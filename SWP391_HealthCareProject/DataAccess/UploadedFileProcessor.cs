@@ -7,7 +7,7 @@
             string fileExtension = uploadedFile.FileName.Substring(uploadedFile.FileName.IndexOf('.') + 1);
             string fileName = $"{savedName}.{fileExtension}";
             fileName = Path.GetFileName(fileName);
-            string uploadFilepath = Path.Combine(Directory.GetCurrentDirectory(), path, fileName);
+            string uploadFilepath = Path.Combine(path, fileName);
             try
             {
                 using (var stream = new FileStream(uploadFilepath, FileMode.Create))

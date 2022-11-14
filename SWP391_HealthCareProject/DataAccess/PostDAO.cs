@@ -20,15 +20,37 @@ namespace SWP391_HealthCareProject.DataAccess
         {
             using var db = new BloodDonorContext();
             var post = GetPostById(postId);
-            if (post.Img != null)
+            /*if (post.Img != null)
             {
                 string removingImg = post.Img;
                 File.Delete(removingImg);
-            }
-            db.Posts.Remove(post);
+            }*/
+            
             try
             {
+                if (post != null)
+                    db.Posts.Remove(post);
                 db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        public static void UpdatePostById(int postId)
+        {
+            using var db = new BloodDonorContext();
+            Post post = GetPostById(postId);
+            Console.WriteLine($"{post.PostId} {post.Rhaid} {post.Img} {post.Title} {post.Description} {post.CampaignId}");
+            try
+            {
+                if(post != null)
+                {
+                    db.Posts.Update(post);
+                    int a=  db.SaveChanges();
+                    Console.WriteLine(a);
+                }
+                  
             }
             catch (Exception ex)
             {

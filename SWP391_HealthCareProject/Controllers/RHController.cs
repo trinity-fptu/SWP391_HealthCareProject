@@ -63,7 +63,7 @@ namespace SWP391_HealthCareProject.Controllers
             HospitalRedCrossAdmin hrAd = HospitalRedCrossAdminDAO.GetHRAdrByUserId(userInfo.UserId);
             post.Rhaid = hrAd.Rhaid;
             // Save uploaded image.
-            string path = @"wwwroot\assets\postImg";
+            string path = @"~\postImg";
             Post? lastPost = PostDAO.GetLastRecord();
             string savedName = $"PostPic{1}";
             if (lastPost != null)
@@ -76,6 +76,38 @@ namespace SWP391_HealthCareProject.Controllers
             // Add post.
             PostDAO.AddPost(post);
             return RedirectToAction("ManagePost");
+        }
+        public ActionResult EditPost(int? id)
+        {
+            LoadSession();
+            if (id == null) { return NotFound(); }
+            var post = PostDAO.GetPostById(id.Value);
+            if ( post == null)
+            {
+                return NotFound();
+            }
+            return View(post);
+        }
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult EditPost(int id, Post post)
+        {
+
+
+            try
+            {
+                if (id != post.PostId)
+                {
+                    return NotFound();
+                }
+                PostDAO.UpdatePostById(id);
+
+                return RedirectToAction("ManagePost");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.message = ex.Message;
+                return View();
+            }
         }
         public IActionResult DeletePost(int postId)
         {
@@ -153,7 +185,7 @@ namespace SWP391_HealthCareProject.Controllers
             ViewBag.User = user;
             return View(volunteer);
         }
-        public ActionResult Edit(int? id)
+        public ActionResult EditCampaign(int? id)
         {
             LoadSession();
             if (id == null) { return NotFound(); }
@@ -166,7 +198,7 @@ namespace SWP391_HealthCareProject.Controllers
             return View(campaigns);
         }
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Campaign campaign)
+        public ActionResult EditCampaign(int id, Campaign campaign)
         {
             
 
