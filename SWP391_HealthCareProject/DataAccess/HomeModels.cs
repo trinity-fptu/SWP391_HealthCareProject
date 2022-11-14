@@ -28,6 +28,8 @@ namespace SWP391_HealthCareProject.DataAccess
             Volunteer c = bloodDonorContext.Volunteers.Where(x => x.VolunteerId == id).FirstOrDefault();
             return c;
         }
+
+        public Volunteer GetVolunteerByUserId(int id) => bloodDonorContext.Volunteers.Where(x => x.UserId == id).FirstOrDefault();
         public List<Campaign> getAllCampaign()
         {
             using var db = new BloodDonorContext();

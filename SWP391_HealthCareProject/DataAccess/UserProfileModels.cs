@@ -13,11 +13,15 @@ namespace SWP391_HealthCareProject.DataAccess
 
         public List<Volunteer> VolunteerViewModel { get; set; }
 
-        public List<Campaign> GetAllCampaigns()=> bloodDonorContext.Campaigns.ToList(); 
+        public List<Campaign> GetAllCampaigns()=> bloodDonorContext.Campaigns.ToList();
+
+        public Post GetPostByCampaign(int id) => bloodDonorContext.Posts.Where(x => x.CampaignId == id).FirstOrDefault();
 
         public List<Participate> GetParticipatesByVolunteerId(int id) => bloodDonorContext.Participates.Where(x => x.VolunteerId == id).ToList();
 
         public List<Campaign> GetCampignListInParticipate(int id) => bloodDonorContext.Campaigns.Where(x => x.CampaignId == id).ToList();
+
+        public Participate GetParticipateByCampaignId(int id) => bloodDonorContext.Participates.Where(x => x.CampaignId == id).FirstOrDefault();
 
 
         public HospitalRedCrossAdmin GetRHAById(int id) => bloodDonorContext.HospitalRedCrossAdmins.Where(x => x.UserId == id).FirstOrDefault();
