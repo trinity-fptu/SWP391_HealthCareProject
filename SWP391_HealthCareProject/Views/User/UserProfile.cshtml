@@ -19,6 +19,8 @@
         User user = Model.GetUserById(ViewBag.UserId);
 
         <div class="form-general">
+            <div>@ViewBag.ErrorMessage</div>
+            
             <form method="post" asp-action="EditUser" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-3 avatar-container-general vertical-align-custom d-flex flex-row">
@@ -247,7 +249,7 @@
                 </div>
             </div>
         }
-        else
+        else if(volunteer.Attended > 5)
         {
             <div class="col-md-4 d-flex align-items-center achieve-wrap">
                 <img src="~/assets/achieve3.png" class="achieve-custom" />

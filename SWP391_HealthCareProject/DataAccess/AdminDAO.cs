@@ -11,7 +11,7 @@ namespace SWP391_HealthCareProject.DataAccess
         {
             using var db = new BloodDonorContext();
             var us = (from item in db.Users
-                     select item).ToList();
+                      select item).ToList();
             return us;
         }
 
@@ -28,7 +28,7 @@ namespace SWP391_HealthCareProject.DataAccess
             try
             {
                 User _user = getUserById(user.UserId);
-                if(_user == null)
+                if (_user == null)
                 {
                     db.Users.Add(user);
                     db.SaveChanges();
@@ -51,7 +51,7 @@ namespace SWP391_HealthCareProject.DataAccess
             try
             {
                 User _user = getUserById(user.UserId);
-                if(_user != null)
+                if (_user != null)
                 {
                     db.Users.Update(user);
                     db.SaveChanges();
@@ -74,10 +74,20 @@ namespace SWP391_HealthCareProject.DataAccess
             try
             {
                 User user = getUserById(id);
-                Volunteer volunteer = VolunteerDAO.GetVolunteerByUserId(user.UserId);
-                if(user != null)
+                if (user.Role == 1)
                 {
+                    Volunteer volunteer = VolunteerDAO.GetVolunteerByUserId(user.UserId);
                     db.Volunteers.Remove(volunteer);
+
+                }
+                if (user.Role == 2)
+                {
+                    HospitalRedCrossAdmin hra = HospitalRedCrossAdminDAO.GetHRAdrByUserId(user.UserId);
+                    db.HospitalRedCrossAdmins.Remove(hra);
+
+                }
+                if (user != null)
+                {
                     db.Users.Remove(user);
                     db.SaveChanges();
                 }
@@ -89,7 +99,7 @@ namespace SWP391_HealthCareProject.DataAccess
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
-            }         
+            }
         }
         public static bool IsUserExist(string username)
         {

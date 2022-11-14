@@ -185,6 +185,18 @@ namespace SWP391_HealthCareProject.Controllers
             ViewBag.User = user;
             return View(volunteer);
         }
+        
+        
+        public IActionResult EndCampaign(int id)
+        {
+            Campaign campaign = CampaignDAO.getCampaignById(id);
+            campaign.EndDate= DateTime.Now;
+            campaign.Status = false;
+            HospitalRedCrossDAO RHDAO = new HospitalRedCrossDAO();
+            RHDAO.updateCampaign(campaign);
+            return RedirectToAction("/RH");
+        }
+        
         public ActionResult EditCampaign(int? id)
         {
             LoadSession();
