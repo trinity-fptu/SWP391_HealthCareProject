@@ -87,6 +87,7 @@ namespace SWP391_HealthCareProject.Controllers
         {
             LoadSession();
             ParticipateDAO.RemoveParticipate(participateDetails.Participate.VolunteerId, participateDetails.Campaign.CampaignId);
+            CampaignDAO.ReduceVolunteerNumber(participateDetails.Campaign.CampaignId);
             var cD = CampaignDAO.getCampaignById(participateDetails.Campaign.CampaignId);
             participateDetails.Campaign = cD;
             return View("Detail", participateDetails);

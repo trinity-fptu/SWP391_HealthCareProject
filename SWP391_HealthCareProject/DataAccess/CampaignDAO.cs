@@ -33,6 +33,20 @@ namespace SWP391_HealthCareProject.DataAccess
                 Console.WriteLine(ex.Message);
             }
         }
+        public static void ReduceVolunteerNumber(int id)
+        {
+            using var db = new BloodDonorContext();
+            var updatedRecord = db.Campaigns.Find(id);
+            updatedRecord.NumOfVolunteer -= 1;
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
         public static List<int>? UpdateStatus()
         {
             using var db = new BloodDonorContext();
