@@ -122,6 +122,14 @@ namespace SWP391_HealthCareProject.Controllers
             
         }
 
+        public IActionResult ListVolunteerInOneCampaign(int id)
+        {
+            LoadSession();
+            ParticipateDAO participateModel = new ParticipateDAO();
+            ViewBag.CampaignId = id; 
+            return View(participateModel);
+        }
+
         public IActionResult ManagePlan()
         {
             LoadSession();

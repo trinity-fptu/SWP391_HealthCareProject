@@ -32,9 +32,7 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Volunteer ID</th>
                                     <th>Volunteer Name</th>
-                                    <th>Campaign ID</th>
                                     <th>Campaign Name</th>
                                     <th>Location</th>
                                     <th>Date</th>
@@ -47,9 +45,7 @@
                                 @foreach(var item in Model.GetAllParticipates())
                                 {
                                     <tr>
-                                    <td><a href="@Url.Action("ManageVolunteer", "RH", new {id=item.VolunteerId})"><span>@item.VolunteerId</span></a></td>
-                                    <td>@Model.GetVolunteerById(item.VolunteerId).FirstName</td>
-                                    <td>@item.CampaignId</td>
+                                    <td><a href="@Url.Action("ManageVolunteer", "RH", new {id=item.VolunteerId})"><span>@Model.GetVolunteerById(item.VolunteerId).FirstName</span></a></td>
                                     <td>@Model.GetCampaignById(item.CampaignId).Name</td>
                                     <td>@item.Location</td>
                                     <td>@item.Date</td>
