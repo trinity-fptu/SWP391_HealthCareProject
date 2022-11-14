@@ -48,7 +48,9 @@
                             <tbody>
                                 @{
                                     List<Participate> participate = Model.GetParticipatesByCampaignId(ViewBag.CampaignId);
-                                    foreach (var item in Model.GetVolunteerListInParticipate(participate.Select(x => x.VolunteerId).FirstOrDefault()))
+                                    var volunteers = Model.GetAllVolunteers()
+                                    .Where(t => participate.Select(x => x.CampaignId).ToList().Contains(t.VolunteerId));
+                                    foreach (var item in volunteers)
                                     {
                                         <tr>
                                             <th>@item.LastName</th>

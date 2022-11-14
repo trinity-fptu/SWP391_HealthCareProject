@@ -8,6 +8,7 @@
     <ul class="nav tab">
         <li class="nav-item"><button id="defaultOpen" class="tablinks" onclick="openTab(event, 'General')"><i class="fa-solid fa-gear"></i> General</button></li>
         <li class="nav-item"><button class="tablinks" onclick="openTab(event, 'Details')"><i class="fa-solid fa-circle-info"></i> Details</button></li>
+        <li class="nav-item"><button class="tablinks" onclick="openTab(event, 'Campaign')"><i class="fa-solid fa-flag"></i> Campaign</button></li>
         <li class="nav-item"><button class="tablinks" onclick="openTab(event, 'Achievement')"><i class="fa-solid fa-trophy"></i> Achievement</button></li>
     </ul>
 </div>
@@ -259,6 +260,29 @@
 
     </div>
 </div>
+
+<div class="container mt-5 mb-5 info-form-achievement tabcontent" id="Campaign">
+    @{
+        List<Participate> participate = Model.GetParticipatesByVolunteerId(volunteer.VolunteerId);
+        var campaigns = Model.GetAllCampaigns()
+        .Where(t => participate.Select(x=>x.CampaignId).ToList().Contains(t.CampaignId));
+}
+    <div class="row">
+        @foreach (var item in campaigns)
+        {
+            <div class="col-md-4 d-flex align-items-center achieve-wrap">
+                <img src="" class="achieve-custom" />
+                <div class="achieve-info">
+                    <div class="size-18 bold">@item.Name</div>
+                    <p class="m-0 faded">@item.Province</p>
+                </div>
+            </div>
+        }
+        
+    </div>
+</div>
+
+
 
 <script>
 
