@@ -253,7 +253,7 @@ namespace SWP391_HealthCareProject.Controllers
             campaign.Status = false;
             HospitalRedCrossDAO RHDAO = new HospitalRedCrossDAO();
             RHDAO.updateCampaign(campaign);
-            return RedirectToAction("/RH");
+            return RedirectToAction("Index", "RH");
         }
         
         public ActionResult EditCampaign(int? id)
