@@ -48,5 +48,6 @@ namespace SWP391_HealthCareProject.DataAccess
                 db.SaveChanges();
             }
         }
+
     }
 }
