@@ -19,6 +19,11 @@
             </ol>
         </nav>
     </div>
+    @{
+        Campaign campaign = Model.GetCampaignById(ViewBag.CampaignId);
+    }
+
+    <a class="enddate" title="Edit" data-toggle="tooltip"> @Html.ActionLink("Create Location For Campaign","CreateLocation", new {id=campaign.CampaignId}, new {@class="btn btn-primary"})</a>
 
 
     <div class="mt-5">

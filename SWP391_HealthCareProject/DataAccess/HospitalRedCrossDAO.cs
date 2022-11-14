@@ -102,16 +102,35 @@ namespace SWP391_HealthCareProject.DataAccess
             {
                 Campaign campaign = getCampaignById(id);
                 Post post = PostDAO.GetPostByCampaignId(campaign.CampaignId);
-                if (campaign != null)
+                CampaignLocationDAO.DeleteCampaignLocation(campaign.CampaignId);
+                if(post != null)
                 {
                     db.Posts.Update(post);
-                    db.Campaigns.Remove(campaign);
-                    db.SaveChanges();
+                    if (campaign != null)
+                    {
+                        db.Campaigns.Remove(campaign);
+                        db.SaveChanges();
+                    }
+
+                    else
+                    {
+                        throw new Exception("Campaign does not exít");
+                    }
                 }
                 else
                 {
-                    throw new Exception("Campaign does not exít");
+                    if (campaign != null)
+                    {
+                        db.Campaigns.Remove(campaign);
+                        db.SaveChanges();
+                    }
+
+                    else
+                    {
+                        throw new Exception("Campaign does not exít");
+                    }
                 }
+                
             }
             catch (Exception ex)
             {

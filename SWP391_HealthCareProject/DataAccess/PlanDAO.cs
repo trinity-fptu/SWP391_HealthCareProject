@@ -11,6 +11,13 @@ namespace SWP391_HealthCareProject.DataAccess
             return plans;
         }
 
+        public static void CreatePlan(Plan plan)
+        {
+            using var db = new BloodDonorContext();
+            db.Plans.Add(plan);
+            db.SaveChanges();
+        }
+
         public Plan GetPlansById(int planId)
         {
             using var db = new BloodDonorContext();

@@ -45,7 +45,7 @@
                     <div class="achieve-info2">
                         <a>@Html.ActionLink(@item.Name,"Detail","Campaign",new {id=item.CampaignId}, new { @class = "size-18 bold2" })</a>
                         <p class="m-0 faded2">@item.Province</p>
-                        <p class="m-0 faded2">@participateCampaign.Date</p>
+                        <p class="m-0 faded2">@participateCampaign.Date.ToString("dd/MM/yyyy")</p>
                         <p class="m-0 faded2">@participateCampaign.Location</p>
                     </div>
                 </div>

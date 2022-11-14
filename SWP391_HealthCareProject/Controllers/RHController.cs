@@ -36,7 +36,6 @@ namespace SWP391_HealthCareProject.Controllers
             HomeModels homeModels = new HomeModels();
             homeModels.PostViewModel = postList;
             homeModels.CampaignViewModel = campaignList;
-
             return View(homeModels);
 
 
@@ -209,6 +208,21 @@ namespace SWP391_HealthCareProject.Controllers
             return View(participateModel);
         }
 
+        public IActionResult CreateLocation(int id)
+        {
+            LoadSession();
+            ParticipateDAO participateModel = new ParticipateDAO();
+            ViewBag.CampaignId = id;
+            return View(participateModel);
+        }
+
+        [HttpPost]
+        public IActionResult CreateLocation(CampaignLocation cl)
+        {
+            CampaignLocationDAO.CreateLocation(cl);
+            return RedirectToAction("Index", "RH");
+        }
+
         public IActionResult ManagePlan()
         {
             LoadSession();
@@ -219,7 +233,20 @@ namespace SWP391_HealthCareProject.Controllers
         public IActionResult CreatePlan()
         {
             LoadSession();
-            return View();
+            Plan p = new Plan();
+            return View(p);
+        }
+
+        [HttpPost]
+        public IActionResult CreatePlan(Plan p)
+        {
+
+            var userInfo = HttpContext.Session.GetObjectFromJson<User>("User");
+            HospitalRedCrossAdmin hra = HospitalRedCrossAdminDAO.GetHRAdrByUserId(userInfo.UserId);
+            HospitalRedCross hr = HospitalRedCrossDAO.GetHRById(hra.Rhid);
+            p.Rhid = hr.Rhid;
+            PlanDAO.CreatePlan(p);
+            return RedirectToAction("ManagePlan", "RH");
         }
         public ActionResult EditPlan(int? id)
         {

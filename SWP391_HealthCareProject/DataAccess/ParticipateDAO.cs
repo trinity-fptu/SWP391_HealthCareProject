@@ -28,6 +28,8 @@ namespace SWP391_HealthCareProject.DataAccess
             return db.Participates.Where(x => x.CampaignId == id).ToList();
         }
 
+
+        public List<CampaignLocation> GetCampaignLocations(int id) => _db.CampaignLocations.Where(x=>x.CampaignId== id).ToList();
         public List<Volunteer> GetVolunteerListInParticipate(int id) => _db.Volunteers.Where(x => x.VolunteerId == id).ToList();
 
         public List<Volunteer> GetAllVolunteers() => _db.Volunteers.ToList();

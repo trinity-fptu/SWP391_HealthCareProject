@@ -1,0 +1,60 @@
+﻿@using SWP391_HealthCareProject.DataAccess;
+@model ParticipateDAO
+@{
+    ViewBag.Title = "Create Location";
+    Layout = "_LayoutAdminRH";
+}
+
+<div class="container py-5">
+
+
+
+    <!-- Page Heading -->
+    <div class=" mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Create Location</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background-color: #f9f8f8;padding:10px 0;">
+                <li class="breadcrumb-item"><a href="/RH">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">VolunteerList</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Create Location</li>
+            </ol>
+        </nav>
+    </div>
+    @{
+        CampaignLocation cl = new CampaignLocation();
+        Campaign c = Model.GetCampaignById(ViewBag.CampaignId);
+    }
+
+    <ul>
+    @foreach(var item in Model.GetCampaignLocations(c.CampaignId))
+    {
+        <li>@item.Location</li>
+    }
+    </ul>
+    <div class="card">
+       
+        <h5 class="card-header">Create Location</h5>
+        <form method="post" asp-action="CreateLocation">
+            <input asp-for="@cl.CampaignId" value="@ViewBag.CampaignId" type="hidden" />
+            <div class="card-body custom-card-body">
+                <div class="card-text">Campaign Province: @c.Province</div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card-text">Location</div>
+                    </div>
+                    <div class="col-md-9">
+                        <input asp-for="@cl.Location" class="custom-input" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body custom-card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <button class="btn btn-primary" type="submit">Create Location</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

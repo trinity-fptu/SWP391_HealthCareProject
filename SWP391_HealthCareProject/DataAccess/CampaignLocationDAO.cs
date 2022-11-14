@@ -10,5 +10,23 @@ namespace SWP391_HealthCareProject.DataAccess
             var campaignLocations = db.CampaignLocations.Where(l => l.CampaignId == campaignId).ToList();   
             return campaignLocations;
         }
+
+        public static void DeleteCampaignLocation(int campaignId)
+        {
+            var Location = GetLocationsByCampaignId(campaignId);
+            using var db= new BloodDonorContext();
+            db.CampaignLocations.RemoveRange(Location);
+            db.SaveChanges();
+        }
+
+        public static void CreateLocation(CampaignLocation location)
+        {
+            if(location is not null)
+            {
+                using var db = new BloodDonorContext();
+                db.CampaignLocations.Add(location);
+                db.SaveChanges();
+            }
+        }
     }
 }

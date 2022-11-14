@@ -1,11 +1,10 @@
-﻿@page
+﻿@model SWP391_HealthCareProject.Models.Plan
 @{
     ViewBag.Title = "Create Plan";
     Layout = "_LayoutAdminRH";
 }
 
 <div class="container pt-3">
-
 
 
     <!-- Page Heading -->
@@ -23,25 +22,25 @@
 
     <div class="card">
         <h5 class="card-header">Create New Plan</h5>
-        <form>
+        <form method="post" asp-action="CreatePlan">
             <div class="card-body custom-card-body">
                 <div class="row">
                     <div class="col-md-3">
                         <div class="card-text">Plan Name</div>
                     </div>
                     <div class="col-md-9">
-                        <input class="custom-input" type="text" name="post_title">
+                        <input asp-for="Name" class="custom-input" type="text"  required>
                     </div>
                 </div>
             </div>
             <div class="card-body custom-card-body">
                 <div class="row">
                     <div class="col-md-3">
-                        <div class="card-text">Expected Money To Cost</div>
+                        <div  class="card-text">Expected Money To Cost</div>
                     </div>
                     <div class="col-md-9">
                         <div class="mb-3">
-                            <input class="form-control" type="number" min="1" step="any">
+                            <input asp-for="ExpectedTotalCost" class="form-control" type="number" min="1" step="any" required>
                         </div>
                     </div>
                 </div>
@@ -53,7 +52,7 @@
                     </div>
                     <div class="col-md-9">
                         <div class="mb-3">
-                            <input class="form-control" type="number" min="1" step="any">
+                            <input asp-for="ExpectedAmount" class="form-control" type="number" min="1" step="any" required>
                         </div>
                     </div>
                 </div>
@@ -61,10 +60,20 @@
             <div class="card-body custom-card-body">
                 <div class="row">
                     <div class="col-md-3">
-                        <div class="card-text">Description</div>
+                        <div  class="card-text">Description</div>
                     </div>
                     <div class="col-md-9">
-                        <textarea class="custom-input"></textarea>
+                        <textarea asp-for="Description" class="custom-input" required></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body custom-card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div  class="card-text">Status</div>
+                    </div>
+                    <div class="col-md-9">
+                        <input class="form-check-input" asp-for="Status" required /> @Html.DisplayNameFor(model => model.Status)
                     </div>
                 </div>
             </div>
