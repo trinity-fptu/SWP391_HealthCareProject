@@ -25,13 +25,15 @@
                     <label>When you will be there?</label>
                 </div>
                 <div class="form-item-field-detail">
-                    <input asp-for="Participate.Date" class="form-select customer-input" asp-format="{0:yyyy-MM-dd}" type="date" />
+                    <input asp-for="Participate.Date" class="form-select customer-input" asp-format="{0:yyyy-MM-dd}" type="date"
+                    min="@campaign.StartDate.ToString("yyyy-MM-dd")" max="@campaign.EndDate.ToString("yyyy-MM-dd")"
+                    required/>
                 </div>
                 <div class="form-item-label-detail">
                     <label>Location</label>
                 </div>
                 <div class="form-item-field-detail">
-                    <select asp-for="Participate.Location" class="form-select customer-input">
+                    <select asp-for="Participate.Location" class="form-select customer-input" required>
                         @foreach (var item in Model.CampaignLocations)
                         {
                             <option>

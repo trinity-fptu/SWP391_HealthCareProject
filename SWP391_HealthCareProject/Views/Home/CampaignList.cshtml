@@ -31,9 +31,12 @@
                 {
                     <div class="col-lg-4 col-md-6 d-flex justify-content-center">
                         <div class="card " style="width: 18rem;">
-                            <img class="card-img-top"
+                            @if (@Model.GetPostByCampaignId(item.CampaignId) != null)
+                            {
+                                <img class="card-img-top"
                          src="@Model.GetPostByCampaignId(item.CampaignId).Img"
                          alt="Card image cap">
+                            }
                             <div class="card-body">
                                 <div class="d-flex justify-content-between">
                                     <span><i class="fa-regular fa-calendar"></i> @item.StartDate.ToString("dd/MM/yyyy")</span>
@@ -41,7 +44,10 @@
                                 </div>
                                 <h1 class="card-title">@item.Name</h1>
                                 <p class="card-text">
-                                    @Model.GetPostByCampaignId(item.CampaignId).Description
+                                    @if (@Model.GetPostByCampaignId(item.CampaignId) != null)
+                                    {
+                                        @Model.GetPostByCampaignId(item.CampaignId).Description
+                                    }
                                 </p>
                             </div>
                             <div class="container mb-3">
