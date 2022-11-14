@@ -47,7 +47,7 @@
                             </thead>
                             <tbody>
                                 @{
-                                    List<Participate> participate = Model.GetParticipatesByCampaignId(ViewBag.CampaignId);
+                                    List<Participate> participate = ParticipateDAO.GetParticipatesByCampaignId(ViewBag.CampaignId);
                                     foreach (var item in Model.GetVolunteerListInParticipate(participate.Select(x => x.VolunteerId).FirstOrDefault()))
                                     {
                                         <tr>

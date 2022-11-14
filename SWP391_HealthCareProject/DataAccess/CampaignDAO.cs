@@ -33,18 +33,30 @@ namespace SWP391_HealthCareProject.DataAccess
                 Console.WriteLine(ex.Message);
             }
         }
-        public static void UpdateStatus()
+        public static List<int>? UpdateStatus()
         {
             using var db = new BloodDonorContext();
-            db.Campaigns.Where(c => DateTime.Compare(DateTime.Now, c.EndDate) > 0).ToList().ForEach(c => c.Status = false);
-            try
+            var updatedCampaigns = db.Campaigns.Where(c => DateTime.Compare(DateTime.Now, c.EndDate) > 0).ToList();
+            if (updatedCampaigns.Count != 0)
             {
-                db.SaveChanges();
+                db.Campaigns.Where(c => DateTime.Compare(DateTime.Now, c.EndDate) > 0).ToList().ForEach(c => c.Status = false);
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                List<int> removedCampaignId = new();
+                foreach (var c in updatedCampaigns)
+                {
+                    removedCampaignId.Add(c.CampaignId);
+                }
+                return removedCampaignId;
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            return null;
+            
         }
         public List<Campaign> getAllCampaign()
         {
