@@ -41,11 +41,16 @@ namespace SWP391_HealthCareProject.DataAccess
         {
             using var db = new BloodDonorContext();
             Post post = GetPostById(postId);
+            Console.WriteLine($"{post.PostId} {post.Rhaid} {post.Img} {post.Title} {post.Description} {post.CampaignId}");
             try
             {
                 if(post != null)
+                {
                     db.Posts.Update(post);
-                db.SaveChanges();
+                    int a=  db.SaveChanges();
+                    Console.WriteLine(a);
+                }
+                  
             }
             catch (Exception ex)
             {
