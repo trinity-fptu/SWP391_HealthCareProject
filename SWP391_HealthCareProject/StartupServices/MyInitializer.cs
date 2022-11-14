@@ -1,16 +1,13 @@
 ﻿using SWP391_HealthCareProject.DataAccess;
+using SWP391_HealthCareProject.Scheduler;
 
-namespace SWP391_HealthCareProject
+namespace SWP391_HealthCareProject.StartupServices
 {
     public class MyInitializer : IHostedService
     {
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            List<int>? removedCampaignId = CampaignDAO.UpdateStatus();
-            if(removedCampaignId is not null)
-            {
-                ParticipateDAO.RemoveParticipate(removedCampaignId);
-            }
+            CampaignEnding.ScheduleCampaignEnding();
             return Task.CompletedTask;
         }
 

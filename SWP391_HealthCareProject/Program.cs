@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using SWP391_HealthCareProject;
 using SWP391_HealthCareProject.Models;
+using SWP391_HealthCareProject.StartupServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
