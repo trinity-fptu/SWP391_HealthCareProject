@@ -1,0 +1,58 @@
+﻿@model SWP391_HealthCareProject.Models.Plan
+
+@{
+    ViewData["Title"] = "EditPlan";
+    Layout = "~/Views/Shared/_LayoutAdminRH.cshtml";
+}
+
+<h1>EditPlan</h1>
+
+<h4>Plan</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditPlan">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PlanId" class="control-label">PlanID: @Model.PlanId</label>
+                <input asp-for="PlanId" type="hidden" class="form-control" />
+                <span asp-validation-for="PlanId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpectedTotalCost" class="control-label"></label>
+                <input asp-for="ExpectedTotalCost" class="form-control" />
+                <span asp-validation-for="ExpectedTotalCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpectedAmount" class="control-label"></label>
+                <input asp-for="ExpectedAmount" class="form-control" />
+                <span asp-validation-for="ExpectedAmount" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="ManagePlan">Back to List</a>
+</div>
+
+

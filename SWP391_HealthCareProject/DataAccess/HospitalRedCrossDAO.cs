@@ -23,6 +23,57 @@ namespace SWP391_HealthCareProject.DataAccess
             var cam = db.Campaigns.Find(id);
             return cam;
         }
+        public Plan GetPlansById(int id)
+        {
+            using var db = new BloodDonorContext();
+            var plan = db.Plans.Find(id);
+            return plan;
+        }
+        public Post GetPostById(int id)
+        {
+            using var db = new BloodDonorContext();
+            var post = db.Posts.Find(id);
+            return post;
+        }
+        public void UpdatePostById(Post post)
+        {
+            using var db = new BloodDonorContext();
+            Post _post = GetPostById(post.PostId);
+            try
+            {
+                if (_post != null)
+                {
+                    db.Posts.Update(post);
+                    db.SaveChanges();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        public void UpdatePlanById(Plan plan)
+        {
+            using var db = new BloodDonorContext();
+            Plan _plan = GetPlansById(plan.PlanId);
+            try
+            {
+                if (_plan != null)
+                {
+                    db.Plans.Update(plan);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("Plan does not exít");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
         public void updateCampaign(Campaign campaign)
         {
             try
@@ -66,7 +117,28 @@ namespace SWP391_HealthCareProject.DataAccess
                 throw new Exception(ex.Message);
             }
         }
+        public void deletePost(int id)
+        {
+            using var db = new BloodDonorContext();
+            try
+            {
+                Post post = GetPostById(id);
+                if (post != null)
+                {
 
+                    db.Posts.Remove(post);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("Post does not exít");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
         public static void UpdateHR(HospitalRedCross HR)
         {

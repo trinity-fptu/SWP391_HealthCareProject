@@ -143,9 +143,9 @@
                                                     Campaign campaign = Model.GetCampaignById(item.CampaignId);
                                                 }
 
-                                                <a class="edit" title="Edit" data-toggle="tooltip"> @Html.ActionLink("Edit","EditCampaign",new {id=campaign.CampaignId})</a>
+                                                <a asp-controller="RH" asp-action="EditCampaign" asp-route-id="@campaign.CampaignId" class="edit" title="Edit" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
 
-                                                <a class="delete" title="Delete" data-toggle="tooltip">@Html.ActionLink("Delete","Delete",new {id=campaign.CampaignId})</a>
+                                                <a asp-controller="RH" asp-action="DeleteCampaign" asp-route-id="@campaign.CampaignId" class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
                                             </td>
                                         </tr>
                                     }

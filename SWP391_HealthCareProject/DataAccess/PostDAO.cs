@@ -37,21 +37,7 @@ namespace SWP391_HealthCareProject.DataAccess
                 Console.WriteLine(ex.Message);
             }
         }
-        public static void UpdatePostById(int postId)
-        {
-            using var db = new BloodDonorContext();
-            Post post = GetPostById(postId);
-            try
-            {
-                if(post != null)
-                    db.Posts.Update(post);
-                db.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
+        
         public static List<Post> GetPostsByRHaid(int RHaid)
         {
             using var db = new BloodDonorContext();

@@ -4,7 +4,7 @@
     ViewData["Title"] = "EditPost";
     Layout = "~/Views/Shared/_LayoutAdminRH.cshtml";
 }
-
+<div class="container py-4">
 <h1>EditPost</h1>
 
 <h4>Post</h4>
@@ -18,7 +18,11 @@
                 <input asp-for="PostId" type="hidden" class="form-control" />
                 <span asp-validation-for="PostId" class="text-danger"></span>
             </div>
-            
+            <div class="form-group">
+                <label asp-for="Img" class="control-label"></label>
+                <input asp-for="Img" class="form-control" />
+                <span asp-validation-for="Img" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
                 <input asp-for="Title" class="form-control" />
@@ -29,7 +33,16 @@
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            
+            <div class="form-group">
+                <label asp-for="CampaignId" class="control-label"></label>
+                <input asp-for="CampaignId" class="form-control" />
+                <span asp-validation-for="CampaignId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Rhaid" class="control-label"></label>
+                <input asp-for="Rhaid" class="form-control" />
+                <span asp-validation-for="Rhaid" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
@@ -38,7 +51,8 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="ManagePost">Back to List</a>
 </div>
 
+</div>
 

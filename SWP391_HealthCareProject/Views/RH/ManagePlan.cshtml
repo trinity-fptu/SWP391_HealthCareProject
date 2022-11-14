@@ -1,7 +1,7 @@
 ﻿@using SWP391_HealthCareProject.DataAccess;
 @model PlanDAO
 @{
-    ViewBag.Title = "Manage Post";
+    ViewBag.Title = "Manage Plan";
     Layout = "_LayoutAdminRH";
 }
 
@@ -23,7 +23,7 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold ">Manage Post</h6>
+                <h6 class="m-0 font-weight-bold ">Manage Plan</h6>
             </div>
             <!-- Card Body -->
             <div class="card-body">
@@ -48,8 +48,10 @@
                                         <td>@item.ExpectedAmount</td>
                                         <td>@item.Description</td>
                                         <td>
-                                            <a class="add" title="Add" data-toggle="tooltip"><i class="fa-solid fa-plus"></i></a>
-                                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            @{
+                                                Plan plan = Model.GetPlansById(item.PlanId);
+                                            }
+                                            <a class="edit" title="Edit" data-toggle="tooltip"> @Html.ActionLink("Edit","EditPlan",new {id=plan.PlanId})</a>
                                             <a class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
                                         </td>
                                     </tr>

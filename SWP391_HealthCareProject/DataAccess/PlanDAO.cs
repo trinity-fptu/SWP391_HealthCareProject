@@ -10,7 +10,8 @@ namespace SWP391_HealthCareProject.DataAccess
             var plans = db.Plans.Where(p => p.Rhid == rhId).ToList();
             return plans;
         }
-        public static Plan GetPlansById(int planId)
+
+        public Plan GetPlansById(int planId)
         {
             using var db = new BloodDonorContext();
             var plan = db.Plans.Find(planId);
