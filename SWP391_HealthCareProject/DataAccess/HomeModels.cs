@@ -13,6 +13,8 @@ namespace SWP391_HealthCareProject.DataAccess
             return p;
         }
 
+        public Post GetPostByCampaignId(int id) => bloodDonorContext.Posts.Where(x => x.CampaignId == id).FirstOrDefault();
+
         public Campaign GetCampaignById(int id)
         {
             Campaign c = bloodDonorContext.Campaigns.Where(x => x.CampaignId == id).FirstOrDefault();
@@ -50,6 +52,8 @@ namespace SWP391_HealthCareProject.DataAccess
 
         public List<Campaign> GetCampaign() => bloodDonorContext.Campaigns.ToList();
         public List<Post> GetPost() => bloodDonorContext.Posts.ToList();
+
+
 
         public List<User> UserViewModel { get; set; }
 

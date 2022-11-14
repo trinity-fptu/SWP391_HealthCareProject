@@ -1,4 +1,5 @@
-﻿@model List<SWP391_HealthCareProject.Models.Campaign>
+﻿@using SWP391_HealthCareProject.DataAccess;
+@model HomeModels
 @{
     ViewBag.Title = "Campaign List";
     Layout = "_Layout";
@@ -24,28 +25,33 @@
     <div class="container">
         <!-- First 3 cards -->
         <div class="row ">
-            @foreach (var item in Model)
+            @foreach (var item in Model.getAllCampaign())
             {
-            <div class="col-lg-4 col-md-6 d-flex justify-content-center">
-                <div class="card " style="width: 18rem;">
-                    <img class="card-img-top"
-                         src="http://hoichuthapdohanoi.vn/uploads/news/2020_02/hm-xuan-hong2.jpg"
+                if (item.Status)
+                {
+                    <div class="col-lg-4 col-md-6 d-flex justify-content-center">
+                        <div class="card " style="width: 18rem;">
+                            <img class="card-img-top"
+                         src="@Model.GetPostByCampaignId(item.CampaignId).Img"
                          alt="Card image cap">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <span><i class="fa-regular fa-calendar"></i> @item.StartDate.ToString("dd/MM/yyyy")</span>
-                            <span><i class="fa-solid fa-location-dot"></i> @item.Province</span>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <span><i class="fa-regular fa-calendar"></i> @item.StartDate.ToString("dd/MM/yyyy")</span>
+                                    <span><i class="fa-solid fa-location-dot"></i> @item.Province</span>
+                                </div>
+                                <h1 class="card-title">@item.Name</h1>
+                                <p class="card-text">
+                                    @Model.GetPostByCampaignId(item.CampaignId).Description
+                                </p>
+                            </div>
+                            <div class="container mb-3">
+                                <a>@Html.ActionLink("Read More","Detail","Campaign",new {id=item.CampaignId}, new {@style = "color: #EE2E2E;"})</a>
+                            </div>
                         </div>
-                        <h1 class="card-title">@item.Name</h1>
-                        <p class="card-text">
-                            Some quick example text to build on the card title and make up the bulk of the card's
-                            content.
-                        </p>
-                            <a>@Html.ActionLink("Read More","Detail","Campaign",new {id=item.CampaignId})</a>
                     </div>
-                </div>
-            </div>
-            }           
+                }
+
+            }
         </div>
     </div>
 </section>

@@ -6,7 +6,7 @@
 <div class="container mt-4">
     <a href="javascript:history.back()">
         <i class="fa-solid fa-arrow-left-long back"></i>
-        </a>
+    </a>
 </div>
 
 <div class="container top" style="text-align:center;">
@@ -14,41 +14,45 @@
     <span style="font-family:'Segoe UI light'">From hospital/red cross</span>
     <br />
     <form asp-action="Register">
-        <p class="mt-5">
+        <p class="mt-5" style="text-align:center;">
             Name: @Model.Campaign.Name
             <input type="hidden" asp-for="Campaign.CampaignId" value="@Model.Campaign.CampaignId" />
         </p>
-        <p>
+        <p style="text-align:center;">
             Start Date: @Model.Campaign.StartDate.ToString("dd/MM/yyyy")
 
         </p>
-        <p>
+        <p style="text-align:center">
             End date: @Model.Campaign.EndDate.ToString("dd/MM/yyyy")
         </p>
-        <p class="">
+
+        <p style="text-align:center;">
             Location: @Model.Campaign.Province
         </p>
 
-        <p class="mt-5">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-            Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-            when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-            It has survived not only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-            sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
-            Aldus PageMaker including versions of Lorem Ipsum.
-        </p>
-
         @{
-            if (DateTime.Compare(DateTime.Now, Model.Campaign.EndDate) > 0)
-            {
-                <button>Campaign End</button>
-            }
-            else
-            {
-                <a>@Html.ActionLink("Read More","Register","Campaign", new {id=@Model.Campaign.CampaignId},new { @class = "btn continue-btn my-5" })</a>
-            }
+            Post p = Model.GetPostByCampaignId(Model.Campaign.CampaignId);
         }
+
+        <img src="@p.Img" class="img-responsive mt-4" style="width: 100%;object-fit: contain;" />
+        <p class="mt-5">
+            @{
+                var paragraphMarker = Environment.NewLine + Environment.NewLine;
+                var paragraphs = @p.Description.Split(new[] { paragraphMarker },
+                StringSplitOptions.RemoveEmptyEntries);
+                foreach (var paragraph in paragraphs)
+                {
+                    var words = paragraph.Split(new[] { ' ' },
+                    StringSplitOptions.RemoveEmptyEntries)
+                    .Select(w => w.Trim());
+                <p>
+                        @paragraph
+                </p>
+                }
+            }
+        </p>
+        <a>@Html.ActionLink("Register Now","Register","Campaign", new {id=@Model.Campaign.CampaignId},new { @class = "btn continue-btn my-5" })</a>
+
     </form>
 
 
