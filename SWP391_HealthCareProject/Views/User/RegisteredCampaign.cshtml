@@ -1,0 +1,30 @@
+﻿@using SWP391_HealthCareProject.DataAccess;
+@model UserProfileModels
+@{
+    ViewData["Title"] = "Registered Campaign";
+    Layout = "_LayoutProfile";
+}
+
+<div class="container mt-5 mb-5 info-form-achievement tabcontent" id="Campaign">
+    @{
+        Volunteer volunteer = Model.GetVolunteerById(ViewBag.VolunteerId);
+        List<Participate> participate = Model.GetParticipatesByVolunteerId(volunteer.VolunteerId);
+        var campaigns = Model.GetAllCampaigns()
+        .Where(t => participate.Select(x => x.CampaignId).ToList().Contains(t.CampaignId));
+    }
+    <div class="row">
+        @foreach (var item in campaigns)
+        {
+            if (item.Status)
+            {
+                <div class="col-md-4 d-flex align-items-center achieve-wrap">
+                    <img src="" class="achieve-custom" />
+                    <div class="achieve-info">
+                        <div class="size-18 bold">@item.Name</div>
+                        <p class="m-0 faded">@item.Province</p>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
