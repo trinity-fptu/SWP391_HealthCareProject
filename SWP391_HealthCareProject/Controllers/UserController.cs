@@ -24,7 +24,7 @@ namespace SWP391_HealthCareProject.Controllers
         public string UploadedFile(User user)
         {
             string uniqueFileName = null;
-            if(user.ImageFile != null)
+            if (user.ImageFile != null)
             {
                 string uploadsFolder = Path.Combine(_hostEnvironment.WebRootPath, "assets/userAvatar");
                 uniqueFileName = Guid.NewGuid().ToString() + "_" + user.ImageFile.FileName;
@@ -98,7 +98,7 @@ namespace SWP391_HealthCareProject.Controllers
                 VolunteerDAO volunteerDAO = new VolunteerDAO();
                 volunteerDAO.updateUser(user);
                 isUpdated = true;
-                ViewBag.Updated = isUpdated; 
+                ViewBag.Updated = isUpdated;
                 return RedirectToAction("UserProfile", "User");
             }
             isUpdated = false;
@@ -115,20 +115,28 @@ namespace SWP391_HealthCareProject.Controllers
             user.Password = u.Password;
             user.Role = u.Role;
             user.CreatedDate = u.CreatedDate;
-            Console.WriteLine(user.UserId + user.UserName + user.Role + user.Avatar + user.Email);
-            VolunteerDAO volunteerDAO = new VolunteerDAO();
-            string uniqueFileName = UploadedFile(user);
-            user.Avatar = uniqueFileName;
-            if (user.Avatar == null)
+            if (SignupDAO.IsUserExist(user.UserName))
             {
-                user.Avatar = u.Avatar;
+                ViewBag.ErrorMessage = "username exist";
             }
-            volunteerDAO.updateUser(user);
-            
+            else
+            {
+                Console.WriteLine(user.UserId + user.UserName + user.Role + user.Avatar + user.Email);
+                VolunteerDAO volunteerDAO = new VolunteerDAO();
+                string uniqueFileName = UploadedFile(user);
+                user.Avatar = uniqueFileName;
+                if (user.Avatar == null)
+                {
+                    user.Avatar = u.Avatar;
+                }
+                volunteerDAO.updateUser(user);
+            }
+
+
             return RedirectToAction("UserProfile", "User");
         }
 
-       
+
 
 
         [HttpPost]
