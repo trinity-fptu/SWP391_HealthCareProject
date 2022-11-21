@@ -115,12 +115,7 @@ namespace SWP391_HealthCareProject.Controllers
             user.Password = u.Password;
             user.Role = u.Role;
             user.CreatedDate = u.CreatedDate;
-            if (SignupDAO.IsUserExist(user.UserName))
-            {
-                ViewBag.ErrorMessage = "username exist";
-            }
-            else
-            {
+            user.UserName = u.UserName;
                 Console.WriteLine(user.UserId + user.UserName + user.Role + user.Avatar + user.Email);
                 VolunteerDAO volunteerDAO = new VolunteerDAO();
                 string uniqueFileName = UploadedFile(user);
@@ -130,7 +125,6 @@ namespace SWP391_HealthCareProject.Controllers
                     user.Avatar = u.Avatar;
                 }
                 volunteerDAO.updateUser(user);
-            }
 
 
             return RedirectToAction("UserProfile", "User");

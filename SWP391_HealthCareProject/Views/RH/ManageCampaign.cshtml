@@ -36,7 +36,6 @@
                                     <th>Location</th>
                                     <th>Date</th>
                                     <th>Register Date</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -47,11 +46,8 @@
                                     <td><a href="@Url.Action("ManageVolunteer", "RH", new {id=item.VolunteerId})"><span>@Model.GetVolunteerById(item.VolunteerId).FirstName</span></a></td>
                                     <td>@Model.GetCampaignById(item.CampaignId).Name</td>
                                     <td>@item.Location</td>
-                                    <td>@item.Date</td>
-                                    <td>@item.RegisteredDate</td>
-                                    <td>
-                                        <a class="delete" title="Delete" data-toggle="tooltip"><i class="fa-solid fa-trash"></i></a>
-                                    </td>
+                                    <td>@item.Date.ToString("dd/MM/yyyy")</td>
+                                    <td>@item.RegisteredDate.ToString("dd/MM/yyyy")</td>
                                 </tr> 
                                 }
                                 

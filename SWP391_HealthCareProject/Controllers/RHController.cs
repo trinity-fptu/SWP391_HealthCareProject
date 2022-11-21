@@ -180,10 +180,11 @@ namespace SWP391_HealthCareProject.Controllers
                 MailMessage mail = new MailMessage();
                     mail.To.Add("lnphuc2006@gmail.com");
                     mail.To.Add("machaidangms@gmail.com");
+                    mail.To.Add("pain1601@gmail.com");
                 mail.To.Add("nguyenvuongbach933@gmail.com");
                 mail.From = new MailAddress("phamtuancuonghg@gmail.com");
                 mail.Subject = "Blood Donor Campaign";
-                mail.Body = "A new campaign Has started, join now!";
+                mail.Body = $"Campaign {campaign.Name} Has started, join now! \n https://localhost:44327/Home/CampaignList";
                 mail.IsBodyHtml = true;
 
                 SmtpClient smtp = new SmtpClient();

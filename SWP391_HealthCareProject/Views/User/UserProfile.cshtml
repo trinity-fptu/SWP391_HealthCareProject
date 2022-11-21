@@ -229,7 +229,7 @@
 
 <div id="Achievement" class="container info-form-achievement tabcontent mt-5 mb-5">
     <div class="row">
-        @if (volunteer.Attended > 1)
+        @if (volunteer.Attended > 1  && volunteer.Attended<3)
         {
             <div class="col-md-4 d-flex align-items-center achieve-wrap">
                 <img src="~/assets/achieve1.png" class="achieve-custom" />
@@ -239,8 +239,15 @@
                 </div>
             </div>
         }
-        else if (volunteer.Attended > 3)
+        else if (volunteer.Attended > 3 && volunteer.Attended <5)
         {
+            <div class="col-md-4 d-flex align-items-center achieve-wrap">
+                <img src="~/assets/achieve1.png" class="achieve-custom" />
+                <div class="achieve-info">
+                    <div class="size-18 bold">Love</div>
+                    <p class="m-0 faded">Participate in a campaign for a first time</p>
+                </div>
+            </div>
             <div class="col-md-4 d-flex align-items-center achieve-wrap">
                 <img src="~/assets/achieve2.png" class="achieve-custom " />
                 <div class="achieve-info ">
@@ -249,8 +256,22 @@
                 </div>
             </div>
         }
-        else if(volunteer.Attended > 5)
+        else if(volunteer.Attended > 5 && volunteer.Attended < 10)
         {
+            <div class="col-md-4 d-flex align-items-center achieve-wrap">
+                <img src="~/assets/achieve1.png" class="achieve-custom" />
+                <div class="achieve-info">
+                    <div class="size-18 bold">Love</div>
+                    <p class="m-0 faded">Participate in a campaign for a first time</p>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex align-items-center achieve-wrap">
+                <img src="~/assets/achieve2.png" class="achieve-custom " />
+                <div class="achieve-info ">
+                    <div class="size-18 bold">Kindness</div>
+                    <p class="m-0 faded">To those who have shown to be truly kind</p>
+                </div>
+            </div>
             <div class="col-md-4 d-flex align-items-center achieve-wrap">
                 <img src="~/assets/achieve3.png" class="achieve-custom" />
                 <div class="achieve-info">
