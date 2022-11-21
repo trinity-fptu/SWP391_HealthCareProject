@@ -2,7 +2,7 @@
 <h2 align="center">Managing Volunteers Participating In Blood Donation</h2>
 </br>
 
-<h2>Our team: </h2>
+<h2>Best regard to my team: </h2>
 <h3>Pham Trong Tai (me)</h3>
 <h3>Mac Hai Dang</h3>
 <h3>Nguyen Vuong Bach</h3>
@@ -33,10 +33,23 @@
 ### Some captures
 - Home page (no login required):
 
-![Home]()
-
 ![Home](/github-imgs/HomePage_1.png)
 ![Home](/github-imgs/HomePage_2.png)
 ![Home](/github-imgs/HomePage_3.png)
 ![Home](/github-imgs/HomePage_4.png)
 ![Home](/github-imgs/HomePage_5.png)
+
+- User profile (for volunteer, login required)
+![UserProfile](/github-imgs/NotificationAfterRegister.png)
+![UserProfile](/github-imgs/UserProfileGeneral.png)
+![UserProfile](/github-imgs/UserProfileDetail.png)
+![UserProfile](/github-imgs/Achievement.png)
+
+- Admin page (login required)
+![Admin](/github-imgs/AdminPage.png)
+
+- Hospital or Red Cross Organization Admin (login required)
+![RHAdmin](/github-imgs/RHAdminPage_1.png)
+![RHAdmin](/github-imgs/RHAdminPage_2.png)
+![RHAdmin](/github-imgs/RHAdminPage_3.png)
+![RHAdmin](/github-imgs/RHAdminPage_4.png)
